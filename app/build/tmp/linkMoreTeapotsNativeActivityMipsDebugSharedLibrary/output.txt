@@ -1,0 +1,4 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/linkMoreTeapotsNativeActivityMipsDebugSharedLibrary/output.txt for all output for linkMoreTeapotsNativeActivityMipsDebugSharedLibrary.
+linking libMoreTeapotsNativeActivity.so successful.
+
+Finished linkMoreTeapotsNativeActivityMipsDebugSharedLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/linkMoreTeapotsNativeActivityMipsDebugSharedLibrary/output.txt.

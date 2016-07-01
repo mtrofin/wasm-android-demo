@@ -1,0 +1,8 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt for all output for compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainCpp.
+compiling MoreTeapotsNativeActivity.cpp successful.
+clang++: warning: optimization flag '-finline-functions' is not supported
+
+compiling MoreTeapotsRenderer.cpp successful.
+clang++: warning: optimization flag '-finline-functions' is not supported
+
+Finished compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainCpp, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt.

@@ -1,0 +1,22 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt for all output for compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainCpp.
+compiling GLContext.cpp successful.
+
+compiling perfMonitor.cpp successful.
+
+compiling vecmath.cpp successful.
+
+compiling interpolator.cpp successful.
+
+compiling gestureDetector.cpp successful.
+
+compiling tapCamera.cpp successful.
+
+compiling shader.cpp successful.
+
+compiling JNIHelper.cpp successful.
+
+compiling MoreTeapotsNativeActivity.cpp successful.
+
+compiling MoreTeapotsRenderer.cpp successful.
+
+Finished compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainCpp, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt.

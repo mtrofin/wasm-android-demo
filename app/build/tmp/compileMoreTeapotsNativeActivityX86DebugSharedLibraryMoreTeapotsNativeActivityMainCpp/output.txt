@@ -1,0 +1,6 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt for all output for compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp.
+compiling MoreTeapotsNativeActivity.cpp successful.
+
+compiling MoreTeapotsRenderer.cpp successful.
+
+Finished compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt.

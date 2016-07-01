@@ -1,0 +1,15 @@
+-shared
+-Wl,-soname,libnative-activity.so
+-o
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/binaries/debug/obj/arm64-v8a/libnative-activity.so
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/objectFiles/arm64-v8aDebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o
+-Wl,--no-undefined
+-Wl,-z,noexecstack
+-Wl,-z,relro
+-Wl,-z,now
+--sysroot=/usr/local/google/home/clarkchenwang/Android/Sdk/ndk-bundle/platforms/android-23/arch-arm64
+-Wl,--build-id
+-no-canonical-prefixes
+-c
+-llog
+-landroid

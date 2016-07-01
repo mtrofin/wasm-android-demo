@@ -1,0 +1,5 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/linkNative-activityMipsDebugSharedLibrary/output.txt for all output for linkNative-activityMipsDebugSharedLibrary.
+linking libnative-activity.so successful.
+mipsel-linux-android-g++: warning: /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/objectFiles/mipsDebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
+
+Finished linkNative-activityMipsDebugSharedLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/linkNative-activityMipsDebugSharedLibrary/output.txt.

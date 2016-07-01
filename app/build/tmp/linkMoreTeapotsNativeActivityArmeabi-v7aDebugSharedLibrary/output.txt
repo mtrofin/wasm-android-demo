@@ -1,0 +1,4 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/linkMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibrary/output.txt for all output for linkMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibrary.
+linking libMoreTeapotsNativeActivity.so successful.
+
+Finished linkMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/linkMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibrary/output.txt.

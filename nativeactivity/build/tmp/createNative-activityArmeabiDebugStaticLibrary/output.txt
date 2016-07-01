@@ -1,0 +1,4 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/createNative-activityArmeabiDebugStaticLibrary/output.txt for all output for createNative-activityArmeabiDebugStaticLibrary.
+archiving libnative-activity.a successful.
+
+Finished createNative-activityArmeabiDebugStaticLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/createNative-activityArmeabiDebugStaticLibrary/output.txt.

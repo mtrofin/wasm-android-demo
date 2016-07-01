@@ -1,0 +1,5 @@
+See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/linkNative-activityArmeabi-v7aDebugSharedLibrary/output.txt for all output for linkNative-activityArmeabi-v7aDebugSharedLibrary.
+linking libnative-activity.so successful.
+arm-linux-androideabi-g++: warning: /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/objectFiles/armeabi-v7aDebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
+
+Finished linkNative-activityArmeabi-v7aDebugSharedLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/linkNative-activityArmeabi-v7aDebugSharedLibrary/output.txt.
