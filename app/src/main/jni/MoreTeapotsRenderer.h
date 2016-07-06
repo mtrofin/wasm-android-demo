@@ -33,7 +33,17 @@
 #define CLASS_NAME "android/app/NativeActivity"
 #define APPLICATION_CLASS_NAME "com/sample/moreteapots/MoreTeapotsApplication"
 
-#include "NDKHelper.h"
+//#include "NDKHelper.h"
+
+#include "gl3stub.h"    //GLES3 stubs
+//#include "GLContext.h"  //EGL & OpenGL manager
+#include "shader.h"     //Shader compiler support
+#include "vecmath.h"  //Vector math support, C++ implementation n current version
+//#include "tapCamera.h"        //Tap/Pinch camera control
+//#include "JNIHelper.h"        //JNI support
+//#include "gestureDetector.h"  //Tap/Doubletap/Pinch detector
+//#include "perfMonitor.h"      //FPS counter
+//#include "interpolator.h"     //Interpolator
 
 #define BUFFER_OFFSET(i) ((char*)NULL + (i))
 
@@ -86,7 +96,7 @@ class MoreTeapotsRenderer {
   std::vector<ndk_helper::Vec2> vec_rotations_;
   std::vector<ndk_helper::Vec2> vec_current_rotations_;
 
-  ndk_helper::TapCamera* camera_;
+//  ndk_helper::TapCamera* camera_;
 
   int32_t teapot_x_;
   int32_t teapot_y_;
@@ -104,7 +114,7 @@ class MoreTeapotsRenderer {
   void Init(const int32_t numX, const int32_t numY, const int32_t numZ);
   void Render();
   void Update(float dTime);
-  bool Bind(ndk_helper::TapCamera* camera);
+//  bool Bind(ndk_helper::TapCamera* camera);
   void Unload();
   void UpdateViewport();
 };

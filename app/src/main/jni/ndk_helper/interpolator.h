@@ -17,10 +17,10 @@
 #ifndef INTERPOLATOR_H_
 #define INTERPOLATOR_H_
 
-#include <jni.h>
+//#include <jni.h>
 #include <errno.h>
 #include <time.h>
-#include "JNIHelper.h"
+//#include "JNIHelper.h"
 #include "perfMonitor.h"
 #include <list>
 

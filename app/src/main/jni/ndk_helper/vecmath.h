@@ -18,7 +18,7 @@
 #define VECMATH_H_
 
 #include <math.h>
-#include "JNIHelper.h"
+//#include "JNIHelper.h"
 
 namespace ndk_helper {
 
@@ -198,7 +198,7 @@ class Vec2 {
     fY = y_;
   }
 
-  void Dump() { LOGI("Vec2 %f %f", x_, y_); }
+  //void Dump() { LOGI("Vec2 %f %f", x_, y_); }
 };
 
 /******************************************************************
@@ -396,7 +396,7 @@ class Vec3 {
     fZ = z_;
   }
 
-  void Dump() { LOGI("Vec3 %f %f %f", x_, y_, z_); }
+  //void Dump() { LOGI("Vec3 %f %f %f", x_, y_, z_); }
 };
 
 /******************************************************************
@@ -801,12 +801,12 @@ class Mat4 {
     return ret;
   }
 
-  void Dump() {
-    LOGI("%f %f %f %f", f_[0], f_[1], f_[2], f_[3]);
-    LOGI("%f %f %f %f", f_[4], f_[5], f_[6], f_[7]);
-    LOGI("%f %f %f %f", f_[8], f_[9], f_[10], f_[11]);
-    LOGI("%f %f %f %f", f_[12], f_[13], f_[14], f_[15]);
-  }
+//  void Dump() {
+//    LOGI("%f %f %f %f", f_[0], f_[1], f_[2], f_[3]);
+//    LOGI("%f %f %f %f", f_[4], f_[5], f_[6], f_[7]);
+//    LOGI("%f %f %f %f", f_[8], f_[9], f_[10], f_[11]);
+//    LOGI("%f %f %f %f", f_[12], f_[13], f_[14], f_[15]);
+//  }
 };
 
 /******************************************************************

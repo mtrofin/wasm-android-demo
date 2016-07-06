@@ -1,5 +1,28 @@
 See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityArmeabiDebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt for all output for compileMoreTeapotsNativeActivityArmeabiDebugSharedLibraryMoreTeapotsNativeActivityMainCpp.
+compiling vecmath.cpp successful.
+
+compiling perfMonitor.cpp successful.
+
+compiling interpolator.cpp successful.
+
+compiling GLContext.cpp successful.
+
+compiling gestureDetector.cpp successful.
+
+compiling shader.cpp successful.
+
 compiling MoreTeapotsNativeActivity.cpp successful.
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsNativeActivity.cpp:201:11: warning: unused variable 'eng' [-Wunused-variable]
+  Engine* eng = (Engine*)app->userData;
+          ^
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsNativeActivity.cpp:420:10: warning: unused variable 'test' [-Wunused-variable]
+    bool test = g_engine.IsReady();
+         ^
+2 warnings generated.
+
+compiling tapCamera.cpp successful.
+
+compiling JNIHelper.cpp successful.
 
 compiling MoreTeapotsRenderer.cpp successful.
 

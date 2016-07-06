@@ -44,17 +44,17 @@ MoreTeapotsRenderer::~MoreTeapotsRenderer() { Unload(); }
 //--------------------------------------------------------------------------------
 void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
                                const int32_t numZ) {
-  if (ndk_helper::GLContext::GetInstance()->GetGLVersion() >= 3.0) {
-    geometry_instancing_support_ = true;
-  } else if (ndk_helper::GLContext::GetInstance()->CheckExtension(
-                 "GL_NV_draw_instanced") &&
-             ndk_helper::GLContext::GetInstance()->CheckExtension(
-                 "GL_NV_uniform_buffer_object")) {
-    LOGI("Supported via extension!");
-    //_bGeometryInstancingSupport = true;
-    //_bARBSupport = true; //Need to patch shaders
-    // Currently this has been disabled
-  }
+//  if (ndk_helper::GLContext::GetInstance()->GetGLVersion() >= 3.0) {
+//    geometry_instancing_support_ = true;
+//  } else if (ndk_helper::GLContext::GetInstance()->CheckExtension(
+//                 "GL_NV_draw_instanced") &&
+//             ndk_helper::GLContext::GetInstance()->CheckExtension(
+//                 "GL_NV_uniform_buffer_object")) {
+//    LOGI("Supported via extension!");
+//    //_bGeometryInstancingSupport = true;
+//    //_bARBSupport = true; //Need to patch shaders
+//    // Currently this has been disabled
+//  }
 
   // Settings
   glFrontFace(GL_CCW);
@@ -181,7 +181,7 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
                    GL_DYNAMIC_DRAW);
       delete[] pBuffer;
     } else {
-      LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
+      //LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
       // This happens some devices.
       geometry_instancing_support_ = false;
       // Load shader for GLES2.0
@@ -248,11 +248,11 @@ void MoreTeapotsRenderer::Update(float fTime) {
                                        ndk_helper::Vec3(0.f, 0.f, 0.f),
                                        ndk_helper::Vec3(0.f, 1.f, 0.f));
 
-  if (camera_) {
-    camera_->Update();
-    mat_view_ = camera_->GetTransformMatrix() * mat_view_ *
-                camera_->GetRotationMatrix();
-  }
+//  if (camera_) {
+//    camera_->Update();
+//    mat_view_ = camera_->GetTransformMatrix() * mat_view_ *
+//                camera_->GetRotationMatrix();
+//  }
 }
 
 //--------------------------------------------------------------------------------
@@ -374,12 +374,12 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 
   // Create shader program
   program = glCreateProgram();
-  LOGI("Created Shader %d", program);
+//  LOGI("Created Shader %d", program);
 
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
                                          strVsh)) {
-    LOGI("Failed to compile vertex shader");
+//    LOGI("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
@@ -387,7 +387,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
                                          strFsh)) {
-    LOGI("Failed to compile fragment shader");
+//    LOGI("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
   }
@@ -405,7 +405,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
-    LOGI("Failed to link program: %d", program);
+//    LOGI("Failed to link program: %d", program);
 
     if (vertShader) {
       glDeleteShader(vertShader);
@@ -452,12 +452,12 @@ bool MoreTeapotsRenderer::LoadShadersES3(
 
   // Create shader program
   program = glCreateProgram();
-  LOGI("Created Shader %d", program);
+//  LOGI("Created Shader %d", program);
 
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
                                          shaderParams)) {
-    LOGI("Failed to compile vertex shader");
+//    LOGI("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
@@ -465,7 +465,7 @@ bool MoreTeapotsRenderer::LoadShadersES3(
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
                                          strFsh, shaderParams)) {
-    LOGI("Failed to compile fragment shader");
+//    LOGI("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
   }
@@ -478,7 +478,7 @@ bool MoreTeapotsRenderer::LoadShadersES3(
 
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
-    LOGI("Failed to link program: %d", program);
+//    LOGI("Failed to link program: %d", program);
 
     if (vertShader) {
       glDeleteShader(vertShader);
@@ -512,10 +512,10 @@ bool MoreTeapotsRenderer::LoadShadersES3(
 //--------------------------------------------------------------------------------
 // Bind
 //--------------------------------------------------------------------------------
-bool MoreTeapotsRenderer::Bind(ndk_helper::TapCamera* camera) {
-  camera_ = camera;
-  return true;
-}
+//bool MoreTeapotsRenderer::Bind(ndk_helper::TapCamera* camera) {
+//  camera_ = camera;
+//  return true;
+//}
 
 //--------------------------------------------------------------------------------
 // Helper functions
