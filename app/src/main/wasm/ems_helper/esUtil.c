@@ -297,7 +297,8 @@ void ESUTIL_API esMainLoop ( ESContext *esContext )
 
     gettimeofday ( &t1 , &tz );
 
-    // Just one iteration! while(userInterrupt(esContext) == GL_FALSE)
+    // Just one iteration! 
+    // while(userInterrupt(esContext) == GL_FALSE)
     {
         gettimeofday(&t2, &tz);
         deltatime = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
@@ -308,7 +309,7 @@ void ESUTIL_API esMainLoop ( ESContext *esContext )
         if (esContext->drawFunc != NULL)
             esContext->drawFunc(esContext);
 
-        eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
+        int test = eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 
         totaltime += deltatime;
         frames++;

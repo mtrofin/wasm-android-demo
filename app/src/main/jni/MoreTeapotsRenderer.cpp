@@ -254,6 +254,7 @@ void MoreTeapotsRenderer::Update(float fTime) {
 //    mat_view_ = camera_->GetTransformMatrix() * mat_view_ *
 //                camera_->GetRotationMatrix();
 //  }
+//  printf("Updating...\n");
 }
 
 //--------------------------------------------------------------------------------
@@ -358,6 +359,7 @@ void MoreTeapotsRenderer::Render() {
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+//  printf("Rendering...\n");
 }
 
 //--------------------------------------------------------------------------------
@@ -379,8 +381,8 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   const FileData vertex_shader_source = get_asset_data(strVsh);
   const FileData fragment_shader_source = get_asset_data(strFsh);
 
-  printf("vsh data: %s \n%ld \n", (const char* )vertex_shader_source.data, vertex_shader_source.data_length);
-  printf("fsh data: %s \n%ld \n", (const char* )fragment_shader_source.data, fragment_shader_source.data_length);
+//  printf("vsh data: %s \n%ld \n", (const char* )vertex_shader_source.data, vertex_shader_source.data_length);
+//  printf("fsh data: %s \n%ld \n", (const char* )fragment_shader_source.data, fragment_shader_source.data_length);
 
 
   // Create and compile vertex shader

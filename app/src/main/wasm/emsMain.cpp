@@ -3,7 +3,9 @@
 //
 
 #include "esUtil.h"
+#include <sys/time.h>
 #include "MoreTeapotsRenderer.h"
+#include <emscripten/emscripten.h>
 
 typedef struct
 {
@@ -80,13 +82,42 @@ int Engine::InitDisplay() {
 void Engine::registerCallback() {
     esRegisterUpdateFunc(esContext, Renderer_Update_Wrapper);
     esRegisterDrawFunc(esContext, Renderer_Render_Wrapper);
-    esMainLoop(esContext);
 }
 
 Engine g_engine;
+struct timeval t1, t2;
+struct timezone tz;
+float deltatime;
+float totaltime = 0.0f;
+unsigned int frames = 0;
+
+void one_iter() {
+    gettimeofday(&t2, &tz);
+    deltatime = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+    t1 = t2;
+
+    if (context.updateFunc != NULL)
+        context.updateFunc(&context, deltatime);
+    if (context.drawFunc != NULL)
+        context.drawFunc(&context);
+
+    eglSwapBuffers(context.eglDisplay, context.eglSurface);
+
+    totaltime += deltatime;
+    frames++;
+    if (totaltime >  2.0f)
+    {
+        printf("%4d frames rendered in %1.4f seconds -> FPS=%3.4f\n", frames, totaltime, frames/totaltime);
+        totaltime -= 2.0f;
+        frames = 0;
+    }
+}
+
 int main (int argc, char *argv[])
 {
     g_engine.InitDisplay();
     g_engine.registerCallback();
+    gettimeofday ( &t1 , &tz );
+    emscripten_set_main_loop(one_iter, 0, 1);
 }
 
