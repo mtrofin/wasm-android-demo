@@ -1,29 +1,20 @@
 See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt for all output for compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp.
 compiling vecmath.cpp successful.
 
-compiling interpolator.cpp successful.
-
-compiling perfMonitor.cpp successful.
-
-compiling GLContext.cpp successful.
-
-compiling gestureDetector.cpp successful.
+compiling shader.cpp successful.
 
 compiling tapCamera.cpp successful.
 
-compiling shader.cpp successful.
-
-compiling JNIHelper.cpp successful.
-
-compiling MoreTeapotsNativeActivity.cpp successful.
-/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsNativeActivity.cpp:201:11: warning: unused variable 'eng' [-Wunused-variable]
-  Engine* eng = (Engine*)app->userData;
-          ^
-/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsNativeActivity.cpp:420:10: warning: unused variable 'test' [-Wunused-variable]
-    bool test = g_engine.IsReady();
-         ^
-2 warnings generated.
+compiling gestureDetector.cpp successful.
 
 compiling MoreTeapotsRenderer.cpp successful.
+In file included from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsRenderer.cpp:24:
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsRenderer.h:111:11: warning: private field 'ubo_vector_stride_' is not used [-Wunused-private-field]
+  int32_t ubo_vector_stride_;
+          ^
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/jni/MoreTeapotsRenderer.h:113:8: warning: private field 'arb_support_' is not used [-Wunused-private-field]
+  bool arb_support_;
+       ^
+2 warnings generated.
 
 Finished compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainCpp/output.txt.

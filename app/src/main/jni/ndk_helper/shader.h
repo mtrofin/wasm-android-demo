@@ -78,6 +78,8 @@ bool CompileShader(GLuint *shader, const GLenum type, const GLchar *source,
  *
  */
 bool CompileShader(GLuint *shader, const GLenum type, const char *strFileName);
+//bool CompileShader(GLuint *shader, const GLenum type,
+//                           const GLchar* source, const GLint length);
 
 /******************************************************************
  * CompileShader() with std::map helps patching on a shader on the fly.

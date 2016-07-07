@@ -39,6 +39,12 @@
 //#include "GLContext.h"  //EGL & OpenGL manager
 #include "shader.h"     //Shader compiler support
 #include "vecmath.h"  //Vector math support, C++ implementation n current version
+
+extern "C" {
+    #include "platform_asset_utils.h"
+    #include "platform_file_utils.h"
+};
+
 //#include "tapCamera.h"        //Tap/Pinch camera control
 //#include "JNIHelper.h"        //JNI support
 //#include "gestureDetector.h"  //Tap/Doubletap/Pinch detector
@@ -85,9 +91,9 @@ class MoreTeapotsRenderer {
   SHADER_PARAMS shader_param_;
   bool LoadShaders(SHADER_PARAMS* params, const char* strVsh,
                    const char* strFsh);
-  bool LoadShadersES3(SHADER_PARAMS* params, const char* strVsh,
-                      const char* strFsh,
-                      std::map<std::string, std::string>& shaderParameters);
+//  bool LoadShadersES3(SHADER_PARAMS* params, const char* strVsh,
+//                      const char* strFsh,
+//                      std::map<std::string, std::string>& shaderParameters);
 
   ndk_helper::Mat4 mat_projection_;
   ndk_helper::Mat4 mat_view_;

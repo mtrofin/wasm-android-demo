@@ -18,56 +18,58 @@
 #include <GLES2/gl2.h>
 
 #include "shader.h"
-#include "JNIHelper.h"
+//#include "JNIHelper.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 namespace ndk_helper {
 
 #define DEBUG (1)
 
-bool shader::CompileShader(
-    GLuint *shader, const GLenum type, const char *str_file_name,
-    const std::map<std::string, std::string> &map_parameters) {
-  std::vector<uint8_t> data;
-  if (!JNIHelper::GetInstance()->ReadFile(str_file_name, &data)) {
-    LOGI("Can not open a file:%s", str_file_name);
-    return false;
-  }
-
-  const char REPLACEMENT_TAG = '*';
-  // Fill-in parameters
-  std::string str(data.begin(), data.end());
-  std::string str_replacement_map(data.size(), ' ');
-
-  std::map<std::string, std::string>::const_iterator it =
-      map_parameters.begin();
-  std::map<std::string, std::string>::const_iterator itEnd =
-      map_parameters.end();
-  while (it != itEnd) {
-    size_t pos = 0;
-    while ((pos = str.find(it->first, pos)) != std::string::npos) {
-      // Check if the sub string is already touched
-
-      size_t replaced_pos = str_replacement_map.find(REPLACEMENT_TAG, pos);
-      if (replaced_pos == std::string::npos || replaced_pos > pos) {
-
-        str.replace(pos, it->first.length(), it->second);
-        str_replacement_map.replace(pos, it->first.length(), it->first.length(),
-                                    REPLACEMENT_TAG);
-        pos += it->second.length();
-      } else {
-        // The replacement target has been touched by other tag, skipping them
-        pos += it->second.length();
-      }
-    }
-    it++;
-  }
-
-  LOGI("Patched Shdader:\n%s", str.c_str());
-
-  std::vector<uint8_t> v(str.begin(), str.end());
-  str.clear();
-  return shader::CompileShader(shader, type, v);
-}
+//bool shader::CompileShader(
+//    GLuint *shader, const GLenum type, const char *str_file_name,
+//    const std::map<std::string, std::string> &map_parameters) {
+//  std::vector<uint8_t> data;
+//  if (!JNIHelper::GetInstance()->ReadFile(str_file_name, &data)) {
+//    //LOGI("Can not open a file:%s", str_file_name);
+//    return false;
+//  }
+//
+//  const char REPLACEMENT_TAG = '*';
+//  // Fill-in parameters
+//  std::string str(data.begin(), data.end());
+//  std::string str_replacement_map(data.size(), ' ');
+//
+//  std::map<std::string, std::string>::const_iterator it =
+//      map_parameters.begin();
+//  std::map<std::string, std::string>::const_iterator itEnd =
+//      map_parameters.end();
+//  while (it != itEnd) {
+//    size_t pos = 0;
+//    while ((pos = str.find(it->first, pos)) != std::string::npos) {
+//      // Check if the sub string is already touched
+//
+//      size_t replaced_pos = str_replacement_map.find(REPLACEMENT_TAG, pos);
+//      if (replaced_pos == std::string::npos || replaced_pos > pos) {
+//
+//        str.replace(pos, it->first.length(), it->second);
+//        str_replacement_map.replace(pos, it->first.length(), it->first.length(),
+//                                    REPLACEMENT_TAG);
+//        pos += it->second.length();
+//      } else {
+//        // The replacement target has been touched by other tag, skipping them
+//        pos += it->second.length();
+//      }
+//    }
+//    it++;
+//  }
+//
+//  //LOGI("Patched Shdader:\n%s", str.c_str());
+//
+//  std::vector<uint8_t> v(str.begin(), str.end());
+//  str.clear();
+//  return shader::CompileShader(shader, type, v);
+//}
 
 bool shader::CompileShader(GLuint *shader, const GLenum type,
                            const GLchar *source, const int32_t iSize) {
@@ -85,7 +87,8 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   if (logLength > 0) {
     GLchar *log = (GLchar *)malloc(logLength);
     glGetShaderInfoLog(*shader, logLength, &logLength, log);
-    LOGI("Shader compile log:\n%s", log);
+//    LOGI("Shader compile log:\n%s", log);
+    printf("Shader compile log:%s\n", log);
     free(log);
   }
 #endif
@@ -93,6 +96,7 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   GLint status;
   glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
   if (status == 0) {
+    printf("compile failure\n");
     glDeleteShader(*shader);
     return false;
   }
@@ -109,37 +113,52 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   return shader::CompileShader(shader, type, source, iSize);
 }
 
-bool shader::CompileShader(GLuint *shader, const GLenum type,
-                           const char *strFileName) {
-  std::vector<uint8_t> data;
-  bool b = JNIHelper::GetInstance()->ReadFile(strFileName, &data);
-  if (!b) {
-    LOGI("Can not open a file:%s", strFileName);
-    return false;
-  }
+//bool shader::CompileShader(GLuint *shader, const GLenum type,
+//                           const char *strFileName) {
+//  std::vector<uint8_t> data;
+//  bool b = JNIHelper::GetInstance()->ReadFile(strFileName, &data);
+//  if (!b) {
+//    LOGI("Can not open a file:%s", strFileName);
+//    return false;
+//  }
+//
+//  return shader::CompileShader(shader, type, data);
+//}
 
-  return shader::CompileShader(shader, type, data);
-}
+//bool shader::CompileShader(GLuint *shader, const GLenum type,
+//                           const GLchar* source, const GLint length) {
+//
+//  GLuint shader_object_id = glCreateShader(type);
+//  GLint compile_status;
+//
+//  glShaderSource(shader_object_id, 1, (const GLchar **)&source, &length);
+//  glCompileShader(shader_object_id);
+//  glGetShaderiv(shader_object_id, GL_COMPILE_STATUS, &compile_status);
+//
+//  if(compile_status != 0) return true;
+//  else return false;
+//}
 
 bool shader::LinkProgram(const GLuint prog) {
   GLint status;
 
   glLinkProgram(prog);
 
-#if defined(DEBUG)
-  GLint logLength;
-  glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0) {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    LOGI("Program link log:\n%s", log);
-    free(log);
-  }
-#endif
+ #if defined(DEBUG)
+   GLint logLength;
+   glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
+   if (logLength > 0) {
+     GLchar *log = (GLchar *)malloc(logLength);
+     glGetProgramInfoLog(prog, logLength, &logLength, log);
+     //LOGI("Program link log:\n%s", log);
+     printf("Program link log:\n%s\n", log);
+     free(log);
+   }
+ #endif
 
   glGetProgramiv(prog, GL_LINK_STATUS, &status);
   if (status == 0) {
-    LOGI("Program link failed\n");
+    //LOGI("Program link failed\n");
     return false;
   }
 
@@ -151,12 +170,12 @@ bool shader::ValidateProgram(const GLuint prog) {
 
   glValidateProgram(prog);
   glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-  if (logLength > 0) {
-    GLchar *log = (GLchar *)malloc(logLength);
-    glGetProgramInfoLog(prog, logLength, &logLength, log);
-    LOGI("Program validate log:\n%s", log);
-    free(log);
-  }
+  // if (logLength > 0) {
+  //   GLchar *log = (GLchar *)malloc(logLength);
+  //   glGetProgramInfoLog(prog, logLength, &logLength, log);
+  //   //LOGI("Program validate log:\n%s", log);
+  //   free(log);
+  // }
 
   glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
   if (status == 0) return false;

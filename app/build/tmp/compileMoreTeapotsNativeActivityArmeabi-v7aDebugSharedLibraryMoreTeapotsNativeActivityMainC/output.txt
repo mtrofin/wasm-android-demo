@@ -1,6 +1,4 @@
 See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainC/output.txt for all output for compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainC.
-compiling gl3stub.c successful.
-
-compiling cpu-features.c successful.
+compiling platform_asset_utils.c successful.
 
 Finished compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainC, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityArmeabi-v7aDebugSharedLibraryMoreTeapotsNativeActivityMainC/output.txt.

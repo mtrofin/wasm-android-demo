@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:1:1-31:12
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:1:1-32:12
 	package
 		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:2:11-43
 		INJECTED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml
@@ -19,46 +19,50 @@ uses-feature#0x00020000
 ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:6:3-65
 	android:glEsVersion
 		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:6:17-49
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:7:3-78
+	android:name
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:7:20-76
 application
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:7:3-30:17
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:8:3-31:17
 	android:label
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:12:7-39
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:13:7-39
 	android:supportsRtl
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:10:7-33
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:11:7-33
 	android:fullBackupContent
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:9:7-40
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:10:7-40
 	android:allowBackup
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:8:7-34
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:9:7-34
 	android:icon
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:11:7-41
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:12:7-41
 	android:theme
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:13:7-38
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:14:7-38
 	android:name
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:14:7-67
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:15:7-67
 activity#com.sample.moreteapots.MoreTeapotsNativeActivity
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:19:5-29:16
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:20:5-30:16
 	android:label
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:20:15-47
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:21:15-47
 	android:configChanges
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:21:15-65
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:22:15-65
 	android:name
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:19:15-78
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:20:15-78
 meta-data#android.app.lib_name
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:23:7-24:62
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:24:7-25:62
 	android:value
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:24:18-59
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:25:18-59
 	android:name
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:23:18-53
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:24:18-53
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:25:7-28:23
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:26:7-29:23
 action#android.intent.action.MAIN
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:26:9-61
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:27:9-61
 	android:name
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:26:17-58
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:27:17-58
 category#android.intent.category.LAUNCHER
-ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:27:9-69
+ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:28:9-69
 	android:name
-		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:27:19-66
+		ADDED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml:28:19-66
 uses-sdk
 INJECTED from /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 	android:targetSdkVersion

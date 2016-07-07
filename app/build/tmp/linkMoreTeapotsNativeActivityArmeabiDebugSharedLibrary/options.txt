@@ -2,7 +2,9 @@
 -Wl,-soname,libMoreTeapotsNativeActivity.so
 -o
 /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/binaries/debug/obj/armeabi/libMoreTeapotsNativeActivity.so
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/objectFiles/armeabiDebugSharedLibrary/MoreTeapotsNativeActivityMainC/8to90yrq6z1t561m46e6674nj/platform_file_utils.o
 /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/objectFiles/armeabiDebugSharedLibrary/MoreTeapotsNativeActivityMainC/e47awyz3m8h2pnxoe6mp5533f/cpu-features.o
+/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/objectFiles/armeabiDebugSharedLibrary/MoreTeapotsNativeActivityMainC/3jt6umzuln9q3t37262hi2c4j/platform_asset_utils.o
 /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/objectFiles/armeabiDebugSharedLibrary/MoreTeapotsNativeActivityMainC/e727z13ani6tuq17tv598oocz/gl3stub.o
 /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/objectFiles/armeabiDebugSharedLibrary/MoreTeapotsNativeActivityMainCpp/8wucxxyycqvijf34nhdshfqlb/tapCamera.o
 /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/objectFiles/armeabiDebugSharedLibrary/MoreTeapotsNativeActivityMainCpp/3p8xpxwqud6z28vtnl81x6fkc/JNIHelper.o

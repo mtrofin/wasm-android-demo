@@ -18,6 +18,7 @@
 #define VECMATH_H_
 
 #include <math.h>
+#include <stdint.h>
 //#include "JNIHelper.h"
 
 namespace ndk_helper {

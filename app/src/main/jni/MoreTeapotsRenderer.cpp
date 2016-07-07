@@ -21,6 +21,7 @@
 //--------------------------------------------------------------------------------
 // Include files
 //--------------------------------------------------------------------------------
+#include <platform_file_utils.h>
 #include "MoreTeapotsRenderer.h"
 
 //--------------------------------------------------------------------------------
@@ -121,78 +122,78 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
             ndk_helper::Vec2(rotation_x * M_PI, rotation_y * M_PI));
       }
 
-  if (geometry_instancing_support_) {
-    //
-    // Create parameter dictionary for shader patch
-    std::map<std::string, std::string> param;
-    param[std::string("%NUM_TEAPOT%")] =
-        ToString(teapot_x_ * teapot_y_ * teapot_z_);
-    param[std::string("%LOCATION_VERTEX%")] = ToString(ATTRIB_VERTEX);
-    param[std::string("%LOCATION_NORMAL%")] = ToString(ATTRIB_NORMAL);
-    if (arb_support_)
-      param[std::string("%ARB%")] = std::string("ARB");
-    else
-      param[std::string("%ARB%")] = std::string("");
-
-    // Load shader
-    bool b = LoadShadersES3(&shader_param_, "Shaders/VS_ShaderPlainES3.vsh",
-                            "Shaders/ShaderPlainES3.fsh", param);
-    if (b) {
-      //
-      // Create uniform buffer
-      //
-      GLuint bindingPoint = 1;
-      GLuint blockIndex;
-      blockIndex = glGetUniformBlockIndex(shader_param_.program_, "ParamBlock");
-      glUniformBlockBinding(shader_param_.program_, blockIndex, bindingPoint);
-
-      // Retrieve array stride value
-      int32_t num_indices;
-      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
-                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &num_indices);
-      GLint i[num_indices];
-      GLint stride[num_indices];
-      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
-                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, i);
-      glGetActiveUniformsiv(shader_param_.program_, num_indices, (GLuint*)i,
-                            GL_UNIFORM_ARRAY_STRIDE, stride);
-
-      ubo_matrix_stride_ = stride[0] / sizeof(float);
-      ubo_vector_stride_ = stride[2] / sizeof(float);
-
-      glGenBuffers(1, &ubo_);
-      glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
-      glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, ubo_);
-
-      // Store color value which wouldn't be updated every frame
-      int32_t size = teapot_x_ * teapot_y_ * teapot_z_ *
-                      (ubo_matrix_stride_ + ubo_matrix_stride_ +
-                       ubo_vector_stride_);  // Mat4 + Mat4 + Vec3 + 1 stride
-      float* pBuffer = new float[size];
-      float* pColor =
-          pBuffer + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_ * 2;
-      for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-        memcpy(pColor, &vec_colors_[i], 3 * sizeof(float));
-        pColor += ubo_vector_stride_;  // Assuming std140 layout which is 4
-                                       // DWORD stride for vectors
-      }
-
-      glBufferData(GL_UNIFORM_BUFFER, size * sizeof(float), pBuffer,
-                   GL_DYNAMIC_DRAW);
-      delete[] pBuffer;
-    } else {
-      //LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
-      // This happens some devices.
-      geometry_instancing_support_ = false;
-      // Load shader for GLES2.0
-      LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
-                  "Shaders/ShaderPlain.fsh");
-    }
-  } else {
+//  if (geometry_instancing_support_) {
+//    //
+//    // Create parameter dictionary for shader patch
+//    std::map<std::string, std::string> param;
+//    param[std::string("%NUM_TEAPOT%")] =
+//        ToString(teapot_x_ * teapot_y_ * teapot_z_);
+//    param[std::string("%LOCATION_VERTEX%")] = ToString(ATTRIB_VERTEX);
+//    param[std::string("%LOCATION_NORMAL%")] = ToString(ATTRIB_NORMAL);
+//    if (arb_support_)
+//      param[std::string("%ARB%")] = std::string("ARB");
+//    else
+//      param[std::string("%ARB%")] = std::string("");
+//
+//    // Load shader
+//    bool b = LoadShadersES3(&shader_param_, "Shaders/VS_ShaderPlainES3.vsh",
+//                            "Shaders/ShaderPlainES3.fsh", param);
+//    if (b) {
+//      //
+//      // Create uniform buffer
+//      //
+//      GLuint bindingPoint = 1;
+//      GLuint blockIndex;
+//      blockIndex = glGetUniformBlockIndex(shader_param_.program_, "ParamBlock");
+//      glUniformBlockBinding(shader_param_.program_, blockIndex, bindingPoint);
+//
+//      // Retrieve array stride value
+//      int32_t num_indices;
+//      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
+//                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &num_indices);
+//      GLint i[num_indices];
+//      GLint stride[num_indices];
+//      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
+//                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, i);
+//      glGetActiveUniformsiv(shader_param_.program_, num_indices, (GLuint*)i,
+//                            GL_UNIFORM_ARRAY_STRIDE, stride);
+//
+//      ubo_matrix_stride_ = stride[0] / sizeof(float);
+//      ubo_vector_stride_ = stride[2] / sizeof(float);
+//
+//      glGenBuffers(1, &ubo_);
+//      glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
+//      glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, ubo_);
+//
+//      // Store color value which wouldn't be updated every frame
+//      int32_t size = teapot_x_ * teapot_y_ * teapot_z_ *
+//                      (ubo_matrix_stride_ + ubo_matrix_stride_ +
+//                       ubo_vector_stride_);  // Mat4 + Mat4 + Vec3 + 1 stride
+//      float* pBuffer = new float[size];
+//      float* pColor =
+//          pBuffer + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_ * 2;
+//      for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
+//        memcpy(pColor, &vec_colors_[i], 3 * sizeof(float));
+//        pColor += ubo_vector_stride_;  // Assuming std140 layout which is 4
+//                                       // DWORD stride for vectors
+//      }
+//
+//      glBufferData(GL_UNIFORM_BUFFER, size * sizeof(float), pBuffer,
+//                   GL_DYNAMIC_DRAW);
+//      delete[] pBuffer;
+//    } else {
+//      //LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
+//      // This happens some devices.
+//      geometry_instancing_support_ = false;
+//      // Load shader for GLES2.0
+//      LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
+//                  "Shaders/ShaderPlain.fsh");
+//    }
+//  } else {
     // Load shader for GLES2.0
     LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
                 "Shaders/ShaderPlain.fsh");
-  }
+//  }
 }
 
 void MoreTeapotsRenderer::UpdateViewport() {
@@ -375,19 +376,29 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Create shader program
   program = glCreateProgram();
 //  LOGI("Created Shader %d", program);
+  const FileData vertex_shader_source = get_asset_data(strVsh);
+  const FileData fragment_shader_source = get_asset_data(strFsh);
+
+  printf("vsh data: %s \n%ld \n", (const char* )vertex_shader_source.data, vertex_shader_source.data_length);
+  printf("fsh data: %s \n%ld \n", (const char* )fragment_shader_source.data, fragment_shader_source.data_length);
+
 
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
-                                         strVsh)) {
+                                         (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
+//                                         strVsh)){
 //    LOGI("Failed to compile vertex shader");
+    printf("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
 
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-                                         strFsh)) {
+                                         (const GLchar* )fragment_shader_source.data, fragment_shader_source.data_length)) {
+//                                         strFsh)){
 //    LOGI("Failed to compile fragment shader");
+    printf("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
   }
@@ -406,6 +417,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
 //    LOGI("Failed to link program: %d", program);
+      printf("Failed to link program: %d", program);
 
     if (vertShader) {
       glDeleteShader(vertShader);
@@ -439,75 +451,75 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   return true;
 }
 
-bool MoreTeapotsRenderer::LoadShadersES3(
-    SHADER_PARAMS* params, const char* strVsh, const char* strFsh,
-    std::map<std::string, std::string>& shaderParams) {
-  //
-  // Shader load for GLES3
-  // In GLES3.0, shader attribute index can be described in a shader code
-  // directly with layout() attribute
-  //
-  GLuint program;
-  GLuint vertShader, fragShader;
-
-  // Create shader program
-  program = glCreateProgram();
-//  LOGI("Created Shader %d", program);
-
-  // Create and compile vertex shader
-  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
-                                         shaderParams)) {
-//    LOGI("Failed to compile vertex shader");
-    glDeleteProgram(program);
-    return false;
-  }
-
-  // Create and compile fragment shader
-  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-                                         strFsh, shaderParams)) {
-//    LOGI("Failed to compile fragment shader");
-    glDeleteProgram(program);
-    return false;
-  }
-
-  // Attach vertex shader to program
-  glAttachShader(program, vertShader);
-
-  // Attach fragment shader to program
-  glAttachShader(program, fragShader);
-
-  // Link program
-  if (!ndk_helper::shader::LinkProgram(program)) {
-//    LOGI("Failed to link program: %d", program);
-
-    if (vertShader) {
-      glDeleteShader(vertShader);
-      vertShader = 0;
-    }
-    if (fragShader) {
-      glDeleteShader(fragShader);
-      fragShader = 0;
-    }
-    if (program) {
-      glDeleteProgram(program);
-    }
-
-    return false;
-  }
-
-  // Get uniform locations
-  params->light0_ = glGetUniformLocation(program, "vLight0");
-  params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
-  params->material_specular_ =
-      glGetUniformLocation(program, "vMaterialSpecular");
-
-  // Release vertex and fragment shaders
-  if (vertShader) glDeleteShader(vertShader);
-  if (fragShader) glDeleteShader(fragShader);
-
-  params->program_ = program;
-  return true;
-}
+//bool MoreTeapotsRenderer::LoadShadersES3(
+//    SHADER_PARAMS* params, const char* strVsh, const char* strFsh,
+//    std::map<std::string, std::string>& shaderParams) {
+//  //
+//  // Shader load for GLES3
+//  // In GLES3.0, shader attribute index can be described in a shader code
+//  // directly with layout() attribute
+//  //
+//  GLuint program;
+//  GLuint vertShader, fragShader;
+//
+//  // Create shader program
+//  program = glCreateProgram();
+////  LOGI("Created Shader %d", program);
+//
+//  // Create and compile vertex shader
+//  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
+//                                         shaderParams)) {
+////    LOGI("Failed to compile vertex shader");
+//    glDeleteProgram(program);
+//    return false;
+//  }
+//
+//  // Create and compile fragment shader
+//  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
+//                                         strFsh, shaderParams)) {
+////    LOGI("Failed to compile fragment shader");
+//    glDeleteProgram(program);
+//    return false;
+//  }
+//
+//  // Attach vertex shader to program
+//  glAttachShader(program, vertShader);
+//
+//  // Attach fragment shader to program
+//  glAttachShader(program, fragShader);
+//
+//  // Link program
+//  if (!ndk_helper::shader::LinkProgram(program)) {
+////    LOGI("Failed to link program: %d", program);
+//
+//    if (vertShader) {
+//      glDeleteShader(vertShader);
+//      vertShader = 0;
+//    }
+//    if (fragShader) {
+//      glDeleteShader(fragShader);
+//      fragShader = 0;
+//    }
+//    if (program) {
+//      glDeleteProgram(program);
+//    }
+//
+//    return false;
+//  }
+//
+//  // Get uniform locations
+//  params->light0_ = glGetUniformLocation(program, "vLight0");
+//  params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
+//  params->material_specular_ =
+//      glGetUniformLocation(program, "vMaterialSpecular");
+//
+//  // Release vertex and fragment shaders
+//  if (vertShader) glDeleteShader(vertShader);
+//  if (fragShader) glDeleteShader(fragShader);
+//
+//  params->program_ = program;
+//  return true;
+//}
 
 //--------------------------------------------------------------------------------
 // Bind

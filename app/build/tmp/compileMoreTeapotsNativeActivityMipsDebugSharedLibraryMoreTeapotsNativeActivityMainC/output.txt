@@ -1,8 +1,5 @@
 See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainC/output.txt for all output for compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainC.
-compiling cpu-features.c successful.
-clang: warning: optimization flag '-finline-functions' is not supported
-
-compiling gl3stub.c successful.
+compiling platform_asset_utils.c successful.
 clang: warning: optimization flag '-finline-functions' is not supported
 
 Finished compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainC, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityMipsDebugSharedLibraryMoreTeapotsNativeActivityMainC/output.txt.

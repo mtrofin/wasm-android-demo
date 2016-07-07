@@ -18,17 +18,21 @@ const int32_t NUM_TEAPOTS_Y = 8;
 const int32_t NUM_TEAPOTS_Z = 8;
 
 static ESContext context;
-//static UserData userData;
+static MoreTeapotsRenderer renderer;
+
+void Renderer_Update_Wrapper(ESContext* context, float dtime){
+    renderer.Update(dtime);
+}
+
+void Renderer_Render_Wrapper(ESContext* context){
+    renderer.Render();
+}
 
 class Engine {
-    MoreTeapotsRenderer renderer_;
+    MoreTeapotsRenderer* renderer_;
     ESContext* esContext;
 
     bool initialized_resources_;
-    bool has_focus_;
-
-    ndk_helper::PerfMonitor monitor_;
-
 public:
     Engine();
     ~Engine();
@@ -36,27 +40,23 @@ public:
     int InitDisplay();
     void LoadResources();
     void UnloadResources();
-//    void DrawFrame();
-//    void TermDisplay();
-//    void TrimMemory();
-//    bool IsReady();
     void registerCallback();
 };
 
 Engine::Engine()
-        : initialized_resources_(false),
-          has_focus_(false)
+        : initialized_resources_(false)
 {
     esContext = &context;
+    renderer_ = &renderer;
 }
 
 Engine::~Engine() { }
 
 void Engine::LoadResources() {
-    renderer_.Init(NUM_TEAPOTS_X, NUM_TEAPOTS_Y, NUM_TEAPOTS_Z);
+    renderer_->Init(NUM_TEAPOTS_X, NUM_TEAPOTS_Y, NUM_TEAPOTS_Z);
 }
 
-void Engine::UnloadResources() { renderer_.Unload(); }
+void Engine::UnloadResources() { renderer_->Unload(); }
 
 int Engine::InitDisplay() {
     esInitContext(esContext);
@@ -72,14 +72,14 @@ int Engine::InitDisplay() {
     glDepthFunc(GL_LEQUAL);
 
     glViewport(0, 0, esContext->width, esContext->height);
-    renderer_.UpdateViewport();
+    renderer_->UpdateViewport();
 
     return 0;
 }
 
 void Engine::registerCallback() {
-    esRegisterUpdateFunc(esContext, renderer_.Update);
-    esRegisterDrawFunc(esContext, renderer_.Render);
+    esRegisterUpdateFunc(esContext, Renderer_Update_Wrapper);
+    esRegisterDrawFunc(esContext, Renderer_Render_Wrapper);
     esMainLoop(esContext);
 }
 
