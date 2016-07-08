@@ -91,6 +91,8 @@ class MoreTeapotsRenderer {
   SHADER_PARAMS shader_param_;
   bool LoadShaders(SHADER_PARAMS* params, const char* strVsh,
                    const char* strFsh);
+  bool ALoadShaders(SHADER_PARAMS* params, const char* strVsh,
+                     const char* strFsh);
 //  bool LoadShadersES3(SHADER_PARAMS* params, const char* strVsh,
 //                      const char* strFsh,
 //                      std::map<std::string, std::string>& shaderParameters);

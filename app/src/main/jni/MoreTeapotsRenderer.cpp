@@ -384,7 +384,6 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 //  printf("vsh data: %s \n%ld \n", (const char* )vertex_shader_source.data, vertex_shader_source.data_length);
 //  printf("fsh data: %s \n%ld \n", (const char* )fragment_shader_source.data, fragment_shader_source.data_length);
 
-
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
                                          (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
@@ -444,6 +443,88 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
   params->material_specular_ =
       glGetUniformLocation(program, "vMaterialSpecular");
+
+  // Release vertex and fragment shaders
+  if (vertShader) glDeleteShader(vertShader);
+  if (fragShader) glDeleteShader(fragShader);
+
+  params->program_ = program;
+  return true;
+}
+
+bool MoreTeapotsRenderer::ALoadShaders(SHADER_PARAMS* params, const char* strVsh,
+                                      const char* strFsh) {
+  //
+  // Shader load for GLES2
+  // In GLES2.0, shader attribute locations need to be explicitly specified
+  // before linking
+  //
+  GLuint program;
+  GLuint vertShader, fragShader;
+
+  // Create shader program
+  program = glCreateProgram();
+//  LOGI("Created Shader %d", program);
+
+  // Create and compile vertex shader
+  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
+//                                         (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
+                                         strVsh)){
+//    LOGI("Failed to compile vertex shader");
+    printf("Failed to compile vertex shader");
+    glDeleteProgram(program);
+    return false;
+  }
+
+  // Create and compile fragment shader
+  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
+//                                         (const GLchar* )fragment_shader_source.data, fragment_shader_source.data_length)) {
+                                         strFsh)){
+//    LOGI("Failed to compile fragment shader");
+    printf("Failed to compile fragment shader");
+    glDeleteProgram(program);
+    return false;
+  }
+
+  // Attach vertex shader to program
+  glAttachShader(program, vertShader);
+
+  // Attach fragment shader to program
+  glAttachShader(program, fragShader);
+
+  // Bind attribute locations
+  // this needs to be done prior to linking
+  glBindAttribLocation(program, ATTRIB_VERTEX, "myVertex");
+  glBindAttribLocation(program, ATTRIB_NORMAL, "myNormal");
+
+  // Link program
+  if (!ndk_helper::shader::LinkProgram(program)) {
+//    LOGI("Failed to link program: %d", program);
+    printf("Failed to link program: %d", program);
+
+    if (vertShader) {
+      glDeleteShader(vertShader);
+      vertShader = 0;
+    }
+    if (fragShader) {
+      glDeleteShader(fragShader);
+      fragShader = 0;
+    }
+    if (program) {
+      glDeleteProgram(program);
+    }
+    return false;
+  }
+
+  // Get uniform locations
+  params->matrix_projection_ = glGetUniformLocation(program, "uPMatrix");
+  params->matrix_view_ = glGetUniformLocation(program, "uMVMatrix");
+
+  params->light0_ = glGetUniformLocation(program, "vLight0");
+  params->material_diffuse_ = glGetUniformLocation(program, "vMaterialDiffuse");
+  params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
+  params->material_specular_ =
+          glGetUniformLocation(program, "vMaterialSpecular");
 
   // Release vertex and fragment shaders
   if (vertShader) glDeleteShader(vertShader);
