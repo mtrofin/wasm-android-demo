@@ -1,3 +1,7 @@
+This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting codes are under the directory of app/src/main/wasm.
+
+Below is the README from the original project.
+
 More Teapots
 ============
 More Teapots is an Android C++ sample that draws multiple instances of the same Teapot mesh using GLES 3.0 Instanced Rendering and [NativeActivity](http://developer.android.com/reference/android/app/NativeActivity.html).
