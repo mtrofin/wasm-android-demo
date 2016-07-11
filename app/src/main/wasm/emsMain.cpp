@@ -63,7 +63,7 @@ void Engine::UnloadResources() { renderer_->Unload(); }
 int Engine::InitDisplay() {
     esInitContext(esContext);
 //    esContext->userData = &userData;
-    esCreateWindow(esContext, "Teapots", 800, 600, ES_WINDOW_RGB);
+    esCreateWindow(esContext, "Teapots", 1080, 1920, ES_WINDOW_RGB);
 
     LoadResources();
     initialized_resources_ = true;
