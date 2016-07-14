@@ -125,20 +125,6 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
 //  return shader::CompileShader(shader, type, data);
 //}
 
-//bool shader::CompileShader(GLuint *shader, const GLenum type,
-//                           const GLchar* source, const GLint length) {
-//
-//  GLuint shader_object_id = glCreateShader(type);
-//  GLint compile_status;
-//
-//  glShaderSource(shader_object_id, 1, (const GLchar **)&source, &length);
-//  glCompileShader(shader_object_id);
-//  glGetShaderiv(shader_object_id, GL_COMPILE_STATUS, &compile_status);
-//
-//  if(compile_status != 0) return true;
-//  else return false;
-//}
-
 bool shader::LinkProgram(const GLuint prog) {
   GLint status;
 

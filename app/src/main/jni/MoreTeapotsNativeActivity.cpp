@@ -57,6 +57,9 @@ class Engine {
 
   bool initialized_resources_;
   bool has_focus_;
+  double fixed_fps;
+  double fixed_dTime;
+  double lastTime;
 
 //  ndk_helper::DoubletapDetector doubletap_detector_;
 //  ndk_helper::PinchDetector pinch_detector_;
@@ -107,8 +110,11 @@ Engine::Engine()
       app_(NULL),
       sensor_manager_(NULL),
       accelerometer_sensor_(NULL),
-      sensor_event_queue_(NULL) {
-  gl_context_ = ndk_helper::GLContext::GetInstance();
+      sensor_event_queue_(NULL),
+      fixed_fps(20),
+      fixed_dTime(1/fixed_fps),
+      lastTime(0){
+    gl_context_ = ndk_helper::GLContext::GetInstance();
 }
 
 //-------------------------------------------------------------------------
@@ -166,22 +172,29 @@ int Engine::InitDisplay() {
  * Just the current frame in the display.
  */
 void Engine::DrawFrame() {
-  float fps;
-  if (monitor_.Update(fps)) {
-    UpdateFPS(fps);
-  }
+
   double dTime = monitor_.GetCurrentTime();
-  renderer_.Update(dTime);
+  if (dTime - lastTime >= fixed_dTime) {
 
-  // Just fill the screen with a color.
-  glClearColor(0.5f, 0.5f, 0.5f, 1.f);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  renderer_.Render();
+    float fps;
+    if (monitor_.Update(fps)) {
+      UpdateFPS(fps);
+    }
 
-  // Swap
-  if (EGL_SUCCESS != gl_context_->Swap()) {
-    UnloadResources();
-    LoadResources();
+    renderer_.Update(dTime);
+
+    // Just fill the screen with a color.
+    glClearColor(0.5f, 0.5f, 0.5f, 1.f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    renderer_.Render();
+
+    // Swap
+    if (EGL_SUCCESS != gl_context_->Swap()) {
+      UnloadResources();
+      LoadResources();
+    }
+    lastTime = dTime;
+
   }
 }
 

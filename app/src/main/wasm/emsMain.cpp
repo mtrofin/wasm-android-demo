@@ -89,7 +89,10 @@ struct timeval t1, t2;
 struct timezone tz;
 float deltatime;
 float totaltime = 0.0f;
+unsigned int seconds_count = 0;
 unsigned int frames = 0;
+unsigned int totalframes = 0;
+
 
 void one_iter() {
     gettimeofday(&t2, &tz);
@@ -105,10 +108,18 @@ void one_iter() {
 
     totaltime += deltatime;
     frames++;
-    if (totaltime >  2.0f)
+    if (totaltime >  60.0f)
     {
         printf("%4d frames rendered in %1.4f seconds -> FPS=%3.4f\n", frames, totaltime, frames/totaltime);
-        totaltime -= 2.0f;
+        totaltime -= 60.0f;
+
+        // seconds_count++;
+        // totalframes += frames;
+        // if (seconds_count % 60 == 0) {
+        //     printf("AVERAGE FPS = %3.4f FOR THE PAST ONE MINUTE\n", totalframes/60.0f);
+        //     totalframes = 0;
+        // }
+
         frames = 0;
     }
 }
@@ -118,6 +129,6 @@ int main (int argc, char *argv[])
     g_engine.InitDisplay();
     g_engine.registerCallback();
     gettimeofday ( &t1 , &tz );
-    emscripten_set_main_loop(one_iter, 0, 1);
+    emscripten_set_main_loop(one_iter, 20, 1);
 }
 
