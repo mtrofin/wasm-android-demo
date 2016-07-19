@@ -293,45 +293,45 @@ void MoreTeapotsRenderer::Render() {
 
   glUniform3f(shader_param_.light0_, 100.f, -200.f, -600.f);
 
-  if (geometry_instancing_support_) {
-    //
-    // Geometry instancing, new feature in GLES3.0
-    //
-
-    // Update UBO
-    glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
-    float* p = (float*)glMapBufferRange(
-        GL_UNIFORM_BUFFER, 0, teapot_x_ * teapot_y_ * teapot_z_ *
-                                  (ubo_matrix_stride_ * 2) * sizeof(float),
-        GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
-    float* mat_mvp = p;
-    float* mat_mv = p + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_;
-    for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-      // Rotation
-      float x, y;
-      vec_current_rotations_[i] += vec_rotations_[i];
-      vec_current_rotations_[i].Value(x, y);
-      ndk_helper::Mat4 mat_rotation =
-          ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
-
-      // Feed Projection and Model View matrices to the shaders
-      ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
-      ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
-
-      memcpy(mat_mvp, mat_vp.Ptr(), sizeof(mat_v));
-      mat_mvp += ubo_matrix_stride_;
-
-      memcpy(mat_mv, mat_v.Ptr(), sizeof(mat_v));
-      mat_mv += ubo_matrix_stride_;
-    }
-    glUnmapBuffer(GL_UNIFORM_BUFFER);
-
-    // Instanced rendering
-    glDrawElementsInstanced(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
-                            BUFFER_OFFSET(0),
-                            teapot_x_ * teapot_y_ * teapot_z_);
-
-  } else {
+//  if (geometry_instancing_support_) {
+//    //
+//    // Geometry instancing, new feature in GLES3.0
+//    //
+//
+//    // Update UBO
+//    glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
+//    float* p = (float*)glMapBufferRange(
+//        GL_UNIFORM_BUFFER, 0, teapot_x_ * teapot_y_ * teapot_z_ *
+//                                  (ubo_matrix_stride_ * 2) * sizeof(float),
+//        GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
+//    float* mat_mvp = p;
+//    float* mat_mv = p + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_;
+//    for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
+//      // Rotation
+//      float x, y;
+//      vec_current_rotations_[i] += vec_rotations_[i];
+//      vec_current_rotations_[i].Value(x, y);
+//      ndk_helper::Mat4 mat_rotation =
+//          ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
+//
+//      // Feed Projection and Model View matrices to the shaders
+//      ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
+//      ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
+//
+//      memcpy(mat_mvp, mat_vp.Ptr(), sizeof(mat_v));
+//      mat_mvp += ubo_matrix_stride_;
+//
+//      memcpy(mat_mv, mat_v.Ptr(), sizeof(mat_v));
+//      mat_mv += ubo_matrix_stride_;
+//    }
+//    glUnmapBuffer(GL_UNIFORM_BUFFER);
+//
+//    // Instanced rendering
+//    glDrawElementsInstanced(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
+//                            BUFFER_OFFSET(0),
+//                            teapot_x_ * teapot_y_ * teapot_z_);
+//
+//  } else {
     // Regular rendering pass
     for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
       // Set diffuse
@@ -355,7 +355,7 @@ void MoreTeapotsRenderer::Render() {
       glDrawElements(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
                      BUFFER_OFFSET(0));
     }
-  }
+//  }
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
