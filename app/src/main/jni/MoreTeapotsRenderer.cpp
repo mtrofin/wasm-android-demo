@@ -97,10 +97,14 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
 
   UpdateViewport();
 
-  const float total_width = 500.f;
-  float gap_x = total_width / (teapot_x_ - 1);
-  float gap_y = total_width / (teapot_y_ - 1);
-  float gap_z = total_width / (teapot_z_ - 1);
+  //const float total_width = 500.f;
+  const float total_width = 0.f;
+//  float gap_x = total_width / (teapot_x_ - 1);
+//  float gap_y = total_width / (teapot_y_ - 1);
+//  float gap_z = total_width / (teapot_z_ - 1);
+  float gap_x = 0.f;
+  float gap_y = 0.f;
+  float gap_z = 0.f;
   float offset_x = -total_width / 2.f;
   float offset_y = -total_width / 2.f;
   float offset_z = -total_width / 2.f;
