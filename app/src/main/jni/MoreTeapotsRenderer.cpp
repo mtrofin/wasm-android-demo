@@ -60,34 +60,75 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
   // Settings
   glFrontFace(GL_CCW);
 
-  // Create Index buffer
-  num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
-  glGenBuffers(1, &ibo_);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(teapotIndices), teapotIndices,
-               GL_STATIC_DRAW);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    num_instances_ = 512;
 
   // Create VBO
-  num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
+//  num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
+    origin_num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
+    num_vertices_ = num_instances_ * origin_num_vertices_;
+
+    printf("Number of vertices is %d \n", num_vertices_);
+
   int32_t stride = sizeof(TEAPOT_VERTEX);
   int32_t index = 0;
   TEAPOT_VERTEX* p = new TEAPOT_VERTEX[num_vertices_];
-  for (int32_t i = 0; i < num_vertices_; ++i) {
-    p[i].pos[0] = teapotPositions[index];
-    p[i].pos[1] = teapotPositions[index + 1];
-    p[i].pos[2] = teapotPositions[index + 2];
+//  for (int32_t i = 0; i < num_vertices_; ++i) {
+//    p[i].pos[0] = teapotPositions[index];
+//    p[i].pos[1] = teapotPositions[index + 1];
+//    p[i].pos[2] = teapotPositions[index + 2];
+//
+//    p[i].normal[0] = teapotNormals[index];
+//    p[i].normal[1] = teapotNormals[index + 1];
+//    p[i].normal[2] = teapotNormals[index + 2];
+//    index += 3;
+//  }
 
-    p[i].normal[0] = teapotNormals[index];
-    p[i].normal[1] = teapotNormals[index + 1];
-    p[i].normal[2] = teapotNormals[index + 2];
-    index += 3;
-  }
+    float off = 0.5f;
+
+    for (int32_t round = 0; round < num_instances_; ++round) {
+        for (int32_t i = 0; i < origin_num_vertices_; ++i) {
+            p[i + round*origin_num_vertices_].pos[0] = teapotPositions[index] + round * off;
+            p[i + round*origin_num_vertices_].pos[1] = teapotPositions[index + 1] + round * off;
+            p[i + round*origin_num_vertices_].pos[2] = teapotPositions[index + 2] + round * off;
+
+            p[i + round*origin_num_vertices_].normal[0] = teapotNormals[index];
+            p[i + round*origin_num_vertices_].normal[1] = teapotNormals[index + 1];
+            p[i + round*origin_num_vertices_].normal[2] = teapotNormals[index + 2];
+            index += 3;
+            index = index % (sizeof(teapotPositions)/ sizeof(teapotPositions[0]));
+        }
+    }
   glGenBuffers(1, &vbo_);
   glBindBuffer(GL_ARRAY_BUFFER, vbo_);
   glBufferData(GL_ARRAY_BUFFER, stride * num_vertices_, p, GL_STATIC_DRAW);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   delete[] p;
+
+    // Create Index buffer
+//    num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
+    origin_num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
+    num_indices_ = num_instances_ * origin_num_indices_;
+    printf("Number of indices is %d \n", num_indices_);
+
+    index = 0;
+    uint16_t* q = new uint16_t[num_indices_];
+    for (int32_t round = 0; round < num_instances_; ++round) {
+        for (int32_t i = 0; i < origin_num_indices_; ++i) {
+            q[i + round*origin_num_indices_] = teapotIndices[index]
+                                               + round * origin_num_vertices_;
+            index++;
+            index = index % origin_num_indices_;
+        }
+    }
+
+    glGenBuffers(1, &ibo_);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_);
+//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(teapotIndices), teapotIndices,
+//                 GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, num_indices_ * sizeof(q[0]), q, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    delete[] q;
 
   // Init Projection matrices
   teapot_x_ = numX;
