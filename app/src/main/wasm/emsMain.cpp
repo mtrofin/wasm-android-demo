@@ -108,10 +108,10 @@ void one_iter() {
 
     totaltime += deltatime;
     frames++;
-    if (totaltime >  60.0f)
+    if (totaltime >  5.0f)
     {
         printf("%4d frames rendered in %1.4f seconds -> FPS=%3.4f\n", frames, totaltime, frames/totaltime);
-        totaltime -= 60.0f;
+        totaltime -= 5.0f;
 
         // seconds_count++;
         // totalframes += frames;
@@ -128,7 +128,8 @@ int main (int argc, char *argv[])
 {
     g_engine.InitDisplay();
     g_engine.registerCallback();
+    printf("multiple calls %d\n", NUM_TEAPOTS_Z);
     gettimeofday ( &t1 , &tz );
-    emscripten_set_main_loop(one_iter, 20, 1);
+    emscripten_set_main_loop(one_iter, 0, 1);
 }
 

@@ -18,16 +18,32 @@
 // MoreTeapotsRenderer.cpp
 // Render teapots
 //--------------------------------------------------------------------------------
+#define AND
+#define ROTATION
+#define TEAPOT
 //--------------------------------------------------------------------------------
 // Include files
 //--------------------------------------------------------------------------------
 #include <platform_file_utils.h>
 #include "MoreTeapotsRenderer.h"
+#ifdef AND
+#include "JNIHelper.h"
+#endif
 
 //--------------------------------------------------------------------------------
 // Teapot model data
 //--------------------------------------------------------------------------------
+#ifdef ZERO
+#include "teapot_zeros.inl"
+#endif
+
+#ifdef TRIANGLE
+#include "teapot_triangle.inl"
+#endif
+
+#ifdef TEAPOT
 #include "teapot.inl"
+#endif
 
 //--------------------------------------------------------------------------------
 // Ctor
@@ -45,90 +61,77 @@ MoreTeapotsRenderer::~MoreTeapotsRenderer() { Unload(); }
 //--------------------------------------------------------------------------------
 void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
                                const int32_t numZ) {
-//  if (ndk_helper::GLContext::GetInstance()->GetGLVersion() >= 3.0) {
-//    geometry_instancing_support_ = true;
-//  } else if (ndk_helper::GLContext::GetInstance()->CheckExtension(
-//                 "GL_NV_draw_instanced") &&
-//             ndk_helper::GLContext::GetInstance()->CheckExtension(
-//                 "GL_NV_uniform_buffer_object")) {
-//    LOGI("Supported via extension!");
-//    //_bGeometryInstancingSupport = true;
-//    //_bARBSupport = true; //Need to patch shaders
-//    // Currently this has been disabled
-//  }
+
+#ifdef GL3
+  if (ndk_helper::GLContext::GetInstance()->GetGLVersion() >= 3.0) {
+    geometry_instancing_support_ = true;
+  } else if (ndk_helper::GLContext::GetInstance()->CheckExtension(
+                 "GL_NV_draw_instanced") &&
+             ndk_helper::GLContext::GetInstance()->CheckExtension(
+                 "GL_NV_uniform_buffer_object")) {
+    LOGI("Supported via extension!");
+    //_bGeometryInstancingSupport = true;
+    //_bARBSupport = true; //Need to patch shaders
+    // Currently this has been disabled
+  }
+#endif
 
   // Settings
   glFrontFace(GL_CCW);
 
-    num_instances_ = 512;
+  num_instances_ = 1;
 
   // Create VBO
-//  num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
-    origin_num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
-    num_vertices_ = num_instances_ * origin_num_vertices_;
-
-    printf("Number of vertices is %d \n", num_vertices_);
+  origin_num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
+  num_vertices_ = num_instances_ * origin_num_vertices_;
 
   int32_t stride = sizeof(TEAPOT_VERTEX);
   int32_t index = 0;
   TEAPOT_VERTEX* p = new TEAPOT_VERTEX[num_vertices_];
-//  for (int32_t i = 0; i < num_vertices_; ++i) {
-//    p[i].pos[0] = teapotPositions[index];
-//    p[i].pos[1] = teapotPositions[index + 1];
-//    p[i].pos[2] = teapotPositions[index + 2];
-//
-//    p[i].normal[0] = teapotNormals[index];
-//    p[i].normal[1] = teapotNormals[index + 1];
-//    p[i].normal[2] = teapotNormals[index + 2];
-//    index += 3;
-//  }
 
-    float off = 0.5f;
+  float off = 0.5;
 
-    for (int32_t round = 0; round < num_instances_; ++round) {
-        for (int32_t i = 0; i < origin_num_vertices_; ++i) {
-            p[i + round*origin_num_vertices_].pos[0] = teapotPositions[index] + round * off;
-            p[i + round*origin_num_vertices_].pos[1] = teapotPositions[index + 1] + round * off;
-            p[i + round*origin_num_vertices_].pos[2] = teapotPositions[index + 2] + round * off;
+  for (int32_t round = 0; round < num_instances_; ++round) {
+      for (int32_t i = 0; i < origin_num_vertices_; ++i) {
+          p[i + round*origin_num_vertices_].pos[0] = teapotPositions[index] + round * off;
+          p[i + round*origin_num_vertices_].pos[1] = teapotPositions[index + 1] + round * off;
+          p[i + round*origin_num_vertices_].pos[2] = teapotPositions[index + 2] + round * off;
 
-            p[i + round*origin_num_vertices_].normal[0] = teapotNormals[index];
-            p[i + round*origin_num_vertices_].normal[1] = teapotNormals[index + 1];
-            p[i + round*origin_num_vertices_].normal[2] = teapotNormals[index + 2];
-            index += 3;
-            index = index % (sizeof(teapotPositions)/ sizeof(teapotPositions[0]));
-        }
-    }
+          p[i + round*origin_num_vertices_].normal[0] = teapotNormals[index];
+          p[i + round*origin_num_vertices_].normal[1] = teapotNormals[index + 1];
+          p[i + round*origin_num_vertices_].normal[2] = teapotNormals[index + 2];
+          index += 3;
+          index = index % (sizeof(teapotPositions)/ sizeof(teapotPositions[0]));
+      }
+  }
   glGenBuffers(1, &vbo_);
   glBindBuffer(GL_ARRAY_BUFFER, vbo_);
   glBufferData(GL_ARRAY_BUFFER, stride * num_vertices_, p, GL_STATIC_DRAW);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   delete[] p;
 
-    // Create Index buffer
-//    num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
-    origin_num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
-    num_indices_ = num_instances_ * origin_num_indices_;
-    printf("Number of indices is %d \n", num_indices_);
+  // Create Index buffer
+  origin_num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
+  num_indices_ = num_instances_ * origin_num_indices_;
+  printf("Number of indices is %d \n", num_indices_);
 
-    index = 0;
-    uint16_t* q = new uint16_t[num_indices_];
-    for (int32_t round = 0; round < num_instances_; ++round) {
-        for (int32_t i = 0; i < origin_num_indices_; ++i) {
-            q[i + round*origin_num_indices_] = teapotIndices[index]
-                                               + round * origin_num_vertices_;
-            index++;
-            index = index % origin_num_indices_;
-        }
-    }
+  index = 0;
+  uint16_t* q = new uint16_t[num_indices_];
+  for (int32_t round = 0; round < num_instances_; ++round) {
+      for (int32_t i = 0; i < origin_num_indices_; ++i) {
+          q[i + round*origin_num_indices_] = teapotIndices[index]
+                                             + round * origin_num_vertices_;
+          index++;
+          index = index % origin_num_indices_;
+      }
+  }
 
-    glGenBuffers(1, &ibo_);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_);
-//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(teapotIndices), teapotIndices,
-//                 GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, num_indices_ * sizeof(q[0]), q, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+  glGenBuffers(1, &ibo_);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, num_indices_ * sizeof(q[0]), q, GL_STATIC_DRAW);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-    delete[] q;
+  delete[] q;
 
   // Init Projection matrices
   teapot_x_ = numX;
@@ -138,14 +141,18 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
 
   UpdateViewport();
 
-  //const float total_width = 500.f;
+#ifdef DRAW_ALL_IN_MIDDLE
   const float total_width = 0.f;
-//  float gap_x = total_width / (teapot_x_ - 1);
-//  float gap_y = total_width / (teapot_y_ - 1);
-//  float gap_z = total_width / (teapot_z_ - 1);
   float gap_x = 0.f;
   float gap_y = 0.f;
   float gap_z = 0.f;
+#else
+  const float total_width = 100.f;
+  float gap_x = total_width / (teapot_x_ - 1);
+  float gap_y = total_width / (teapot_y_ - 1);
+  float gap_z = total_width / (teapot_z_ - 1);
+#endif
+
   float offset_x = -total_width / 2.f;
   float offset_y = -total_width / 2.f;
   float offset_z = -total_width / 2.f;
@@ -167,78 +174,89 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
             ndk_helper::Vec2(rotation_x * M_PI, rotation_y * M_PI));
       }
 
-//  if (geometry_instancing_support_) {
-//    //
-//    // Create parameter dictionary for shader patch
-//    std::map<std::string, std::string> param;
-//    param[std::string("%NUM_TEAPOT%")] =
-//        ToString(teapot_x_ * teapot_y_ * teapot_z_);
-//    param[std::string("%LOCATION_VERTEX%")] = ToString(ATTRIB_VERTEX);
-//    param[std::string("%LOCATION_NORMAL%")] = ToString(ATTRIB_NORMAL);
-//    if (arb_support_)
-//      param[std::string("%ARB%")] = std::string("ARB");
-//    else
-//      param[std::string("%ARB%")] = std::string("");
-//
-//    // Load shader
-//    bool b = LoadShadersES3(&shader_param_, "Shaders/VS_ShaderPlainES3.vsh",
-//                            "Shaders/ShaderPlainES3.fsh", param);
-//    if (b) {
-//      //
-//      // Create uniform buffer
-//      //
-//      GLuint bindingPoint = 1;
-//      GLuint blockIndex;
-//      blockIndex = glGetUniformBlockIndex(shader_param_.program_, "ParamBlock");
-//      glUniformBlockBinding(shader_param_.program_, blockIndex, bindingPoint);
-//
-//      // Retrieve array stride value
-//      int32_t num_indices;
-//      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
-//                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &num_indices);
-//      GLint i[num_indices];
-//      GLint stride[num_indices];
-//      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
-//                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, i);
-//      glGetActiveUniformsiv(shader_param_.program_, num_indices, (GLuint*)i,
-//                            GL_UNIFORM_ARRAY_STRIDE, stride);
-//
-//      ubo_matrix_stride_ = stride[0] / sizeof(float);
-//      ubo_vector_stride_ = stride[2] / sizeof(float);
-//
-//      glGenBuffers(1, &ubo_);
-//      glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
-//      glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, ubo_);
-//
-//      // Store color value which wouldn't be updated every frame
-//      int32_t size = teapot_x_ * teapot_y_ * teapot_z_ *
-//                      (ubo_matrix_stride_ + ubo_matrix_stride_ +
-//                       ubo_vector_stride_);  // Mat4 + Mat4 + Vec3 + 1 stride
-//      float* pBuffer = new float[size];
-//      float* pColor =
-//          pBuffer + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_ * 2;
-//      for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-//        memcpy(pColor, &vec_colors_[i], 3 * sizeof(float));
-//        pColor += ubo_vector_stride_;  // Assuming std140 layout which is 4
-//                                       // DWORD stride for vectors
-//      }
-//
-//      glBufferData(GL_UNIFORM_BUFFER, size * sizeof(float), pBuffer,
-//                   GL_DYNAMIC_DRAW);
-//      delete[] pBuffer;
-//    } else {
-//      //LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
-//      // This happens some devices.
-//      geometry_instancing_support_ = false;
-//      // Load shader for GLES2.0
-//      LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
-//                  "Shaders/ShaderPlain.fsh");
-//    }
-//  } else {
+#ifdef GL3
+  if (geometry_instancing_support_) {
+    //
+    // Create parameter dictionary for shader patch
+    std::map<std::string, std::string> param;
+    param[std::string("%NUM_TEAPOT%")] =
+        ToString(teapot_x_ * teapot_y_ * teapot_z_);
+    param[std::string("%LOCATION_VERTEX%")] = ToString(ATTRIB_VERTEX);
+    param[std::string("%LOCATION_NORMAL%")] = ToString(ATTRIB_NORMAL);
+    if (arb_support_)
+      param[std::string("%ARB%")] = std::string("ARB");
+    else
+      param[std::string("%ARB%")] = std::string("");
+
+    // Load shader
+    bool b = LoadShadersES3(&shader_param_, "Shaders/VS_ShaderPlainES3.vsh",
+                            "Shaders/ShaderPlainES3.fsh", param);
+    if (b) {
+      //
+      // Create uniform buffer
+      //
+      GLuint bindingPoint = 1;
+      GLuint blockIndex;
+      blockIndex = glGetUniformBlockIndex(shader_param_.program_, "ParamBlock");
+      glUniformBlockBinding(shader_param_.program_, blockIndex, bindingPoint);
+
+      // Retrieve array stride value
+      int32_t num_indices;
+      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
+                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &num_indices);
+      GLint i[num_indices];
+      GLint stride[num_indices];
+      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
+                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, i);
+      glGetActiveUniformsiv(shader_param_.program_, num_indices, (GLuint*)i,
+                            GL_UNIFORM_ARRAY_STRIDE, stride);
+
+      ubo_matrix_stride_ = stride[0] / sizeof(float);
+      ubo_vector_stride_ = stride[2] / sizeof(float);
+
+      glGenBuffers(1, &ubo_);
+      glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
+      glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, ubo_);
+
+      // Store color value which wouldn't be updated every frame
+      int32_t size = teapot_x_ * teapot_y_ * teapot_z_ *
+                      (ubo_matrix_stride_ + ubo_matrix_stride_ +
+                       ubo_vector_stride_);  // Mat4 + Mat4 + Vec3 + 1 stride
+      float* pBuffer = new float[size];
+      float* pColor =
+          pBuffer + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_ * 2;
+      for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
+        memcpy(pColor, &vec_colors_[i], 3 * sizeof(float));
+        pColor += ubo_vector_stride_;  // Assuming std140 layout which is 4
+                                       // DWORD stride for vectors
+      }
+
+      glBufferData(GL_UNIFORM_BUFFER, size * sizeof(float), pBuffer,
+                   GL_DYNAMIC_DRAW);
+      delete[] pBuffer;
+    } else {
+      //LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
+      // This happens some devices.
+      geometry_instancing_support_ = false;
+      // Load shader for GLES2.0
+      LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
+                  "Shaders/ShaderPlain.fsh");
+    }
+  } else {
+#endif
+
     // Load shader for GLES2.0
+#ifdef SIMPLE_SHADER
+    LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain_simple.vsh",
+                "Shaders/ShaderPlain_simple.fsh");
+#else
     LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
                 "Shaders/ShaderPlain.fsh");
-//  }
+#endif
+
+#ifdef GL3
+  }
+#endif
 }
 
 void MoreTeapotsRenderer::UpdateViewport() {
@@ -293,13 +311,6 @@ void MoreTeapotsRenderer::Update(float fTime) {
   mat_view_ = ndk_helper::Mat4::LookAt(ndk_helper::Vec3(CAM_X, CAM_Y, CAM_Z),
                                        ndk_helper::Vec3(0.f, 0.f, 0.f),
                                        ndk_helper::Vec3(0.f, 1.f, 0.f));
-
-//  if (camera_) {
-//    camera_->Update();
-//    mat_view_ = camera_->GetTransformMatrix() * mat_view_ *
-//                camera_->GetRotationMatrix();
-//  }
-//  printf("Updating...\n");
 }
 
 //--------------------------------------------------------------------------------
@@ -338,52 +349,61 @@ void MoreTeapotsRenderer::Render() {
 
   glUniform3f(shader_param_.light0_, 100.f, -200.f, -600.f);
 
-//  if (geometry_instancing_support_) {
-//    //
-//    // Geometry instancing, new feature in GLES3.0
-//    //
-//
-//    // Update UBO
-//    glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
-//    float* p = (float*)glMapBufferRange(
-//        GL_UNIFORM_BUFFER, 0, teapot_x_ * teapot_y_ * teapot_z_ *
-//                                  (ubo_matrix_stride_ * 2) * sizeof(float),
-//        GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
-//    float* mat_mvp = p;
-//    float* mat_mv = p + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_;
-//    for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-//      // Rotation
-//      float x, y;
-//      vec_current_rotations_[i] += vec_rotations_[i];
-//      vec_current_rotations_[i].Value(x, y);
-//      ndk_helper::Mat4 mat_rotation =
-//          ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
-//
-//      // Feed Projection and Model View matrices to the shaders
-//      ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
-//      ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
-//
-//      memcpy(mat_mvp, mat_vp.Ptr(), sizeof(mat_v));
-//      mat_mvp += ubo_matrix_stride_;
-//
-//      memcpy(mat_mv, mat_v.Ptr(), sizeof(mat_v));
-//      mat_mv += ubo_matrix_stride_;
-//    }
-//    glUnmapBuffer(GL_UNIFORM_BUFFER);
-//
-//    // Instanced rendering
-//    glDrawElementsInstanced(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
-//                            BUFFER_OFFSET(0),
-//                            teapot_x_ * teapot_y_ * teapot_z_);
-//
-//  } else {
+#ifdef GL3
+  if (geometry_instancing_support_) {
+    //
+    // Geometry instancing, new feature in GLES3.0
+    //
+
+    // Update UBO
+    glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
+    float* p = (float*)glMapBufferRange(
+        GL_UNIFORM_BUFFER, 0, teapot_x_ * teapot_y_ * teapot_z_ *
+                                  (ubo_matrix_stride_ * 2) * sizeof(float),
+        GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
+    float* mat_mvp = p;
+    float* mat_mv = p + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_;
+    for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
+      // Rotation
+      float x, y;
+      vec_current_rotations_[i] += vec_rotations_[i];
+      vec_current_rotations_[i].Value(x, y);
+      ndk_helper::Mat4 mat_rotation =
+          ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
+
+      // Feed Projection and Model View matrices to the shaders
+      ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
+      ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
+
+      memcpy(mat_mvp, mat_vp.Ptr(), sizeof(mat_v));
+      mat_mvp += ubo_matrix_stride_;
+
+      memcpy(mat_mv, mat_v.Ptr(), sizeof(mat_v));
+      mat_mv += ubo_matrix_stride_;
+    }
+    glUnmapBuffer(GL_UNIFORM_BUFFER);
+
+    // Instanced rendering
+    glDrawElementsInstanced(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
+                            BUFFER_OFFSET(0),
+                            teapot_x_ * teapot_y_ * teapot_z_);
+
+  } else {
+#endif
     // Regular rendering pass
     for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
       // Set diffuse
       float x, y, z;
       vec_colors_[i].Value(x, y, z);
-      glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
 
+#ifdef MULTI_GL_SET_UNIFORM
+        for (int32_t j = 0; j < 500; ++j)
+            glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
+#else
+      glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
+#endif
+
+#ifdef ROTATION
       // Rotation
       vec_current_rotations_[i] += vec_rotations_[i];
       vec_current_rotations_[i].Value(x, y);
@@ -393,18 +413,20 @@ void MoreTeapotsRenderer::Render() {
       // Feed Projection and Model View matrices to the shaders
       ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
       ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
+
       glUniformMatrix4fv(shader_param_.matrix_projection_, 1, GL_FALSE,
                          mat_vp.Ptr());
       glUniformMatrix4fv(shader_param_.matrix_view_, 1, GL_FALSE, mat_v.Ptr());
-
+#endif
       glDrawElements(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
                      BUFFER_OFFSET(0));
     }
-//  }
+#ifdef GL3
+  }
+#endif
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-//  printf("Rendering...\n");
 }
 
 //--------------------------------------------------------------------------------
@@ -422,18 +444,19 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 
   // Create shader program
   program = glCreateProgram();
-//  LOGI("Created Shader %d", program);
+
+#ifdef WASM
   const FileData vertex_shader_source = get_asset_data(strVsh);
   const FileData fragment_shader_source = get_asset_data(strFsh);
-
-//  printf("vsh data: %s \n%ld \n", (const char* )vertex_shader_source.data, vertex_shader_source.data_length);
-//  printf("fsh data: %s \n%ld \n", (const char* )fragment_shader_source.data, fragment_shader_source.data_length);
+#endif
 
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
+#ifdef WASM
                                          (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
-//                                         strVsh)){
-//    LOGI("Failed to compile vertex shader");
+#else
+                                         strVsh)){
+#endif
     printf("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
@@ -441,9 +464,11 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
+#ifdef WASM
                                          (const GLchar* )fragment_shader_source.data, fragment_shader_source.data_length)) {
-//                                         strFsh)){
-//    LOGI("Failed to compile fragment shader");
+#else
+                                         strFsh)){
+#endif
     printf("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
@@ -462,8 +487,12 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
-//    LOGI("Failed to link program: %d", program);
-      printf("Failed to link program: %d", program);
+
+#ifdef AND
+    LOGI("Failed to link program: %d", program);
+#else
+    printf("Failed to link program: %d", program);
+#endif
 
     if (vertShader) {
       glDeleteShader(vertShader);
@@ -497,12 +526,14 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   return true;
 }
 
-bool MoreTeapotsRenderer::ALoadShaders(SHADER_PARAMS* params, const char* strVsh,
-                                      const char* strFsh) {
+#ifdef GL3
+bool MoreTeapotsRenderer::LoadShadersES3(
+    SHADER_PARAMS* params, const char* strVsh, const char* strFsh,
+    std::map<std::string, std::string>& shaderParams) {
   //
-  // Shader load for GLES2
-  // In GLES2.0, shader attribute locations need to be explicitly specified
-  // before linking
+  // Shader load for GLES3
+  // In GLES3.0, shader attribute index can be described in a shader code
+  // directly with layout() attribute
   //
   GLuint program;
   GLuint vertShader, fragShader;
@@ -512,21 +543,17 @@ bool MoreTeapotsRenderer::ALoadShaders(SHADER_PARAMS* params, const char* strVsh
 //  LOGI("Created Shader %d", program);
 
   // Create and compile vertex shader
-  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
-//                                         (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
-                                         strVsh)){
+  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
+                                         shaderParams)) {
 //    LOGI("Failed to compile vertex shader");
-    printf("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
 
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-//                                         (const GLchar* )fragment_shader_source.data, fragment_shader_source.data_length)) {
-                                         strFsh)){
+                                         strFsh, shaderParams)) {
 //    LOGI("Failed to compile fragment shader");
-    printf("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
   }
@@ -537,15 +564,9 @@ bool MoreTeapotsRenderer::ALoadShaders(SHADER_PARAMS* params, const char* strVsh
   // Attach fragment shader to program
   glAttachShader(program, fragShader);
 
-  // Bind attribute locations
-  // this needs to be done prior to linking
-  glBindAttribLocation(program, ATTRIB_VERTEX, "myVertex");
-  glBindAttribLocation(program, ATTRIB_NORMAL, "myNormal");
-
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
 //    LOGI("Failed to link program: %d", program);
-    printf("Failed to link program: %d", program);
 
     if (vertShader) {
       glDeleteShader(vertShader);
@@ -558,18 +579,15 @@ bool MoreTeapotsRenderer::ALoadShaders(SHADER_PARAMS* params, const char* strVsh
     if (program) {
       glDeleteProgram(program);
     }
+
     return false;
   }
 
   // Get uniform locations
-  params->matrix_projection_ = glGetUniformLocation(program, "uPMatrix");
-  params->matrix_view_ = glGetUniformLocation(program, "uMVMatrix");
-
   params->light0_ = glGetUniformLocation(program, "vLight0");
-  params->material_diffuse_ = glGetUniformLocation(program, "vMaterialDiffuse");
   params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
   params->material_specular_ =
-          glGetUniformLocation(program, "vMaterialSpecular");
+      glGetUniformLocation(program, "vMaterialSpecular");
 
   // Release vertex and fragment shaders
   if (vertShader) glDeleteShader(vertShader);
@@ -578,76 +596,7 @@ bool MoreTeapotsRenderer::ALoadShaders(SHADER_PARAMS* params, const char* strVsh
   params->program_ = program;
   return true;
 }
-
-//bool MoreTeapotsRenderer::LoadShadersES3(
-//    SHADER_PARAMS* params, const char* strVsh, const char* strFsh,
-//    std::map<std::string, std::string>& shaderParams) {
-//  //
-//  // Shader load for GLES3
-//  // In GLES3.0, shader attribute index can be described in a shader code
-//  // directly with layout() attribute
-//  //
-//  GLuint program;
-//  GLuint vertShader, fragShader;
-//
-//  // Create shader program
-//  program = glCreateProgram();
-////  LOGI("Created Shader %d", program);
-//
-//  // Create and compile vertex shader
-//  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
-//                                         shaderParams)) {
-////    LOGI("Failed to compile vertex shader");
-//    glDeleteProgram(program);
-//    return false;
-//  }
-//
-//  // Create and compile fragment shader
-//  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-//                                         strFsh, shaderParams)) {
-////    LOGI("Failed to compile fragment shader");
-//    glDeleteProgram(program);
-//    return false;
-//  }
-//
-//  // Attach vertex shader to program
-//  glAttachShader(program, vertShader);
-//
-//  // Attach fragment shader to program
-//  glAttachShader(program, fragShader);
-//
-//  // Link program
-//  if (!ndk_helper::shader::LinkProgram(program)) {
-////    LOGI("Failed to link program: %d", program);
-//
-//    if (vertShader) {
-//      glDeleteShader(vertShader);
-//      vertShader = 0;
-//    }
-//    if (fragShader) {
-//      glDeleteShader(fragShader);
-//      fragShader = 0;
-//    }
-//    if (program) {
-//      glDeleteProgram(program);
-//    }
-//
-//    return false;
-//  }
-//
-//  // Get uniform locations
-//  params->light0_ = glGetUniformLocation(program, "vLight0");
-//  params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
-//  params->material_specular_ =
-//      glGetUniformLocation(program, "vMaterialSpecular");
-//
-//  // Release vertex and fragment shaders
-//  if (vertShader) glDeleteShader(vertShader);
-//  if (fragShader) glDeleteShader(fragShader);
-//
-//  params->program_ = program;
-//  return true;
-//}
+#endif
 
 //--------------------------------------------------------------------------------
 // Bind

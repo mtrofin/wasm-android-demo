@@ -94,11 +94,11 @@ class MoreTeapotsRenderer {
   SHADER_PARAMS shader_param_;
   bool LoadShaders(SHADER_PARAMS* params, const char* strVsh,
                    const char* strFsh);
-  bool ALoadShaders(SHADER_PARAMS* params, const char* strVsh,
-                     const char* strFsh);
-//  bool LoadShadersES3(SHADER_PARAMS* params, const char* strVsh,
-//                      const char* strFsh,
-//                      std::map<std::string, std::string>& shaderParameters);
+#ifdef GL3
+  bool LoadShadersES3(SHADER_PARAMS* params, const char* strVsh,
+                      const char* strFsh,
+                      std::map<std::string, std::string>& shaderParameters);
+#endif
 
   ndk_helper::Mat4 mat_projection_;
   ndk_helper::Mat4 mat_view_;

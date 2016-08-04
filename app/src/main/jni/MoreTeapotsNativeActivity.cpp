@@ -42,9 +42,9 @@
 //-------------------------------------------------------------------------
 // Constants
 //-------------------------------------------------------------------------
-const int32_t NUM_TEAPOTS_X = 8;
-const int32_t NUM_TEAPOTS_Y = 8;
-const int32_t NUM_TEAPOTS_Z = 8;
+const int32_t NUM_TEAPOTS_X = 2;
+const int32_t NUM_TEAPOTS_Y = 2;
+const int32_t NUM_TEAPOTS_Z = 2;
 
 //-------------------------------------------------------------------------
 // Shared state for our app.
@@ -174,7 +174,7 @@ int Engine::InitDisplay() {
 void Engine::DrawFrame() {
 
   double dTime = monitor_.GetCurrentTime();
-  if (dTime - lastTime >= fixed_dTime) {
+  //if (dTime - lastTime >= fixed_dTime) {
 
     float fps;
     if (monitor_.Update(fps)) {
@@ -195,7 +195,7 @@ void Engine::DrawFrame() {
     }
     lastTime = dTime;
 
-  }
+  //}
 }
 
 /**
