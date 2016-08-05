@@ -79,11 +79,11 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
   // Settings
   glFrontFace(GL_CCW);
 
-  num_instances_ = 1;
+  size_instance_ = 1;
 
   // Create VBO
   origin_num_vertices_ = sizeof(teapotPositions) / sizeof(teapotPositions[0]) / 3;
-  num_vertices_ = num_instances_ * origin_num_vertices_;
+  num_vertices_ = size_instance_ * origin_num_vertices_;
 
   int32_t stride = sizeof(TEAPOT_VERTEX);
   int32_t index = 0;
@@ -91,7 +91,7 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
 
   float off = 0.5;
 
-  for (int32_t round = 0; round < num_instances_; ++round) {
+  for (int32_t round = 0; round < size_instance_; ++round) {
       for (int32_t i = 0; i < origin_num_vertices_; ++i) {
           p[i + round*origin_num_vertices_].pos[0] = teapotPositions[index] + round * off;
           p[i + round*origin_num_vertices_].pos[1] = teapotPositions[index + 1] + round * off;
@@ -112,12 +112,12 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
 
   // Create Index buffer
   origin_num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
-  num_indices_ = num_instances_ * origin_num_indices_;
+  num_indices_ = size_instance_ * origin_num_indices_;
   printf("Number of indices is %d \n", num_indices_);
 
   index = 0;
   uint16_t* q = new uint16_t[num_indices_];
-  for (int32_t round = 0; round < num_instances_; ++round) {
+  for (int32_t round = 0; round < size_instance_; ++round) {
       for (int32_t i = 0; i < origin_num_indices_; ++i) {
           q[i + round*origin_num_indices_] = teapotIndices[index]
                                              + round * origin_num_vertices_;

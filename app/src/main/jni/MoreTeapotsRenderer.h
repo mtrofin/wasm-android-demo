@@ -89,7 +89,7 @@ class MoreTeapotsRenderer {
   GLuint ubo_;
     int32_t origin_num_indices_;
     int32_t origin_num_vertices_;
-    int32_t num_instances_;
+    int32_t size_instance_;
 
   SHADER_PARAMS shader_param_;
   bool LoadShaders(SHADER_PARAMS* params, const char* strVsh,
