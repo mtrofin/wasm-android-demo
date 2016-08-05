@@ -42,6 +42,7 @@ connect the phone to the desktop in debug mode, and then run `adb install -r <pa
 
 # MACROS
 Because what we want to do is a comparative experiment finding the graphical performance bottlenecks in wasm, we defined some more macros other than `AND` and `WASM` in order to play around and see what kind of things affect the performance most.
+
 1. Define `TEAPOT` if you want to draw one instance as a teapot. Define `TRIANGLE` if you want to draw one instance as a simple triangle. Define `Zero` if you want to draw one instance as purely a bunch of points located at 0.
 2. Define `ROTATION` if you want to instances to rotate among different frames. Otherwise, they will stay still.
 3. To control the number of instances and the size of one instance,
