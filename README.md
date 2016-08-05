@@ -1,11 +1,11 @@
 # Background
-This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting codes are under the directory of `app/src/main/wasm`.
+This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting code may be found under the directory of `app/src/main/wasm`.
 
-The goal of this project has two aspects. The first one is to find the engineering cost of porting an Android application to WASM. The other one is trying to figure out whether there exists any performance overhead in WASM comparing to the native apps. To accomplish this, I also made a comparative WebJS version of this teapot program, which is under `app/src/main/webGL`.
+The project has two goals. The first one is to evaluate the engineering cost of porting an Android application to WASM. The other one is trying to figure out the performance overhead of WASM, compared to native Androis apps. In addition, I also ported a comparative WebJS version of this teapot program, which is under `app/src/main/webGL`.
 
 # Pre-requisites
 #### Android
-1. Download and install Android Studio 2.1 from the [link](https://developer.android.com/studio/index.html) or you can choose just to download the command line tools. Both are okay.
+1. Download and install Android Studio 2.1 from the [link](https://developer.android.com/studio/index.html) or you may choose just to download the [command line tools](https://developer.android.com/studio/index.html#downloads). Both will work.
 2. Download and install the latest version of NDK from the [link](https://developer.android.com/ndk/downloads/index.html).
 
 #### Wasm
@@ -15,7 +15,7 @@ The goal of this project has two aspects. The first one is to find the engineeri
 4. For building emscripten and other required toolchains from source, you may refer to this [page](http://kripken.github.io/emscripten-site/docs/building_from_source/index.html#installing-from-source)
 
 # Build
-Before Building, you need to change the building macro in file `app/src/main/jni/MoreTeapotsRenderer.cpp` and `app/src/main/jni/ndk_helper/shader.cpp`. If you want to build on Android, then `#define AND`. If you want to build to wasm, then `#define WASM`
+Before Building, you need to change the building macro in file `app/src/main/jni/MoreTeapotsRenderer.cpp` and `app/src/main/jni/ndk_helper/shader.cpp`. If you want to build on Android, then `#define AND`. If you want to build to wasm, then `#define WASM`.
 #### Android
 1. `cd` into the root directory of this project.
 2. Run `./gradlew assembleDebug`
@@ -31,12 +31,12 @@ connect the phone to the desktop in debug mode, and then run `adb install -r <pa
 
 # RUN
 #### Android
-1. To run it on emulator. Run `android avd` first and create an Emulator. After you have created one, use `emulator -avd <name>` to start it. Then you can run `adb install -r <path-to-your-apk>` to install apk on your emulator.
+1. To run it on emulator: run `android avd` first and create an Emulator. After you have created one, use `emulator -avd <name>` to start it. Then you can run `adb install -r <path-to-your-apk>` to install apk on your emulator.
 2. To run it on the phone, just connect the phone to the desktop in debug mode and then run `adb install -r <path-to-your-apk>` to install apk on your phone.
 
 #### WASM
-1. To run wams application on chrome, you need to build the latest chromium from source. In our experiment, we use Version 53.0.2775.0 (64-bit).
-2. To run wasm on Android, you need also get the Developer version Chrome (You can actually download it from Play Store). In our experiment, we use Chrome Dev 53.0.2782.9.
+1. To run wams application on Chrome, you need to build the latest chromium from source. In our experiment, we used Version 53.0.2775.0 (64-bit).
+2. To run wasm on Chrome on Android, you need also get the Developer version Chrome (You can actually download it from Play Store). In our experiment, we use Chrome Dev 53.0.2782.9.
     * To access the web resources hosted on a Google machine, you need to use the Obscura service. Follow the instructions [here](https://sites.google.com/a/google.com/obscura/user-guide/getting-started).
 
 #### WebGL
