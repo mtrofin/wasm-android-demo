@@ -1,6 +1,8 @@
 # Background
-This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting codes are under the directory of app/src/main/wasm.
-The goal of this project has two aspects. The first one is to find the engineering cost of porting an Android application to WASM. The other one is trying to figure out whether there exists any performance overhead in WASM comparing to the native apps. To accomplish this, I also made a comparative WebJS version of this teapot program, which is under app/src/main/webGL.
+This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting codes are under the directory of `app/src/main/wasm`.
+
+The goal of this project has two aspects. The first one is to find the engineering cost of porting an Android application to WASM. The other one is trying to figure out whether there exists any performance overhead in WASM comparing to the native apps. To accomplish this, I also made a comparative WebJS version of this teapot program, which is under `app/src/main/webGL`.
+
 # Pre-requisites
 #### Android
 1. Download and install Android Studio 2.1 from the [link](https://developer.android.com/studio/index.html) or you can choose just to download the command line tools. Both are okay.
