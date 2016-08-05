@@ -1,5 +1,5 @@
-See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/linkNative-activityX86DebugSharedLibrary/output.txt for all output for linkNative-activityX86DebugSharedLibrary.
+See file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityX86DebugSharedLibrary/output.txt for all output for linkNative-activityX86DebugSharedLibrary.
 linking libnative-activity.so successful.
-i686-linux-android-g++: warning: /usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/objectFiles/x86DebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
+i686-linux-android-g++: warning: /work/teapots_wasm_porting/nativeactivity/build/intermediates/objectFiles/x86DebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
 
-Finished linkNative-activityX86DebugSharedLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/linkNative-activityX86DebugSharedLibrary/output.txt.
+Finished linkNative-activityX86DebugSharedLibrary, see full log file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityX86DebugSharedLibrary/output.txt.

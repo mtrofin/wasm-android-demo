@@ -1,4 +1,0 @@
-See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/linkMoreTeapotsNativeActivityX86DebugSharedLibrary/output.txt for all output for linkMoreTeapotsNativeActivityX86DebugSharedLibrary.
-linking libMoreTeapotsNativeActivity.so successful.
-
-Finished linkMoreTeapotsNativeActivityX86DebugSharedLibrary, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/linkMoreTeapotsNativeActivityX86DebugSharedLibrary/output.txt.

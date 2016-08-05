@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml",
+        "outputFile": "/work/teapots_wasm_porting/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 201
                 },
                 "from": {
-                    "file": "/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/res/values-v14/styles.xml",
+                    "file": "/work/teapots_wasm_porting/app/src/main/res/values-v14/styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

@@ -1,4 +1,4 @@
-See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC/output.txt for all output for compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC.
+See file:///work/teapots_wasm_porting/nativeactivity/build/tmp/compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC/output.txt for all output for compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC.
 compiling android_native_app_glue.c successful.
 
-Finished compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC/output.txt.
+Finished compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC, see full log file:///work/teapots_wasm_porting/nativeactivity/build/tmp/compileNative-activityArm64-v8aDebugSharedLibraryNative-activityMainC/output.txt.

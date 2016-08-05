@@ -1,4 +1,0 @@
-See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainC/output.txt for all output for compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainC.
-compiling platform_asset_utils.c successful.
-
-Finished compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainC, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/tmp/compileMoreTeapotsNativeActivityX86DebugSharedLibraryMoreTeapotsNativeActivityMainC/output.txt.

@@ -1,6 +1,6 @@
 [
     {
-        "merged": "/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
-        "source": "/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+        "merged": "/work/teapots_wasm_porting/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
+        "source": "/work/teapots_wasm_porting/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     }
 ]

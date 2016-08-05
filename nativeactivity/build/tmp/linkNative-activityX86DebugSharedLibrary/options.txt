@@ -1,8 +1,8 @@
 -shared
 -Wl,-soname,libnative-activity.so
 -o
-/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/binaries/debug/obj/x86/libnative-activity.so
-/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/intermediates/objectFiles/x86DebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o
+/work/teapots_wasm_porting/nativeactivity/build/intermediates/binaries/debug/obj/x86/libnative-activity.so
+/work/teapots_wasm_porting/nativeactivity/build/intermediates/objectFiles/x86DebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o
 -Wl,--no-undefined
 -Wl,-z,noexecstack
 -Wl,-z,relro

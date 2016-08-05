@@ -1,4 +1,0 @@
-See file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/compileNative-activityArmeabi-v7aDebugStaticLibraryNative-activityMainC/output.txt for all output for compileNative-activityArmeabi-v7aDebugStaticLibraryNative-activityMainC.
-compiling android_native_app_glue.c successful.
-
-Finished compileNative-activityArmeabi-v7aDebugStaticLibraryNative-activityMainC, see full log file:///usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/nativeactivity/build/tmp/compileNative-activityArmeabi-v7aDebugStaticLibraryNative-activityMainC/output.txt.
