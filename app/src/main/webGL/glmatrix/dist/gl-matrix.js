@@ -3649,6 +3649,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return out;
 	};
 
+	mat4.perspective_port = function (out, width, height, near, far) {
+	    var n2 = 2.0 * near,
+	        rcpnmf = 1.0 / (near - far);
+	    out[0] = n2 / width;
+	    out[4] = 0;
+	    out[8] = 0;
+	    out[12] = 0;
+	    out[1] = 0;
+	    out[5] = n2 / height;
+	    out[9] = 0;
+	    out[13] = 0;
+	    out[2] = 0;
+	    out[6] = 0;
+	    out[10] = (far + near) * rcpnmf;
+	    out[14] = far * rcpnmf * n2;
+	    out[3] = 0;
+	    out[7] = 0;
+	    out[11] = -1;
+	    out[15] = 0;
+	    return out;
+	}
+
 	/**
 	 * Generates a perspective projection matrix with the given field of view.
 	 * This is primarily useful for generating projection matrices to be used
