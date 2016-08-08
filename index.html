@@ -1,1 +1,77 @@
-<div w3-include-html="app/src/main/webGL/webgl-teapots.htm"></div>
+
+<html>
+  <head>
+    <title>WebGL - Teapots!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="app/src/main/webGL/glmatrix/dist/gl-matrix.js" type="text/javascript"></script>
+    <script src="app/src/main/webGL/three.min.js" type="text/javascript"></script>
+    <script src="app/src/main/webGL/apple-to-apple.js" type="text/javascript"></script>
+	
+   <!-- Fragment shader program -->
+
+    <script id="shader-fs" type="x-shader/x-fragment">
+      uniform lowp vec3       vMaterialAmbient;
+      uniform mediump vec4    vMaterialSpecular;
+
+      varying lowp vec4 colorDiffuse;
+
+      uniform highp vec3   vLight0;
+      varying mediump vec3 position;
+      varying mediump vec3 normal;
+
+      void main()
+      {
+          mediump vec3 halfVector = normalize(-vLight0 + position);
+          mediump float NdotH = max(dot(normalize(normal), halfVector), 0.0);
+          mediump float fPower = vMaterialSpecular.w;
+          mediump float specular = pow(NdotH, fPower);
+
+          lowp vec4 colorSpecular = vec4( vMaterialSpecular.xyz * specular, 1 );
+          gl_FragColor = colorDiffuse + colorSpecular;
+      }
+    </script>
+    
+    <!-- Vertex shader program -->
+    
+    <script id="shader-vs" type="x-shader/x-vertex">
+      attribute highp vec3    myVertex;
+      attribute highp vec3    myNormal;
+
+      varying lowp    vec4    colorDiffuse;
+
+      varying mediump vec3 position;
+      varying mediump vec3 normal;
+
+      uniform highp mat4      uMVMatrix;
+      uniform highp mat4      uPMatrix;
+
+      uniform highp vec3      vLight0;
+
+      uniform lowp vec4       vMaterialDiffuse;
+      uniform lowp vec3       vMaterialAmbient;
+      uniform mediump vec4       vMaterialSpecular;
+
+      void main(void)
+      {
+          highp vec4 p = vec4(myVertex,1);
+          gl_Position = uPMatrix * p;
+
+          highp vec3 worldNormal = vec3(mat3(uMVMatrix[0].xyz, uMVMatrix[1].xyz, uMVMatrix[2].xyz) * myNormal);
+          highp vec3 ecPosition = p.xyz;
+
+          colorDiffuse = dot( worldNormal, normalize(-vLight0+ecPosition) ) * vMaterialDiffuse  + vec4( vMaterialAmbient, 1 );
+
+          normal = worldNormal;
+          position = ecPosition;
+      }
+    </script>
+  </head>	  
+  
+  <body onload="start()">
+    <p id='p1'>FPS</p>
+    <p><button type="button" onclick="fullScreen()">fullscreen</button></p>
+    <canvas id="glcanvas" width="600" height="800">
+      Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+    </canvas> 
+  </body>
+</html>
