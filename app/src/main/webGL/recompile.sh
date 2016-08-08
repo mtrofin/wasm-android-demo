@@ -1,7 +1,7 @@
 #!/bin/bash
 #A script for recompiling the webGL application
 
-SOURCEDIR=/usr/local/google/home/clarkchenwang/AndroidStudioProjects/MoreTeapots/app/src/main/webGL
+SOURCEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DESTDIR=/var/www/html/webGL
 
 rm -rf ${DESTDIR}/*
