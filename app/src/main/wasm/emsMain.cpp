@@ -99,6 +99,9 @@ void one_iter() {
     deltatime = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
     t1 = t2;
 
+    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     if (context.updateFunc != NULL)
         context.updateFunc(&context, deltatime);
     if (context.drawFunc != NULL)

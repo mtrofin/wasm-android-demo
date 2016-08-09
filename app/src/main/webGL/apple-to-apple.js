@@ -625,6 +625,9 @@ var teapotIndices = [
 var canvas;
 var gl;
 
+var lastCanvasClientWidth = 0;
+var lastCanvasClientHeight = 0;
+
 var num_vertices_;
 var vbo_;
 var num_indices_;
@@ -656,8 +659,14 @@ var material_specular_;
 var matrix_projection_;
 var matrix_view_;
 
-var mat_projection_;
-var mat_view_;
+var mat_projection_ = mat4.create();
+var mat_view_ = mat4.create();
+var mat_rotation_ = mat4.create();
+var mat_rotation_x_ = mat4.create();
+var mat_rotation_y_ = mat4.create();
+var mat_v_ = mat4.create();
+var mat_vp_ = mat4.create();
+
 
 var total_frame_;
 var last_time_;
@@ -674,15 +683,16 @@ function start() {
     if (gl) {
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clearDepth(1.0); // Clear everything
+        gl.enable(gl.CULL_FACE);
         gl.enable(gl.DEPTH_TEST); // Enable depth testing
         gl.depthFunc(gl.LEQUAL); // Near things obscure far thing
-        init(2, 2, 2);
+        init(8, 8, 8);
 
         last_time_ = (new Date).getTime();
         total_time_ = 0;
         total_frame_ = 0;
 
-        setInterval(drawFrame, 16);
+        drawFrame();
     }
 }
 
@@ -690,7 +700,7 @@ function initWebGL(canvas) {
     gl = null;
 
     try {
-        gl = canvas.getContext("experimental-webgl");
+        gl = canvas.getContext("webgl", { antialias: false });
     } catch (e) {}
 
     // If we don't have a GL context, give up now
@@ -738,11 +748,6 @@ function init(num_x, num_y, num_z) {
     vec_colors_ = [];
     vec_rotations_ = [];
     vec_current_rotations_ = [];
-
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, context: gl });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.sortObjects = false;
-    document.body.appendChild(renderer.domElement);
 
     updateViewport();
 
@@ -861,31 +866,28 @@ function getShader(gl, id) {
 }
 
 function updateViewport() {
-    var realToCSSPixels = window.devicePixelRatio || 1;
-
-    var displayWidth = Math.floor(canvas.clientWidth * realToCSSPixels);
-    var displayHeight = Math.floor(canvas.clientHeight * realToCSSPixels);
-
-    if (canvas.width != displayWidth ||
-        canvas.height != displayHeight) {
+    if (canvas.clientWidth != lastCanvasClientWidth ||
+        canvas.clientHeight != lastCanvasClientHeight) {
+        lastCanvasClientWidth = canvas.clientWidth;
+        lastCanvasClientHeight = canvas.clientHeight;
+        var realToCSSPixels = window.devicePixelRatio || 1;
+        var displayWidth = Math.floor(lastCanvasClientWidth * realToCSSPixels);
+        var displayHeight = Math.floor(lastCanvasClientHeight * realToCSSPixels);
         canvas.width = displayWidth;
         canvas.height = displayHeight;
-
+        canvas.style.width = lastCanvasClientWidth;
+        canvas.style.height = lastCanvasClientHeight
         gl.viewport(0, 0, canvas.width, canvas.height);
     }
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
     var CAM_NEAR = 5.0;
     var CAM_FAR = 10000.0;
 
     if (canvas.width < canvas.height) {
         var aspect = canvas.width / canvas.height;
-        mat_projection_ = mat4.create();
         mat4.perspective_port(mat_projection_, aspect, 1.0, CAM_NEAR, CAM_FAR);
     } else {
         var aspect = canvas.height / canvas.width;
-        mat_projection_ = mat4.create();
         mat4.perspective_port(mat_projection_, 1.0, aspect, CAM_NEAR, CAM_FAR);
     }
 }
@@ -895,8 +897,7 @@ function update() {
     var CAM_Y = 0.0;
     var CAM_Z = 2000.0;
 
-    mat_view_ = mat4.create();
-    mat_view_ = mat4.lookAt(mat_view_, vec3.fromValues(CAM_X, CAM_Y, CAM_Z),
+    mat4.lookAt(mat_view_, vec3.fromValues(CAM_X, CAM_Y, CAM_Z),
         vec3.fromValues(0.0, 0.0, 0.0),
         vec3.fromValues(0.0, 1.0, 0.0));
 }
@@ -906,9 +907,9 @@ function render() {
 
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo_);
 
-    var iStride = 6 * 4;
+    var iStride = 6 * Float32Array.BYTES_PER_ELEMENT;
     var offset_vertex = 0;
-    var offset_normal = 3 * 4;
+    var offset_normal = 3 * Float32Array.BYTES_PER_ELEMENT;
     gl.vertexAttribPointer(SHADER_ATTRIBUTES.ATTRIB_VERTEX, 3, gl.FLOAT, false, iStride, offset_vertex);
     gl.enableVertexAttribArray(SHADER_ATTRIBUTES.ATTRIB_VERTEX);
 
@@ -937,23 +938,22 @@ function render() {
         x = vec_current_rotations_[i][0];
         y = vec_current_rotations_[i][1];
 
-        mat_rotation = mat4.create();
-        mat_rotation_x = mat4.create();
-        mat4.rotateX(mat_rotation_x, mat_rotation_x, x);
-        mat_rotation_y = mat4.create();
-        mat4.rotateY(mat_rotation_y, mat_rotation_y, y);
+        mat4.identity(mat_rotation_x_);
+        mat4.rotateX(mat_rotation_x_, mat_rotation_x_, x);
+        mat4.identity(mat_rotation_y_);
+        mat4.rotateY(mat_rotation_y_, mat_rotation_y_, y);
 
-        mat4.multiply(mat_rotation, mat_rotation_x, mat_rotation_y);
+        mat4.multiply(mat_rotation_, mat_rotation_x_, mat_rotation_y_);
 
-        var mat_v = mat4.create();
-        mat4.multiply(mat_v, mat_view_, vec_mat_models_[i]);
-        mat4.multiply(mat_v, mat_v, mat_rotation);
+        mat4.identity(mat_v_);
+        mat4.multiply(mat_v_, mat_view_, vec_mat_models_[i]);
+        mat4.multiply(mat_v_, mat_v_, mat_rotation_);
 
-        var mat_vp = mat4.create();
-        mat4.multiply(mat_vp, mat_projection_, mat_v);
+        mat4.identity(mat_vp_);
+        mat4.multiply(mat_vp_, mat_projection_, mat_v_);
 
-        gl.uniformMatrix4fv(matrix_projection_, false, mat_vp);
-        gl.uniformMatrix4fv(matrix_view_, false, mat_v);
+        gl.uniformMatrix4fv(matrix_projection_, false, mat_vp_);
+        gl.uniformMatrix4fv(matrix_view_, false, mat_v_);
 
         gl.drawElements(gl.TRIANGLES, num_indices_, gl.UNSIGNED_SHORT, 0);
     }
@@ -982,14 +982,26 @@ function drawFrame() {
         }
     }
     last_time_ = current_time_;
+    requestAnimationFrame(drawFrame);
 }
 
 function fullScreen() {
-    if (renderer.domElement.requestFullscreen) {
-        renderer.domElement.requestFullscreen();
-    } else if (renderer.domElement.webkitRequestFullscreen) {
-        renderer.domElement.webkitRequestFullscreen();
-    } else if (renderer.domElement.mozRequestFullscreen) {
-        renderer.domElement.mozRequestFullscreen();
+    if (canvas.requestFullscreen) {
+        canvas.requestFullscreen();
+    } else if (canvas.webkitRequestFullscreen) {
+        canvas.webkitRequestFullscreen();
+    } else if (canvas.mozRequestFullscreen) {
+        canvas.mozRequestFullscreen();
+    }
+}
+
+function resizeCanvas() {
+    var isFullScreen = document.webkitIsFullScreen || document.mozFullScreen;
+    if (isFullScreen) {
+        canvas.style.width = screen.width;
+        canvas.style.height = screen.height;
+    } else {
+        canvas.style.width = 300;
+        canvas.style.height = 400;
     }
 }
