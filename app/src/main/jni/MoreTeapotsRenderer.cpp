@@ -22,7 +22,6 @@
 //--------------------------------------------------------------------------------
 // Define macros
 //--------------------------------------------------------------------------------
-#define ROTATION
 #define TEAPOT
 //--------------------------------------------------------------------------------
 // Include files
@@ -43,6 +42,10 @@
 #endif
 #if defined(TEAPOT) && defined(ZERO)
 #error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
+#endif
+
+#if defined(GL3) && defined(TARGET_WASM)
+#error you cannot turn on gl3 when the target platform is wasm
 #endif
 
 //--------------------------------------------------------------------------------
@@ -417,8 +420,6 @@ void MoreTeapotsRenderer::Render() {
 #else
       glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
 #endif
-
-#ifdef ROTATION
       // Rotation
       vec_current_rotations_[i] += vec_rotations_[i];
       vec_current_rotations_[i].Value(x, y);
@@ -432,7 +433,7 @@ void MoreTeapotsRenderer::Render() {
       glUniformMatrix4fv(shader_param_.matrix_projection_, 1, GL_FALSE,
                          mat_vp.Ptr());
       glUniformMatrix4fv(shader_param_.matrix_view_, 1, GL_FALSE, mat_v.Ptr());
-#endif
+
       glDrawElements(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
                      BUFFER_OFFSET(0));
     }
