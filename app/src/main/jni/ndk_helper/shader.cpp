@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define AND
+#include "platform.h"
 
 #include <EGL/egl.h>
 #include <GLES2/gl2.h>
 
 #include "shader.h"
-#ifdef AND
+#ifdef TARGET_ANDROID
 #include "JNIHelper.h"
 #endif
 #include <stdlib.h>
@@ -29,7 +29,7 @@ namespace ndk_helper {
 
 #define DEBUG (1)
 
-#ifdef AND
+#ifdef TARGET_ANDROID
 bool shader::CompileShader(
     GLuint *shader, const GLenum type, const char *str_file_name,
     const std::map<std::string, std::string> &map_parameters) {
@@ -92,7 +92,7 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   if (logLength > 0) {
     GLchar *log = (GLchar *)malloc(logLength);
     glGetShaderInfoLog(*shader, logLength, &logLength, log);
-#ifdef AND
+#ifdef TARGET_ANDROID
     LOGI("Shader compile log:\n%s", log);
 #else
     printf("Shader compile log:%s\n", log);
@@ -121,7 +121,7 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   return shader::CompileShader(shader, type, source, iSize);
 }
 
-#ifdef AND
+#ifdef TARGET_ANDROID
 bool shader::CompileShader(GLuint *shader, const GLenum type,
                            const char *strFileName) {
   std::vector<uint8_t> data;
@@ -146,7 +146,7 @@ bool shader::LinkProgram(const GLuint prog) {
    if (logLength > 0) {
      GLchar *log = (GLchar *)malloc(logLength);
      glGetProgramInfoLog(prog, logLength, &logLength, log);
- #ifdef AND
+ #ifdef TARGET_ANDROID
      LOGI("Program link log:\n%s", log);
  #endif
      printf("Program link log:\n%s\n", log);
@@ -156,7 +156,7 @@ bool shader::LinkProgram(const GLuint prog) {
 
   glGetProgramiv(prog, GL_LINK_STATUS, &status);
   if (status == 0) {
-#ifdef AND
+#ifdef TARGET_ANDROID
     LOGI("Program link failed\n");
 #endif
     return false;
@@ -173,7 +173,7 @@ bool shader::ValidateProgram(const GLuint prog) {
    if (logLength > 0) {
      GLchar *log = (GLchar *)malloc(logLength);
      glGetProgramInfoLog(prog, logLength, &logLength, log);
-#ifdef AND
+#ifdef TARGET_ANDROID
      LOGI("Program validate log:\n%s", log);
 #endif
      free(log);

@@ -27,7 +27,8 @@ model {
             toolchain = "clang"
             stl       = 'gnustl_static'
             cppFlags.addAll(['-I' + "${ndkDir}/sources/android/cpufeatures",
-                             '-I' + file('src/main/jni/ndk_helper')])
+                             '-I' + file('src/main/jni/ndk_helper'),
+                             '-I' + file('src/main/jni/platform')])
             cppFlags.addAll(['-std=c++11', '-Wall',
                              '-fno-exceptions', '-fno-rtti'])
             ldLibs.addAll(['android', 'log', 'EGL', 'GLESv2','atomic'])

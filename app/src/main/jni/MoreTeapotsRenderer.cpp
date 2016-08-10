@@ -18,15 +18,16 @@
 // MoreTeapotsRenderer.cpp
 // Render teapots
 //--------------------------------------------------------------------------------
-#define AND
+#include "platform.h"
+
 #define ROTATION
 #define TEAPOT
 //--------------------------------------------------------------------------------
 // Include files
 //--------------------------------------------------------------------------------
-#include <platform_file_utils.h>
+#include "platform_file_utils.h"
 #include "MoreTeapotsRenderer.h"
-#ifdef AND
+#ifdef TARGET_ANDROID
 #include "JNIHelper.h"
 #endif
 
@@ -445,14 +446,14 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Create shader program
   program = glCreateProgram();
 
-#ifdef WASM
+#ifdef TARGET_WASM
   const FileData vertex_shader_source = get_asset_data(strVsh);
   const FileData fragment_shader_source = get_asset_data(strFsh);
 #endif
 
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
-#ifdef WASM
+#ifdef TARGET_WASM
                                          (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
 #else
                                          strVsh)){
@@ -464,7 +465,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-#ifdef WASM
+#ifdef TARGET_WASM
                                          (const GLchar* )fragment_shader_source.data, fragment_shader_source.data_length)) {
 #else
                                          strFsh)){
@@ -488,7 +489,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
 
-#ifdef AND
+#ifdef TARGET_ANDROID
     LOGI("Failed to link program: %d", program);
 #else
     printf("Failed to link program: %d", program);
