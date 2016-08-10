@@ -15,7 +15,6 @@ The project has two goals. The first one is to evaluate the engineering cost of 
 4. For building emscripten and other required toolchains from source, you may refer to this [page](http://kripken.github.io/emscripten-site/docs/building_from_source/index.html#installing-from-source)
 
 # Build
-Before Building, you need to change the building macro in file `app/src/main/jni/MoreTeapotsRenderer.cpp` and `app/src/main/jni/ndk_helper/shader.cpp`. If you want to build on Android, then `#define AND`. If you want to build to wasm, then `#define WASM`.
 #### Android
 1. `cd` into the root directory of this project.
 2. Run `./gradlew assembleDebug`
@@ -43,17 +42,17 @@ connect the phone to the desktop in debug mode, and then run `adb install -r <pa
 1. The webGL files are under the directory `app/src/main/webGL`
 
 # MACROS
-Because what we want to do is a comparative experiment finding the graphical performance bottlenecks in wasm, we defined some more macros other than `AND` and `WASM` in order to play around and see what kind of things affect the performance most.
+Because what we want to do is a comparative experiment finding the graphical performance bottlenecks in wasm, we defined some macros in order to play around and see what kind of things affect the performance most.
+All macros should be defined in the 'Define macros' section in `app/src/main/jni/MoreTeapotsRenderer.cpp`.
 
-1. Define `TEAPOT` if you want to draw one instance as a teapot. Define `TRIANGLE` if you want to draw one instance as a simple triangle. Define `Zero` if you want to draw one instance as purely a bunch of points located at 0.
-2. Define `ROTATION` if you want to instances to rotate among different frames. Otherwise, they will stay still.
-3. To control the number of instances and the size of one instance,
+1. Define `TEAPOT` if you want to draw one instance as a teapot. Define `TRIANGLE` if you want to draw one instance as a simple triangle. Define `Zero` if you want to draw one instance as purely a bunch of points located at 0. You must and can only define one macro from one of these three macros.
+2. To control the number of instances and the size of one instance,
     * Variables `NUM_TEAPOT_X`, `NUM_TEAPOT_Y` and `NUM_TEAPOT_Z` defined in `app/src/main/jni/MoreTeapotsNativeActivity.cpp` controls the number of instances drawn along X-axis, Y-axis, Z-axis in Android application. Variables `NUM_TEAPOTS_X`, `NUM_TEAPOTS_Y` and `NUM_TEAPOTS_Z` defined in `app/src/main/wasm/emsMain.cpp` controls the number of instances in wasm application.
     * Variable `size_instance_` defined in `app/src/main/jni/MoreTeapotsRenderer.cpp` defined the size (number of vertices, also the number of indices) of per instance. That is to say, if you set it to 1, then it remains the same size for one instance. It you set to 2, the size of per instance will become two times than the original one. If you also set the variable `offset` in `Init()` larger than 0, then each 'copy' of the original instance will have an offset in the new 'larger' instance. 
-4. Define `DRAW_ALL_IN_MIDDLE` if you want to draw all instances in the middle of the screen. Otherwise, each instance will have a distance from other instances.
-5. Define `SIMPLE_SHADER` if you want use a really simple shader to output solid color.
-6. Define `MULTI_GL_SET_UNIFORM` if you want to call `glUniform4f` in a loop in order to find whether indirect calls to GL APIs is a heavy bottleneck for the performance.
-7. Define `GL3` if you want to use GLES3 features. (We don't use in our experiment).
+3. (Optional) Define `DRAW_ALL_IN_MIDDLE` if you want to draw all instances in the middle of the screen. Otherwise, each instance will have a distance from other instances.
+4. (Optional) Define `SIMPLE_SHADER` if you want use a really simple shader to output solid color.
+5. (Optional) Define `MULTI_GL_SET_UNIFORM` if you want to call `glUniform4f` in a loop in order to find whether indirect calls to GL APIs is a heavy bottleneck for the performance.
+6. (Optional and can only target Android, no wasm) Define `GL3` if you want to use GLES3 features. (We don't use in our experiment).
 
 Below is the README from the original project.
 
