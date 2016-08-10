@@ -19,9 +19,6 @@
 #include <GLES2/gl2.h>
 
 #include "shader.h"
-#ifdef TARGET_ANDROID
-#include "JNIHelper.h"
-#endif
 #include <stdlib.h>
 #include <stdio.h>
 

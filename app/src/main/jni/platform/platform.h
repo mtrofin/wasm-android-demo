@@ -7,4 +7,6 @@
 
 #define TARGET_ANDROID
 
+#include "JNIHelper.h"
+
 #endif //TEAPOTS_WASM_PORTING_PLATFORM_H

@@ -19,7 +19,9 @@
 // Render teapots
 //--------------------------------------------------------------------------------
 #include "platform.h"
-
+//--------------------------------------------------------------------------------
+// Define macros
+//--------------------------------------------------------------------------------
 #define ROTATION
 #define TEAPOT
 //--------------------------------------------------------------------------------
@@ -27,8 +29,20 @@
 //--------------------------------------------------------------------------------
 #include "platform_file_utils.h"
 #include "MoreTeapotsRenderer.h"
-#ifdef TARGET_ANDROID
-#include "JNIHelper.h"
+//--------------------------------------------------------------------------------
+// Check macros
+//--------------------------------------------------------------------------------
+#if !defined(TEAPOT) && !defined(TRIANGLE) && !defined(ZERO)
+#error you must define one macro from TEAPOT, TRIANGLE or ZERO
+#endif
+#if defined(TEAPOT) && defined(TRIANGLE)
+#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
+#endif
+#if defined(TRIANGLE) && defined(ZERO)
+#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
+#endif
+#if defined(TEAPOT) && defined(ZERO)
+#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
 #endif
 
 //--------------------------------------------------------------------------------
