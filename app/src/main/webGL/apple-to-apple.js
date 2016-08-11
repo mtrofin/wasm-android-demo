@@ -699,6 +699,10 @@ function start() {
 function initWebGL(canvas) {
     gl = null;
 
+    // This goes hand-in-hand with webgl-teapots.css
+    // canvas.width = window.innerWidth;
+    // canvas.height = window.innerHeight;
+
     try {
         gl = canvas.getContext("webgl", { antialias: false });
     } catch (e) {}
@@ -754,8 +758,10 @@ function init(num_x, num_y, num_z) {
     var total_width = 100.0;
     var gap_x = total_width / (teapot_x_ - 1);
     var gap_y = total_width / (teapot_y_ - 1);
-    var gap_z = total_width / (teapot_z_ - 1);
-
+    var gap_z = 0;
+    if (teapot_z_ > 1) {
+        gap_z = total_width / (teapot_z_ - 1);
+    }
     var offset_x = -total_width / 2.0;
     var offset_y = -total_width / 2.0;
     var offset_z = -total_width / 2.0;
@@ -868,6 +874,7 @@ function getShader(gl, id) {
 function updateViewport() {
     if (canvas.clientWidth != lastCanvasClientWidth ||
         canvas.clientHeight != lastCanvasClientHeight) {
+        console.log('RESIZING CANVAS');
         lastCanvasClientWidth = canvas.clientWidth;
         lastCanvasClientHeight = canvas.clientHeight;
         var realToCSSPixels = window.devicePixelRatio || 1;
@@ -975,8 +982,11 @@ function drawFrame() {
 
         if (total_time_ >= 1000) {
             fps_ = total_frame_ / (total_time_ / 1000);
-            document.getElementById('p1').innerHTML =
-                "FPS : " + fps_.toFixed(2);
+            var isFullScreen = document.webkitIsFullScreen || document.mozFullScreen;
+            if (!isFullScreen) {
+                document.getElementById('p1').innerHTML =
+                   "FPS : " + fps_.toFixed(2);
+            }
             total_time_ -= 1000;
             total_frame_ = 0;
         }
