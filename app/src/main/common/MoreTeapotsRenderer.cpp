@@ -26,7 +26,6 @@
 //--------------------------------------------------------------------------------
 // Include files
 //--------------------------------------------------------------------------------
-#include "platform_file_utils.h"
 #include "MoreTeapotsRenderer.h"
 //--------------------------------------------------------------------------------
 // Check macros
@@ -461,30 +460,15 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Create shader program
   program = glCreateProgram();
 
-#ifdef TARGET_WASM
-  const FileData vertex_shader_source = get_asset_data(strVsh);
-  const FileData fragment_shader_source = get_asset_data(strFsh);
-#endif
-
   // Create and compile vertex shader
-  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER,
-#ifdef TARGET_WASM
-                                         (const GLchar* )vertex_shader_source.data, vertex_shader_source.data_length)) {
-#else
-                                         strVsh)){
-#endif
+  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh)){
     PRINT("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
 
   // Create and compile fragment shader
-  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-#ifdef TARGET_WASM
-                                         (const GLchar* )fragment_shader_source.data, fragment_shader_source.data_length)) {
-#else
-                                         strFsh)){
-#endif
+  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER, strFsh)){
     PRINT("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;

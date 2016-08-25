@@ -37,11 +37,6 @@
 #include "shader.h"     //Shader compiler support
 #include "vecmath.h"  //Vector math support, C++ implementation n current version
 
-extern "C" {
-    #include "platform_asset_utils.h"
-    #include "platform_file_utils.h"
-};
-
 #define BUFFER_OFFSET(i) ((char*)NULL + (i))
 
 struct TEAPOT_VERTEX {

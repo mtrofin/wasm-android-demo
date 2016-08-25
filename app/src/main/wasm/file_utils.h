@@ -1,4 +1,3 @@
-#pragma once
 typedef struct {
 	const long data_length;
 	const void* data;

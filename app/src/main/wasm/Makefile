@@ -7,8 +7,8 @@ SOURCES = emsMain.cpp \
 	../common/gl3stub.c \
 	../common/shader.cpp \
 	../common/vecmath.cpp \
-	../common/platform_asset_utils.c \
-	../common/platform_file_utils.c
+	shader_utils.cpp \
+	file_utils.c
 
 OBJECTS = emsMain.o \
 	ems_helper/esUtil.o \
@@ -16,8 +16,8 @@ OBJECTS = emsMain.o \
 	../common/gl3stub.o \
 	../common/shader.o \
 	../common/vecmath.o \
-	../common/platform_asset_utils.o \
-	../common/platform_file_utils.o
+	shader_utils.o \
+	file_utils.o
 
 TARGET = teapots.html
 
@@ -40,14 +40,12 @@ emsMain.o: emsMain.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platf
 
 ems_helper/esUtil.o: ems_helper/esUtil.c ems_helper/esUtil.h
 
-../common/MoreTeapotsRenderer.o: ../common/MoreTeapotsRenderer.cpp ../common/MoreTeapotsRenderer.h ../common/gl3stub.h ../common/shader.h ../common/vecmath.h ../common/platform_file_utils.h ../common/platform_asset_utils.h
-
-../common/gl3stub.o: ../common/gl3stub.c ../common/gl3stub.h
+../common/MoreTeapotsRenderer.o: ../common/MoreTeapotsRenderer.cpp ../common/MoreTeapotsRenderer.h ../common/gl3stub.h ../common/shader.h ../common/vecmath.h
 
 ../common/shader.o: ../common/shader.cpp ../common/shader.h
 
 ../common/vecmath.o: ../common/vecmath.cpp ../common/vecmath.h
 
-../common/platform_file_utils.o: ../common/platform_file_utils.c ../common/platform_file_utils.h
+shader_utils.o: shader_utils.cpp platform.h file_utils.h ../common/shader.h
 
-../common/platform_asset_utils.o: ../common/platform_asset_utils.c ../common/platform_asset_utils.h ../common/platform_file_utils.h
+file_utils.o: file_utils.c file_utils.h
