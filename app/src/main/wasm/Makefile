@@ -1,23 +1,23 @@
-CPPFLAGS = -I. -Iems_helper -I../jni -I../jni/ndk_helper -Wall -fno-exceptions -fno-rtti -s BINARYEN=1
+CPPFLAGS = -I. -Iems_helper -I../common -Wall -fno-exceptions -fno-rtti -s BINARYEN=1
 LDFLAGS = --embed-file ../assets@/
 
 SOURCES = emsMain.cpp \
 	ems_helper/esUtil.c \
-	../jni/MoreTeapotsRenderer.cpp \
-	../jni/ndk_helper/gl3stub.c \
-	../jni/ndk_helper/shader.cpp \
-	../jni/ndk_helper/vecmath.cpp \
-	../jni/ndk_helper/platform_asset_utils.c \
-	../jni/ndk_helper/platform_file_utils.c
+	../common/MoreTeapotsRenderer.cpp \
+	../common/gl3stub.c \
+	../common/shader.cpp \
+	../common/vecmath.cpp \
+	../common/platform_asset_utils.c \
+	../common/platform_file_utils.c
 
 OBJECTS = emsMain.o \
 	ems_helper/esUtil.o \
-	../jni/MoreTeapotsRenderer.o \
-	../jni/ndk_helper/gl3stub.o \
-	../jni/ndk_helper/shader.o \
-	../jni/ndk_helper/vecmath.o \
-	../jni/ndk_helper/platform_asset_utils.o \
-	../jni/ndk_helper/platform_file_utils.o
+	../common/MoreTeapotsRenderer.o \
+	../common/gl3stub.o \
+	../common/shader.o \
+	../common/vecmath.o \
+	../common/platform_asset_utils.o \
+	../common/platform_file_utils.o
 
 TARGET = teapots.html
 
@@ -36,18 +36,18 @@ depend:
 # list targets that do not create files (but not all makes understand .PHONY)
 .PHONY:	all clean depend
 
-emsMain.o: emsMain.cpp ems_helper/esUtil.h ../jni/MoreTeapotsRenderer.h
+emsMain.o: emsMain.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h
 
 ems_helper/esUtil.o: ems_helper/esUtil.c ems_helper/esUtil.h
 
-../jni/MoreTeapotsRenderer.o: ../jni/MoreTeapotsRenderer.cpp ../jni/MoreTeapotsRenderer.h ../jni/ndk_helper/gl3stub.h ../jni/ndk_helper/shader.h ../jni/ndk_helper/vecmath.h ../jni/ndk_helper/platform_file_utils.h ../jni/ndk_helper/platform_asset_utils.h
+../common/MoreTeapotsRenderer.o: ../common/MoreTeapotsRenderer.cpp ../common/MoreTeapotsRenderer.h ../common/gl3stub.h ../common/shader.h ../common/vecmath.h ../common/platform_file_utils.h ../common/platform_asset_utils.h
 
-../jni/ndk_helper/gl3stub.o: ../jni/ndk_helper/gl3stub.c ../jni/ndk_helper/gl3stub.h
+../common/gl3stub.o: ../common/gl3stub.c ../common/gl3stub.h
 
-../jni/ndk_helper/shader.o: ../jni/ndk_helper/shader.cpp ../jni/ndk_helper/shader.h
+../common/shader.o: ../common/shader.cpp ../common/shader.h
 
-../jni/ndk_helper/vecmath.o: ../jni/ndk_helper/vecmath.cpp ../jni/ndk_helper/vecmath.h
+../common/vecmath.o: ../common/vecmath.cpp ../common/vecmath.h
 
-../jni/ndk_helper/platform_file_utils.o: ../jni/ndk_helper/platform_file_utils.c ../jni/ndk_helper/platform_file_utils.h
+../common/platform_file_utils.o: ../common/platform_file_utils.c ../common/platform_file_utils.h
 
-../jni/ndk_helper/platform_asset_utils.o: ../jni/ndk_helper/platform_asset_utils.c ../jni/ndk_helper/platform_asset_utils.h ../jni/ndk_helper/platform_file_utils.h
+../common/platform_asset_utils.o: ../common/platform_asset_utils.c ../common/platform_asset_utils.h ../common/platform_file_utils.h
