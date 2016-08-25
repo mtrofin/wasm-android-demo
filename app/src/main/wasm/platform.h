@@ -7,4 +7,7 @@
 
 #define TARGET_WASM
 
+#define PRINT(...)	\
+		(printf(__VA_ARGS__));
+
 #endif //TEAPOTS_WASM_PORTING_PLATFORM_H

@@ -32,7 +32,7 @@ bool shader::CompileShader(
     const std::map<std::string, std::string> &map_parameters) {
   std::vector<uint8_t> data;
   if (!JNIHelper::GetInstance()->ReadFile(str_file_name, &data)) {
-    LOGI("Can not open a file:%s", str_file_name);
+    PRINT("Can not open a file:%s", str_file_name);
     return false;
   }
 
@@ -65,7 +65,7 @@ bool shader::CompileShader(
     it++;
   }
 
-  LOGI("Patched Shdader:\n%s", str.c_str());
+  PRINT("Patched Shdader:\n%s", str.c_str());
 
   std::vector<uint8_t> v(str.begin(), str.end());
   str.clear();
@@ -89,11 +89,7 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   if (logLength > 0) {
     GLchar *log = (GLchar *)malloc(logLength);
     glGetShaderInfoLog(*shader, logLength, &logLength, log);
-#ifdef TARGET_ANDROID
-    LOGI("Shader compile log:\n%s", log);
-#else
-    printf("Shader compile log:%s\n", log);
-#endif
+    PRINT("Shader compile log:\n%s", log);
     free(log);
   }
 #endif
@@ -101,7 +97,7 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   GLint status;
   glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
   if (status == 0) {
-    printf("compile failure\n");
+    PRINT("compile failure\n");
     glDeleteShader(*shader);
     return false;
   }
@@ -124,7 +120,7 @@ bool shader::CompileShader(GLuint *shader, const GLenum type,
   std::vector<uint8_t> data;
   bool b = JNIHelper::GetInstance()->ReadFile(strFileName, &data);
   if (!b) {
-    LOGI("Can not open a file:%s", strFileName);
+    PRINT("Can not open a file:%s", strFileName);
     return false;
   }
 
@@ -143,19 +139,14 @@ bool shader::LinkProgram(const GLuint prog) {
    if (logLength > 0) {
      GLchar *log = (GLchar *)malloc(logLength);
      glGetProgramInfoLog(prog, logLength, &logLength, log);
- #ifdef TARGET_ANDROID
-     LOGI("Program link log:\n%s", log);
- #endif
-     printf("Program link log:\n%s\n", log);
+     PRINT("Program link log:\n%s", log);
      free(log);
    }
  #endif
 
   glGetProgramiv(prog, GL_LINK_STATUS, &status);
   if (status == 0) {
-#ifdef TARGET_ANDROID
-    LOGI("Program link failed\n");
-#endif
+    PRINT("Program link failed\n");
     return false;
   }
 
@@ -170,9 +161,7 @@ bool shader::ValidateProgram(const GLuint prog) {
    if (logLength > 0) {
      GLchar *log = (GLchar *)malloc(logLength);
      glGetProgramInfoLog(prog, logLength, &logLength, log);
-#ifdef TARGET_ANDROID
-     LOGI("Program validate log:\n%s", log);
-#endif
+     PRINT("Program validate log:\n%s", log);
      free(log);
    }
 

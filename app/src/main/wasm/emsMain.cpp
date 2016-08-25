@@ -6,6 +6,7 @@
 #include <sys/time.h>
 #include "MoreTeapotsRenderer.h"
 #include <emscripten/emscripten.h>
+#include "platform.h"
 
 typedef struct
 {
@@ -113,16 +114,8 @@ void one_iter() {
     frames++;
     if (totaltime >  5.0f)
     {
-        printf("%4d frames rendered in %1.4f seconds -> FPS=%3.4f\n", frames, totaltime, frames/totaltime);
+        PRINT("%4d frames rendered in %1.4f seconds -> FPS=%3.4f\n", frames, totaltime, frames/totaltime);
         totaltime -= 5.0f;
-
-        // seconds_count++;
-        // totalframes += frames;
-        // if (seconds_count % 60 == 0) {
-        //     printf("AVERAGE FPS = %3.4f FOR THE PAST ONE MINUTE\n", totalframes/60.0f);
-        //     totalframes = 0;
-        // }
-
         frames = 0;
     }
 }
@@ -131,8 +124,6 @@ int main (int argc, char *argv[])
 {
     g_engine.InitDisplay();
     g_engine.registerCallback();
-    printf("multiple calls %d\n", NUM_TEAPOTS_Z);
     gettimeofday ( &t1 , &tz );
     emscripten_set_main_loop(one_iter, 0, 1);
 }
-

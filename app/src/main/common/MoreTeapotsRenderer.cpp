@@ -87,7 +87,7 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
                  "GL_NV_draw_instanced") &&
              ndk_helper::GLContext::GetInstance()->CheckExtension(
                  "GL_NV_uniform_buffer_object")) {
-    LOGI("Supported via extension!");
+    PRINT("Supported via extension!");
     //_bGeometryInstancingSupport = true;
     //_bARBSupport = true; //Need to patch shaders
     // Currently this has been disabled
@@ -131,7 +131,7 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
   // Create Index buffer
   origin_num_indices_ = sizeof(teapotIndices) / sizeof(teapotIndices[0]);
   num_indices_ = size_instance_ * origin_num_indices_;
-  printf("Number of indices is %d \n", num_indices_);
+  PRINT("Number of indices is %d \n", num_indices_);
 
   index = 0;
   uint16_t* q = new uint16_t[num_indices_];
@@ -253,7 +253,7 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
                    GL_DYNAMIC_DRAW);
       delete[] pBuffer;
     } else {
-      //LOGI("Shader compilation failed!! Falls back to ES2.0 pass");
+      PRINT("Shader compilation failed!! Falls back to ES2.0 pass");
       // This happens some devices.
       geometry_instancing_support_ = false;
       // Load shader for GLES2.0
@@ -473,7 +473,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 #else
                                          strVsh)){
 #endif
-    printf("Failed to compile vertex shader");
+    PRINT("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
@@ -485,7 +485,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
 #else
                                          strFsh)){
 #endif
-    printf("Failed to compile fragment shader");
+    PRINT("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
   }
@@ -504,11 +504,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
 
-#ifdef TARGET_ANDROID
-    LOGI("Failed to link program: %d", program);
-#else
-    printf("Failed to link program: %d", program);
-#endif
+    PRINT("Failed to link program: %d", program);
 
     if (vertShader) {
       glDeleteShader(vertShader);
@@ -556,12 +552,12 @@ bool MoreTeapotsRenderer::LoadShadersES3(
 
   // Create shader program
   program = glCreateProgram();
-//  LOGI("Created Shader %d", program);
+  PRINT("Created Shader %d", program);
 
   // Create and compile vertex shader
   if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
                                          shaderParams)) {
-//    LOGI("Failed to compile vertex shader");
+    PRINT("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
@@ -569,7 +565,7 @@ bool MoreTeapotsRenderer::LoadShadersES3(
   // Create and compile fragment shader
   if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
                                          strFsh, shaderParams)) {
-//    LOGI("Failed to compile fragment shader");
+    PRINT("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
   }
@@ -582,7 +578,7 @@ bool MoreTeapotsRenderer::LoadShadersES3(
 
   // Link program
   if (!ndk_helper::shader::LinkProgram(program)) {
-//    LOGI("Failed to link program: %d", program);
+    PRINT("Failed to link program: %d", program);
 
     if (vertShader) {
       glDeleteShader(vertShader);

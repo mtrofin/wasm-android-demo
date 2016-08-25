@@ -36,7 +36,7 @@ depend:
 # list targets that do not create files (but not all makes understand .PHONY)
 .PHONY:	all clean depend
 
-emsMain.o: emsMain.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h
+emsMain.o: emsMain.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platform.h
 
 ems_helper/esUtil.o: ems_helper/esUtil.c ems_helper/esUtil.h
 

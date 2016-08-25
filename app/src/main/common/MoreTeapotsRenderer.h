@@ -33,10 +33,7 @@
 #define CLASS_NAME "android/app/NativeActivity"
 #define APPLICATION_CLASS_NAME "com/sample/moreteapots/MoreTeapotsApplication"
 
-//#include "NDKHelper.h"
-
 #include "gl3stub.h"    //GLES3 stubs
-//#include "GLContext.h"  //EGL & OpenGL manager
 #include "shader.h"     //Shader compiler support
 #include "vecmath.h"  //Vector math support, C++ implementation n current version
 
@@ -44,12 +41,6 @@ extern "C" {
     #include "platform_asset_utils.h"
     #include "platform_file_utils.h"
 };
-
-//#include "tapCamera.h"        //Tap/Pinch camera control
-//#include "JNIHelper.h"        //JNI support
-//#include "gestureDetector.h"  //Tap/Doubletap/Pinch detector
-//#include "perfMonitor.h"      //FPS counter
-//#include "interpolator.h"     //Interpolator
 
 #define BUFFER_OFFSET(i) ((char*)NULL + (i))
 

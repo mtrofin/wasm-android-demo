@@ -17,18 +17,12 @@
 #ifndef SHADER_H_
 #define SHADER_H_
 
-//#include <jni.h>
-
 #include <vector>
 #include <map>
 #include <string>
 
 #include <EGL/egl.h>
 #include <GLES/gl.h>
-
-//#include <android/log.h>
-//
-//#include "JNIHelper.h"
 
 namespace ndk_helper {
 
