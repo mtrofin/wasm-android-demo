@@ -1,5 +1,0 @@
-See file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityX86_64DebugSharedLibrary/output.txt for all output for linkNative-activityX86_64DebugSharedLibrary.
-linking libnative-activity.so successful.
-x86_64-linux-android-g++: warning: /work/teapots_wasm_porting/nativeactivity/build/intermediates/objectFiles/x86_64DebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
-
-Finished linkNative-activityX86_64DebugSharedLibrary, see full log file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityX86_64DebugSharedLibrary/output.txt.

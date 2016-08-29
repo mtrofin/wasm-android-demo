@@ -1,5 +1,0 @@
-See file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityMips64DebugSharedLibrary/output.txt for all output for linkNative-activityMips64DebugSharedLibrary.
-linking libnative-activity.so successful.
-mips64el-linux-android-g++: warning: /work/teapots_wasm_porting/nativeactivity/build/intermediates/objectFiles/mips64DebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
-
-Finished linkNative-activityMips64DebugSharedLibrary, see full log file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityMips64DebugSharedLibrary/output.txt.

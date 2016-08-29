@@ -1,5 +1,0 @@
-See file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityArmeabiDebugSharedLibrary/output.txt for all output for linkNative-activityArmeabiDebugSharedLibrary.
-linking libnative-activity.so successful.
-arm-linux-androideabi-g++: warning: /work/teapots_wasm_porting/nativeactivity/build/intermediates/objectFiles/armeabiDebugSharedLibrary/native-activityMainC/5k3i1qjdjvnn3ri6wbaqrpj5a/android_native_app_glue.o: linker input file unused because linking not done
-
-Finished linkNative-activityArmeabiDebugSharedLibrary, see full log file:///work/teapots_wasm_porting/nativeactivity/build/tmp/linkNative-activityArmeabiDebugSharedLibrary/output.txt.

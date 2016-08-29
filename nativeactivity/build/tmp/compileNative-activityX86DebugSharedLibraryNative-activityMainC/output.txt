@@ -1,4 +1,0 @@
-See file:///work/teapots_wasm_porting/nativeactivity/build/tmp/compileNative-activityX86DebugSharedLibraryNative-activityMainC/output.txt for all output for compileNative-activityX86DebugSharedLibraryNative-activityMainC.
-compiling android_native_app_glue.c successful.
-
-Finished compileNative-activityX86DebugSharedLibraryNative-activityMainC, see full log file:///work/teapots_wasm_porting/nativeactivity/build/tmp/compileNative-activityX86DebugSharedLibraryNative-activityMainC/output.txt.
