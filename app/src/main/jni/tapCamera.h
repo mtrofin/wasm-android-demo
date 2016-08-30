@@ -19,7 +19,7 @@
 #include <string>
 #include <GLES2/gl2.h>
 
-//#include "JNIHelper.h"
+#include "JNIHelper.h"
 #include "vecmath.h"
 #include "interpolator.h"
 

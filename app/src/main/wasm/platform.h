@@ -1,6 +1,7 @@
 //
 // Created by clarkchenwang on 8/10/16.
 //
+#include <stdio.h>
 
 #ifndef TEAPOTS_WASM_PORTING_PLATFORM_H
 #define TEAPOTS_WASM_PORTING_PLATFORM_H
