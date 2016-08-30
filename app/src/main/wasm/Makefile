@@ -4,7 +4,6 @@ LDFLAGS = --embed-file ../assets@/
 SOURCES = emsMain.cpp \
 	ems_helper/esUtil.c \
 	../common/MoreTeapotsRenderer.cpp \
-	../common/gl3stub.c \
 	../common/shader.cpp \
 	../common/vecmath.cpp \
 	shader_utils.cpp \
@@ -13,7 +12,6 @@ SOURCES = emsMain.cpp \
 OBJECTS = emsMain.o \
 	ems_helper/esUtil.o \
 	../common/MoreTeapotsRenderer.o \
-	../common/gl3stub.o \
 	../common/shader.o \
 	../common/vecmath.o \
 	shader_utils.o \
@@ -40,7 +38,7 @@ emsMain.o: emsMain.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platf
 
 ems_helper/esUtil.o: ems_helper/esUtil.c ems_helper/esUtil.h
 
-../common/MoreTeapotsRenderer.o: ../common/MoreTeapotsRenderer.cpp ../common/MoreTeapotsRenderer.h ../common/gl3stub.h ../common/shader.h ../common/vecmath.h
+../common/MoreTeapotsRenderer.o: ../common/MoreTeapotsRenderer.cpp ../common/MoreTeapotsRenderer.h ../common/shader.h ../common/vecmath.h
 
 ../common/shader.o: ../common/shader.cpp ../common/shader.h
 

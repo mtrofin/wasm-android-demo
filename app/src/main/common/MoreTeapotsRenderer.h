@@ -33,7 +33,7 @@
 #define CLASS_NAME "android/app/NativeActivity"
 #define APPLICATION_CLASS_NAME "com/sample/moreteapots/MoreTeapotsApplication"
 
-#include "gl3stub.h"    //GLES3 stubs
+#include <GLES2/gl2.h>
 #include "shader.h"     //Shader compiler support
 #include "vecmath.h"  //Vector math support, C++ implementation n current version
 
@@ -93,8 +93,6 @@ class MoreTeapotsRenderer {
   std::vector<ndk_helper::Vec2> vec_rotations_;
   std::vector<ndk_helper::Vec2> vec_current_rotations_;
 
-//  ndk_helper::TapCamera* camera_;
-
   int32_t teapot_x_;
   int32_t teapot_y_;
   int32_t teapot_z_;
@@ -111,7 +109,6 @@ class MoreTeapotsRenderer {
   void Init(const int32_t numX, const int32_t numY, const int32_t numZ);
   void Render();
   void Update(float dTime);
-//  bool Bind(ndk_helper::TapCamera* camera);
   void Unload();
   void UpdateViewport();
 };

@@ -87,9 +87,6 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
              ndk_helper::GLContext::GetInstance()->CheckExtension(
                  "GL_NV_uniform_buffer_object")) {
     PRINT("Supported via extension!");
-    //_bGeometryInstancingSupport = true;
-    //_bARBSupport = true; //Need to patch shaders
-    // Currently this has been disabled
   }
 #endif
 
@@ -593,14 +590,6 @@ bool MoreTeapotsRenderer::LoadShadersES3(
   return true;
 }
 #endif
-
-//--------------------------------------------------------------------------------
-// Bind
-//--------------------------------------------------------------------------------
-//bool MoreTeapotsRenderer::Bind(ndk_helper::TapCamera* camera) {
-//  camera_ = camera;
-//  return true;
-//}
 
 //--------------------------------------------------------------------------------
 // Helper functions
