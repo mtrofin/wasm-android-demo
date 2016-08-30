@@ -24,8 +24,6 @@
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 
-namespace ndk_helper {
-
 namespace shader {
 
 /******************************************************************
@@ -111,5 +109,4 @@ bool LinkProgram(const GLuint prog);
 bool ValidateProgram(const GLuint prog);
 }  // namespace shader
 
-}  // namespace ndkHelper
 #endif /* SHADER_H_ */

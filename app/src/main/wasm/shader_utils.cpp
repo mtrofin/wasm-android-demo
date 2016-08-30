@@ -13,12 +13,9 @@ extern "C" {
   #include "file_utils.h"
 }
 
-namespace ndk_helper {
+bool shader::CompileShader(GLuint *shader, const GLenum type, const char *strFileName) {
 
-    bool shader::CompileShader(GLuint *shader, const GLenum type, const char *strFileName) {
+  const FileData shader_source = get_file_data(strFileName);
 
-      const FileData shader_source = get_file_data(strFileName);
-
-      return shader::CompileShader(shader, type, (const GLchar* )shader_source.data, shader_source.data_length);
-    }
+  return shader::CompileShader(shader, type, (const GLchar* )shader_source.data, shader_source.data_length);
 }

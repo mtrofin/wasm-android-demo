@@ -22,8 +22,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-namespace ndk_helper {
-
 #define DEBUG (1)
 
 bool shader::CompileShader(GLuint *shader, const GLenum type,
@@ -109,5 +107,3 @@ bool shader::ValidateProgram(const GLuint prog) {
 
   return true;
 }
-
-}  // namespace ndkHelper

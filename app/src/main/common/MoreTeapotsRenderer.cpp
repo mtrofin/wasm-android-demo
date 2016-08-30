@@ -458,14 +458,14 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   program = glCreateProgram();
 
   // Create and compile vertex shader
-  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh)){
+  if (!shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh)){
     PRINT("Failed to compile vertex shader");
     glDeleteProgram(program);
     return false;
   }
 
   // Create and compile fragment shader
-  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER, strFsh)){
+  if (!shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER, strFsh)){
     PRINT("Failed to compile fragment shader");
     glDeleteProgram(program);
     return false;
@@ -483,7 +483,7 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   glBindAttribLocation(program, ATTRIB_NORMAL, "myNormal");
 
   // Link program
-  if (!ndk_helper::shader::LinkProgram(program)) {
+  if (!shader::LinkProgram(program)) {
 
     PRINT("Failed to link program: %d", program);
 
