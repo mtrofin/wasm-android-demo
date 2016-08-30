@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="debug"><source path="/work/teapots_wasm_porting/nativeactivity/build/intermediates/bundles/debug/assets"/></dataSet><dataSet config="main"><source path="/work/teapots_wasm_porting/nativeactivity/src/androidTest/assets"/><source path="/work/teapots_wasm_porting/nativeactivity/build/generated/assets/shaders/androidTest/debug"/></dataSet></merger>
