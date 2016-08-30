@@ -980,14 +980,16 @@ function drawFrame() {
         var delta = current_time_ - last_time_;
         total_time_ += delta;
 
-        if (total_time_ >= 1000) {
+        var FPS_record_rate = 5000;
+        if (total_time_ >= FPS_record_rate) {
             fps_ = total_frame_ / (total_time_ / 1000);
             var isFullScreen = document.webkitIsFullScreen || document.mozFullScreen;
             if (!isFullScreen) {
                 document.getElementById('p1').innerHTML =
                    "FPS : " + fps_.toFixed(2);
             }
-            total_time_ -= 1000;
+            console.log("FPS : " + fps_.toFixed(2));
+            total_time_ -= FPS_record_rate;
             total_frame_ = 0;
         }
     }
