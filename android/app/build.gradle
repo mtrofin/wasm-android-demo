@@ -45,6 +45,12 @@ model {
                         srcDirs "${ndkDir}/sources/android/cpufeatures"
                     }
                 }
+
+                assets {
+                    source {
+                        srcDir "../../assets"
+                    }
+                }
             }
         }
         buildTypes {
