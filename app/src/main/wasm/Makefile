@@ -1,7 +1,7 @@
 CPPFLAGS = -I. -Iems_helper -I../common -Wall -fno-exceptions -fno-rtti -s BINARYEN=1
 LDFLAGS = --embed-file ../assets@/
 
-SOURCES = emsMain.cpp \
+SOURCES = MoreTeapots-wasm.cpp \
 	ems_helper/esUtil.c \
 	../common/MoreTeapotsRenderer.cpp \
 	../common/shader.cpp \
@@ -9,7 +9,7 @@ SOURCES = emsMain.cpp \
 	shader_utils.cpp \
 	file_utils.c
 
-OBJECTS = emsMain.o \
+OBJECTS = MoreTeapots-wasm.o \
 	ems_helper/esUtil.o \
 	../common/MoreTeapotsRenderer.o \
 	../common/shader.o \
@@ -34,7 +34,7 @@ depend:
 # list targets that do not create files (but not all makes understand .PHONY)
 .PHONY:	all clean depend
 
-emsMain.o: emsMain.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platform.h
+MoreTeapots-wasm.o: MoreTeapots-wasm.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platform.h
 
 ems_helper/esUtil.o: ems_helper/esUtil.c ems_helper/esUtil.h
 

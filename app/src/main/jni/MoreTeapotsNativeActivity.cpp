@@ -61,12 +61,7 @@ class Engine {
   double fixed_dTime;
   double lastTime;
 
-//  ndk_helper::DoubletapDetector doubletap_detector_;
-//  ndk_helper::PinchDetector pinch_detector_;
-//  ndk_helper::DragDetector drag_detector_;
   ndk_helper::PerfMonitor monitor_;
-
-//  ndk_helper::TapCamera tap_camera_;
 
   android_app* app_;
 
@@ -162,9 +157,6 @@ int Engine::InitDisplay() {
   glViewport(0, 0, gl_context_->GetScreenWidth(), gl_context_->GetScreenHeight());
   renderer_.UpdateViewport();
 
-//  tap_camera_.SetFlip(1.f, -1.f, -1.f);
-//  tap_camera_.SetPinchTransformFactor(10.f, 10.f, 8.f);
-
   return 0;
 }
 
@@ -174,8 +166,6 @@ int Engine::InitDisplay() {
 void Engine::DrawFrame() {
 
   double dTime = monitor_.GetCurrentTime();
-  //if (dTime - lastTime >= fixed_dTime) {
-
     float fps;
     if (monitor_.Update(fps)) {
       UpdateFPS(fps);
@@ -194,8 +184,6 @@ void Engine::DrawFrame() {
       LoadResources();
     }
     lastTime = dTime;
-
-  //}
 }
 
 /**
@@ -212,55 +200,6 @@ void Engine::TrimMemory() {
  */
 int32_t Engine::HandleInput(android_app* app, AInputEvent* event) {
   Engine* eng = (Engine*)app->userData;
-  if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-//    ndk_helper::GESTURE_STATE doubleTapState =
-//        eng->doubletap_detector_.Detect(event);
-//    ndk_helper::GESTURE_STATE dragState = eng->drag_detector_.Detect(event);
-//    ndk_helper::GESTURE_STATE pinchState = eng->pinch_detector_.Detect(event);
-
-//    // Double tap detector has a priority over other detectors
-//    if (doubleTapState == ndk_helper::GESTURE_STATE_ACTION) {
-//      // Detect double tap
-//      eng->tap_camera_.Reset(true);
-//    } else {
-//      // Handle drag state
-//      if (dragState & ndk_helper::GESTURE_STATE_START) {
-//        // Otherwise, start dragging
-//        ndk_helper::Vec2 v;
-//        eng->drag_detector_.GetPointer(v);
-//        eng->TransformPosition(v);
-//        eng->tap_camera_.BeginDrag(v);
-//      } else if (dragState & ndk_helper::GESTURE_STATE_MOVE) {
-//        ndk_helper::Vec2 v;
-//        eng->drag_detector_.GetPointer(v);
-//        eng->TransformPosition(v);
-//        eng->tap_camera_.Drag(v);
-//      } else if (dragState & ndk_helper::GESTURE_STATE_END) {
-//        eng->tap_camera_.EndDrag();
-//      }
-//
-//      // Handle pinch state
-//      if (pinchState & ndk_helper::GESTURE_STATE_START) {
-//        // Start new pinch
-//        ndk_helper::Vec2 v1;
-//        ndk_helper::Vec2 v2;
-//        eng->pinch_detector_.GetPointers(v1, v2);
-//        eng->TransformPosition(v1);
-//        eng->TransformPosition(v2);
-//        eng->tap_camera_.BeginPinch(v1, v2);
-//      } else if (pinchState & ndk_helper::GESTURE_STATE_MOVE) {
-//        // Multi touch
-//        // Start new pinch
-//        ndk_helper::Vec2 v1;
-//        ndk_helper::Vec2 v2;
-//        eng->pinch_detector_.GetPointers(v1, v2);
-//        eng->TransformPosition(v1);
-//        eng->TransformPosition(v2);
-//        eng->tap_camera_.Pinch(v1, v2);
-//      }
-//    }
-//    return 1;
-  }
   return 0;
 }
 
@@ -349,9 +288,6 @@ void Engine::SuspendSensors() {
 //-------------------------------------------------------------------------
 void Engine::SetState(android_app* state) {
   app_ = state;
-//  doubletap_detector_.SetConfiguration(app_->config);
-//  drag_detector_.SetConfiguration(app_->config);
-//  pinch_detector_.SetConfiguration(app_->config);
 }
 
 bool Engine::IsReady() {
@@ -418,7 +354,6 @@ void android_main(android_app* state) {
 #endif
 
   // Prepare to monitor accelerometer
-//  g_engine.InitSensors();
 
   // loop waiting for stuff to do.
   while (1) {
