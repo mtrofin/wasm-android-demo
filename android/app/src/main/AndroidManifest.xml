@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.sample.moreteapots"
+          package="moreteapots"
           android:versionCode="1"
           android:versionName="1.0" >
 
@@ -11,12 +11,12 @@
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:theme="@style/AppTheme"
-      android:name="com.sample.moreteapots.MoreTeapotsApplication"
+      android:name="moreteapots.MoreTeapotsApplication"
       >
 
     <!-- Our activity is the built-in NativeActivity framework class.
          This will take care of integrating with our NDK code. -->
-    <activity android:name="com.sample.moreteapots.MoreTeapotsNativeActivity"
+    <activity android:name="moreteapots.MoreTeapotsNativeActivity"
               android:label="@string/app_name"
               android:configChanges="orientation|keyboardHidden">
       <!-- Tell NativeActivity the name of or .so -->

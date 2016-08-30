@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sample.moreteapots;
+package moreteapots;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
