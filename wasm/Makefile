@@ -1,5 +1,5 @@
 CPPFLAGS = -I. -Iems_helper -I../common -Wall -fno-exceptions -fno-rtti -s BINARYEN=1
-LDFLAGS = --embed-file ../assets@/
+LDFLAGS = --embed-file ../android/app/src/main/assets@/
 
 SOURCES = MoreTeapots-wasm.cpp \
 	ems_helper/esUtil.c \
