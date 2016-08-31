@@ -1,6 +1,11 @@
 CPPFLAGS = -I. -Iems_helper -I../common -Wall -fno-exceptions -fno-rtti -s BINARYEN=1
 LDFLAGS = --embed-file ../assets@/
 
+OUT_DIR = build
+
+MKDIR_P = mkdir -p
+RMDIR = rm -rdf
+
 SOURCES = MoreTeapots-wasm.cpp \
 	ems_helper/esUtil.c \
 	../common/MoreTeapotsRenderer.cpp \
@@ -17,22 +22,30 @@ OBJECTS = MoreTeapots-wasm.o \
 	shader_utils.o \
 	file_utils.o
 
-TARGET = teapots.html
+TARGET = build/teapots.html
 
 #targets start here
-all: $(TARGET)
+all: directories $(TARGET)
+
+directories: ${OUT_DIR}
+
+${OUT_DIR}:
+	${MKDIR_P} ${OUT_DIR}
 
 $(TARGET): $(OBJECTS)
 	$(CC) $(CPPFLAGS) -o $@ $(LDFLAGS) $(OBJECTS)
 
 clean:
-	$(RM) $(TARGET) $(OBJECTS) *.wasm* *.wast* *.js*
+	$(RMDIR) $(OUT_DIR) $(OBJECTS)
+
+cleanobj:
+	$(RM) $(OBJECTS)
 
 depend:
 	@$(CC) $(CPPFLAGS) -MM $(SOURCES)
 	
 # list targets that do not create files (but not all makes understand .PHONY)
-.PHONY:	all clean depend
+.PHONY:	all clean depend directories cleanobj
 
 MoreTeapots-wasm.o: MoreTeapots-wasm.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platform.h
 
