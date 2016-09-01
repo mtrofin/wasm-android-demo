@@ -30,11 +30,11 @@
 //--------------------------------------------------------------------------------
 // Check macros
 //--------------------------------------------------------------------------------
-#define NUM_MACRO defined(TEAPOT) + defined(TRIANGLE) + defined(ZERO)
+#define NUM_OPTIONS defined(TEAPOT) + defined(TRIANGLE) + defined(ZERO)
 
-#if NUM_MACRO < 1
+#if NUM_OPTIONS < 1
 #error you must define one macro from TEAPOT, TRIANGLE or ZERO
-#elif NUM_MACRO > 1
+#elif NUM_OPTIONS > 1
 #error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
 #endif
 
