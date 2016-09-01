@@ -22,7 +22,7 @@
 //--------------------------------------------------------------------------------
 #include <unistd.h>
 #include "GLContext.h"
-#include "gl3stub.h"
+#include <GLES2/gl2.h>
 
 namespace ndk_helper {
 
@@ -45,17 +45,7 @@ GLContext::GLContext()
 
 void GLContext::InitGLES() {
   if (gles_initialized_) return;
-  //
-  // Initialize OpenGL ES 3 if available
-  //
-  const char* versionStr = (const char*)glGetString(GL_VERSION);
-  if (strstr(versionStr, "OpenGL ES 3.") && gl3stubInit()) {
-    es3_supported_ = true;
-    gl_version_ = 3.0f;
-  } else {
-    gl_version_ = 2.0f;
-  }
-
+  gl_version_ = 2.0f;
   gles_initialized_ = true;
 }
 

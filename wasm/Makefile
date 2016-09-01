@@ -22,7 +22,7 @@ OBJECTS = MoreTeapots-wasm.o \
 	shader_utils.o \
 	file_utils.o
 
-TARGET = build/teapots.html
+TARGET = ${OUT_DIR}/teapots.html
 
 #targets start here
 all: directories $(TARGET)
