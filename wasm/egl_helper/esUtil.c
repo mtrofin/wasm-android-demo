@@ -173,39 +173,6 @@ EGLBoolean WinCreate(ESContext *esContext, const char *title)
     return EGL_TRUE;
 }
 
-
-///
-//  userInterrupt()
-//
-//      Reads from X11 event loop and interrupt program if there is a keypress, or
-//      window close action.
-//
-GLboolean userInterrupt(ESContext *esContext)
-{
-    XEvent xev;
-    KeySym key;
-    GLboolean userinterrupt = GL_FALSE;
-    char text;
-
-    // Pump all messages from X server. Keypresses are directed to keyfunc (if defined)
-    while ( XPending ( x_display ) )
-    {
-        XNextEvent( x_display, &xev );
-        if ( xev.type == KeyPress )
-        {
-            if (XLookupString(&xev.xkey,&text,1,&key,0)==1)
-            {
-                if (esContext->keyFunc != NULL)
-                    esContext->keyFunc(esContext, text, 0, 0);
-            }
-        }
-        if ( xev.type == DestroyNotify )
-            userinterrupt = GL_TRUE;
-    }
-    return userinterrupt;
-}
-
-
 //////////////////////////////////////////////////////////////////
 //
 //  Public Functions
@@ -280,49 +247,6 @@ GLboolean ESUTIL_API esCreateWindow ( ESContext *esContext, const char* title, G
    return GL_TRUE;
 }
 
-
-///
-//  esMainLoop()
-//
-//    Start the main loop for the OpenGL ES application
-//
-
-void ESUTIL_API esMainLoop ( ESContext *esContext )
-{
-    struct timeval t1, t2;
-    struct timezone tz;
-    float deltatime;
-    float totaltime = 0.0f;
-    unsigned int frames = 0;
-
-    gettimeofday ( &t1 , &tz );
-
-    // Just one iteration! 
-    // while(userInterrupt(esContext) == GL_FALSE)
-    {
-        gettimeofday(&t2, &tz);
-        deltatime = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
-        t1 = t2;
-
-        if (esContext->updateFunc != NULL)
-            esContext->updateFunc(esContext, deltatime);
-        if (esContext->drawFunc != NULL)
-            esContext->drawFunc(esContext);
-
-        int test = eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
-
-        totaltime += deltatime;
-        frames++;
-        if (totaltime >  2.0f)
-        {
-            printf("%4d frames rendered in %1.4f seconds -> FPS=%3.4f\n", frames, totaltime, frames/totaltime);
-            totaltime -= 2.0f;
-            frames = 0;
-        }
-    }
-}
-
-
 ///
 //  esRegisterDrawFunc()
 //
@@ -338,84 +262,4 @@ void ESUTIL_API esRegisterDrawFunc ( ESContext *esContext, void (ESCALLBACK *dra
 void ESUTIL_API esRegisterUpdateFunc ( ESContext *esContext, void (ESCALLBACK *updateFunc) ( ESContext*, float ) )
 {
    esContext->updateFunc = updateFunc;
-}
-
-
-///
-//  esRegisterKeyFunc()
-//
-void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
-                                    void (ESCALLBACK *keyFunc) (ESContext*, unsigned char, int, int ) )
-{
-   esContext->keyFunc = keyFunc;
-}
-
-
-///
-// esLogMessage()
-//
-//    Log an error message to the debug output for the platform
-//
-void ESUTIL_API esLogMessage ( const char *formatStr, ... )
-{
-    va_list params;
-    char buf[BUFSIZ];
-
-    va_start ( params, formatStr );
-    vsprintf ( buf, formatStr, params );
-    
-    printf ( "%s", buf );
-    
-    va_end ( params );
-}
-
-
-///
-// esLoadTGA()
-//
-//    Loads a 24-bit TGA image from a file. This is probably the simplest TGA loader ever.
-//    Does not support loading of compressed TGAs nor TGAa with alpha channel. But for the
-//    sake of the examples, this is sufficient.
-//
-
-char* ESUTIL_API esLoadTGA ( char *fileName, int *width, int *height )
-{
-    char *buffer = NULL;
-    FILE *f;
-    unsigned char tgaheader[12];
-    unsigned char attributes[6];
-    unsigned int imagesize;
-
-    f = fopen(fileName, "rb");
-    if(f == NULL) return NULL;
-
-    if(fread(&tgaheader, sizeof(tgaheader), 1, f) == 0)
-    {
-        fclose(f);
-        return NULL;
-    }
-
-    if(fread(attributes, sizeof(attributes), 1, f) == 0)
-    {
-        fclose(f);
-        return 0;
-    }
-
-    *width = attributes[1] * 256 + attributes[0];
-    *height = attributes[3] * 256 + attributes[2];
-    imagesize = attributes[4] / 8 * *width * *height;
-    buffer = malloc(imagesize);
-    if (buffer == NULL)
-    {
-        fclose(f);
-        return 0;
-    }
-
-    if(fread(buffer, 1, imagesize, f) != imagesize)
-    {
-        free(buffer);
-        return NULL;
-    }
-    fclose(f);
-    return buffer;
 }

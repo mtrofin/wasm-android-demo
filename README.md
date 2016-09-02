@@ -1,7 +1,7 @@
 # Background
-This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting code may be found under the directory of `app/src/main/wasm`.
+This repository is a porting from the Android NDK example More Teapots to a WebAssembly application. The porting code may be found under the directory of `wasm`.
 
-The project has two goals. The first one is to evaluate the engineering cost of porting an Android application to WASM. The other one is trying to figure out the performance overhead of WASM, compared to native Androis apps. In addition, I also ported a comparative WebJS version of this teapot program, which is under `app/src/main/webGL`.
+The project has two goals. The first one is to evaluate the engineering cost of porting an Android application to WASM. The other one is trying to figure out the performance overhead of WASM, compared to native Androis apps. In addition, I also ported a comparative WebJS version of this teapot program, which is under `webGL`.
 
 # Pre-requisites
 #### Android
@@ -16,17 +16,15 @@ The project has two goals. The first one is to evaluate the engineering cost of 
 
 # Build
 #### Android
-1. `cd` into the root directory of this project.
+1. `cd android` into the root directory of Android project.
 2. Run `./gradlew assembleDebug`
-3. The generated apk file should be located at `app/build/outputs/apk/app-debug.apk`
+3. The generated apk file should be located at `android/app/build/outputs/apk/app-debug.apk`
 4. To install it on the phone (In our experiment, we use Nexus 5 Build/LMY49P, Android 5.1.1), you first
 connect the phone to the desktop in debug mode, and then run `adb install -r <path-to-your-apk>`
 
 #### Wasm
-1. `cd app/src/main/wasm`
-2. Open the script file `recompile`
-3. Modify the variable `DESTDIR` to be the path you want to put these generated wasm files in your HTTP Server root directory.
-4. Run script `./recompile`. The wasm files will be compiled in the `app/src/main/wasm`, also will be copied to `DESTDIR`
+1. `cd wasm`
+2. Run script `./recompile`. The wasm files will be compiled in the `wasm/build`
 
 # RUN
 #### Android
@@ -36,23 +34,21 @@ connect the phone to the desktop in debug mode, and then run `adb install -r <pa
 #### WASM
 1. To run wams application on Chrome, you need to build the latest chromium from source. In our experiment, we used Version 53.0.2775.0 (64-bit).
 2. To run wasm on Chrome on Android, you need also get the Developer version Chrome (You can actually download it from Play Store). In our experiment, we use Chrome Dev 53.0.2782.9.
-    * To access the web resources hosted on a Google machine, you need to use the Obscura service. Follow the instructions [here](https://sites.google.com/a/google.com/obscura/user-guide/getting-started).
 
 #### WebGL
-1. The webGL files are under the directory `app/src/main/webGL`
+1. The webGL files are under the directory `webGL`
 
 # MACROS
 Because what we want to do is a comparative experiment finding the graphical performance bottlenecks in wasm, we defined some macros in order to play around and see what kind of things affect the performance most.
-All macros should be defined in the 'Define macros' section in `app/src/main/jni/MoreTeapotsRenderer.cpp`.
+All macros should be defined in the 'Define macros' section in `common/MoreTeapotsRenderer.cpp`.
 
 1. Define `TEAPOT` if you want to draw one instance as a teapot. Define `TRIANGLE` if you want to draw one instance as a simple triangle. Define `Zero` if you want to draw one instance as purely a bunch of points located at 0. You must and can only define one macro from one of these three macros.
 2. To control the number of instances and the size of one instance,
-    * Variables `NUM_TEAPOT_X`, `NUM_TEAPOT_Y` and `NUM_TEAPOT_Z` defined in `app/src/main/jni/MoreTeapotsNativeActivity.cpp` controls the number of instances drawn along X-axis, Y-axis, Z-axis in Android application. Variables `NUM_TEAPOTS_X`, `NUM_TEAPOTS_Y` and `NUM_TEAPOTS_Z` defined in `app/src/main/wasm/emsMain.cpp` controls the number of instances in wasm application.
-    * Variable `size_instance_` defined in `app/src/main/jni/MoreTeapotsRenderer.cpp` defined the size (number of vertices, also the number of indices) of per instance. That is to say, if you set it to 1, then it remains the same size for one instance. It you set to 2, the size of per instance will become two times than the original one. If you also set the variable `offset` in `Init()` larger than 0, then each 'copy' of the original instance will have an offset in the new 'larger' instance. 
+    * Variables `NUM_TEAPOT_X`, `NUM_TEAPOT_Y` and `NUM_TEAPOT_Z` defined in `app/src/main/jni/MoreTeapotsNativeActivity.cpp` controls the number of instances drawn along X-axis, Y-axis, Z-axis in Android application. Variables `NUM_TEAPOTS_X`, `NUM_TEAPOTS_Y` and `NUM_TEAPOTS_Z` defined in `wasm/MoreTeapots-wasm.cpp` controls the number of instances in wasm application.
+    * Variable `size_instance_` defined in `common/MoreTeapotsRenderer.cpp` defined the size (number of vertices, also the number of indices) of per instance. That is to say, if you set it to 1, then it remains the same size for one instance. It you set to 2, the size of per instance will become two times than the original one. If you also set the variable `offset` in `Init()` larger than 0, then each 'copy' of the original instance will have an offset in the new 'larger' instance. 
 3. (Optional) Define `DRAW_ALL_IN_MIDDLE` if you want to draw all instances in the middle of the screen. Otherwise, each instance will have a distance from other instances.
 4. (Optional) Define `SIMPLE_SHADER` if you want use a really simple shader to output solid color.
 5. (Optional) Define `MULTI_GL_SET_UNIFORM` if you want to call `glUniform4f` in a loop in order to find whether indirect calls to GL APIs is a heavy bottleneck for the performance.
-6. (Optional and can only target Android, no wasm) Define `GL3` if you want to use GLES3 features. (We don't use in our experiment).
 
 Below is the README from the original project.
 

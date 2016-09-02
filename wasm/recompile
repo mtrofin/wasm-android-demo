@@ -2,10 +2,7 @@
 #A script for recompiling the wasm application
 
 SOURCEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DESTDIR=/var/www/html/teapots
 
 make clean
 emmake make
-rm -rf ${DESTDIR}/*
-cp -R ${SOURCEDIR}/* ${DESTDIR}
-sudo chmod 777 -R ${DESTDIR}
+make cleanobj

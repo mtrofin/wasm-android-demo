@@ -30,21 +30,12 @@
 //--------------------------------------------------------------------------------
 // Check macros
 //--------------------------------------------------------------------------------
-#if !defined(TEAPOT) && !defined(TRIANGLE) && !defined(ZERO)
-#error you must define one macro from TEAPOT, TRIANGLE or ZERO
-#endif
-#if defined(TEAPOT) && defined(TRIANGLE)
-#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
-#endif
-#if defined(TRIANGLE) && defined(ZERO)
-#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
-#endif
-#if defined(TEAPOT) && defined(ZERO)
-#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
-#endif
+#define NUM_OPTIONS defined(TEAPOT) + defined(TRIANGLE) + defined(ZERO)
 
-#if defined(GL3) && defined(TARGET_WASM)
-#error you cannot turn on gl3 when the target platform is wasm
+#if NUM_OPTIONS < 1
+#error you must define one macro from TEAPOT, TRIANGLE or ZERO
+#elif NUM_OPTIONS > 1
+#error you cannot define more than one macro from TEAPOT, TRIANGLE or ZERO
 #endif
 
 //--------------------------------------------------------------------------------
@@ -78,18 +69,6 @@ MoreTeapotsRenderer::~MoreTeapotsRenderer() { Unload(); }
 //--------------------------------------------------------------------------------
 void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
                                const int32_t numZ) {
-
-#ifdef GL3
-  if (ndk_helper::GLContext::GetInstance()->GetGLVersion() >= 3.0) {
-    geometry_instancing_support_ = true;
-  } else if (ndk_helper::GLContext::GetInstance()->CheckExtension(
-                 "GL_NV_draw_instanced") &&
-             ndk_helper::GLContext::GetInstance()->CheckExtension(
-                 "GL_NV_uniform_buffer_object")) {
-    PRINT("Supported via extension!");
-  }
-#endif
-
   // Settings
   glFrontFace(GL_CCW);
 
@@ -187,78 +166,6 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
         vec_current_rotations_.push_back(
             ndk_helper::Vec2(rotation_x * M_PI, rotation_y * M_PI));
       }
-
-#ifdef GL3
-  if (geometry_instancing_support_) {
-    //
-    // Create parameter dictionary for shader patch
-    std::map<std::string, std::string> param;
-    param[std::string("%NUM_TEAPOT%")] =
-        ToString(teapot_x_ * teapot_y_ * teapot_z_);
-    param[std::string("%LOCATION_VERTEX%")] = ToString(ATTRIB_VERTEX);
-    param[std::string("%LOCATION_NORMAL%")] = ToString(ATTRIB_NORMAL);
-    if (arb_support_)
-      param[std::string("%ARB%")] = std::string("ARB");
-    else
-      param[std::string("%ARB%")] = std::string("");
-
-    // Load shader
-    bool b = LoadShadersES3(&shader_param_, "Shaders/VS_ShaderPlainES3.vsh",
-                            "Shaders/ShaderPlainES3.fsh", param);
-    if (b) {
-      //
-      // Create uniform buffer
-      //
-      GLuint bindingPoint = 1;
-      GLuint blockIndex;
-      blockIndex = glGetUniformBlockIndex(shader_param_.program_, "ParamBlock");
-      glUniformBlockBinding(shader_param_.program_, blockIndex, bindingPoint);
-
-      // Retrieve array stride value
-      int32_t num_indices;
-      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
-                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS, &num_indices);
-      GLint i[num_indices];
-      GLint stride[num_indices];
-      glGetActiveUniformBlockiv(shader_param_.program_, blockIndex,
-                                GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES, i);
-      glGetActiveUniformsiv(shader_param_.program_, num_indices, (GLuint*)i,
-                            GL_UNIFORM_ARRAY_STRIDE, stride);
-
-      ubo_matrix_stride_ = stride[0] / sizeof(float);
-      ubo_vector_stride_ = stride[2] / sizeof(float);
-
-      glGenBuffers(1, &ubo_);
-      glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
-      glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, ubo_);
-
-      // Store color value which wouldn't be updated every frame
-      int32_t size = teapot_x_ * teapot_y_ * teapot_z_ *
-                      (ubo_matrix_stride_ + ubo_matrix_stride_ +
-                       ubo_vector_stride_);  // Mat4 + Mat4 + Vec3 + 1 stride
-      float* pBuffer = new float[size];
-      float* pColor =
-          pBuffer + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_ * 2;
-      for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-        memcpy(pColor, &vec_colors_[i], 3 * sizeof(float));
-        pColor += ubo_vector_stride_;  // Assuming std140 layout which is 4
-                                       // DWORD stride for vectors
-      }
-
-      glBufferData(GL_UNIFORM_BUFFER, size * sizeof(float), pBuffer,
-                   GL_DYNAMIC_DRAW);
-      delete[] pBuffer;
-    } else {
-      PRINT("Shader compilation failed!! Falls back to ES2.0 pass");
-      // This happens some devices.
-      geometry_instancing_support_ = false;
-      // Load shader for GLES2.0
-      LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
-                  "Shaders/ShaderPlain.fsh");
-    }
-  } else {
-#endif
-
     // Load shader for GLES2.0
 #ifdef SIMPLE_SHADER
     LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain_simple.vsh",
@@ -266,10 +173,6 @@ void MoreTeapotsRenderer::Init(const int32_t numX, const int32_t numY,
 #else
     LoadShaders(&shader_param_, "Shaders/VS_ShaderPlain.vsh",
                 "Shaders/ShaderPlain.fsh");
-#endif
-
-#ifdef GL3
-  }
 #endif
 }
 
@@ -362,81 +265,35 @@ void MoreTeapotsRenderer::Render() {
               material.ambient_color[1], material.ambient_color[2]);
 
   glUniform3f(shader_param_.light0_, 100.f, -200.f, -600.f);
-
-#ifdef GL3
-  if (geometry_instancing_support_) {
-    //
-    // Geometry instancing, new feature in GLES3.0
-    //
-
-    // Update UBO
-    glBindBuffer(GL_UNIFORM_BUFFER, ubo_);
-    float* p = (float*)glMapBufferRange(
-        GL_UNIFORM_BUFFER, 0, teapot_x_ * teapot_y_ * teapot_z_ *
-                                  (ubo_matrix_stride_ * 2) * sizeof(float),
-        GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
-    float* mat_mvp = p;
-    float* mat_mv = p + teapot_x_ * teapot_y_ * teapot_z_ * ubo_matrix_stride_;
-    for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-      // Rotation
-      float x, y;
-      vec_current_rotations_[i] += vec_rotations_[i];
-      vec_current_rotations_[i].Value(x, y);
-      ndk_helper::Mat4 mat_rotation =
-          ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
-
-      // Feed Projection and Model View matrices to the shaders
-      ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
-      ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
-
-      memcpy(mat_mvp, mat_vp.Ptr(), sizeof(mat_v));
-      mat_mvp += ubo_matrix_stride_;
-
-      memcpy(mat_mv, mat_v.Ptr(), sizeof(mat_v));
-      mat_mv += ubo_matrix_stride_;
-    }
-    glUnmapBuffer(GL_UNIFORM_BUFFER);
-
-    // Instanced rendering
-    glDrawElementsInstanced(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
-                            BUFFER_OFFSET(0),
-                            teapot_x_ * teapot_y_ * teapot_z_);
-
-  } else {
-#endif
-    // Regular rendering pass
-    for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
-      // Set diffuse
-      float x, y, z;
-      vec_colors_[i].Value(x, y, z);
+  // Regular rendering pass
+  for (int32_t i = 0; i < teapot_x_ * teapot_y_ * teapot_z_; ++i) {
+    // Set diffuse
+    float x, y, z;
+    vec_colors_[i].Value(x, y, z);
 
 #ifdef MULTI_GL_SET_UNIFORM
-        for (int32_t j = 0; j < 500; ++j)
-            glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
+      for (int32_t j = 0; j < 500; ++j)
+          glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
 #else
-      glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
+    glUniform4f(shader_param_.material_diffuse_, x, y, z, 1.f);
 #endif
-      // Rotation
-      vec_current_rotations_[i] += vec_rotations_[i];
-      vec_current_rotations_[i].Value(x, y);
-      ndk_helper::Mat4 mat_rotation =
-          ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
+    // Rotation
+    vec_current_rotations_[i] += vec_rotations_[i];
+    vec_current_rotations_[i].Value(x, y);
+    ndk_helper::Mat4 mat_rotation =
+        ndk_helper::Mat4::RotationX(x) * ndk_helper::Mat4::RotationY(y);
 
-      // Feed Projection and Model View matrices to the shaders
-      ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
-      ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
+    // Feed Projection and Model View matrices to the shaders
+    ndk_helper::Mat4 mat_v = mat_view_ * vec_mat_models_[i] * mat_rotation;
+    ndk_helper::Mat4 mat_vp = mat_projection_ * mat_v;
 
-      glUniformMatrix4fv(shader_param_.matrix_projection_, 1, GL_FALSE,
-                         mat_vp.Ptr());
-      glUniformMatrix4fv(shader_param_.matrix_view_, 1, GL_FALSE, mat_v.Ptr());
+    glUniformMatrix4fv(shader_param_.matrix_projection_, 1, GL_FALSE,
+                       mat_vp.Ptr());
+    glUniformMatrix4fv(shader_param_.matrix_view_, 1, GL_FALSE, mat_v.Ptr());
 
-      glDrawElements(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
-                     BUFFER_OFFSET(0));
-    }
-#ifdef GL3
+    glDrawElements(GL_TRIANGLES, num_indices_, GL_UNSIGNED_SHORT,
+                   BUFFER_OFFSET(0));
   }
-#endif
-
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
@@ -518,78 +375,6 @@ bool MoreTeapotsRenderer::LoadShaders(SHADER_PARAMS* params, const char* strVsh,
   params->program_ = program;
   return true;
 }
-
-#ifdef GL3
-bool MoreTeapotsRenderer::LoadShadersES3(
-    SHADER_PARAMS* params, const char* strVsh, const char* strFsh,
-    std::map<std::string, std::string>& shaderParams) {
-  //
-  // Shader load for GLES3
-  // In GLES3.0, shader attribute index can be described in a shader code
-  // directly with layout() attribute
-  //
-  GLuint program;
-  GLuint vertShader, fragShader;
-
-  // Create shader program
-  program = glCreateProgram();
-  PRINT("Created Shader %d", program);
-
-  // Create and compile vertex shader
-  if (!ndk_helper::shader::CompileShader(&vertShader, GL_VERTEX_SHADER, strVsh,
-                                         shaderParams)) {
-    PRINT("Failed to compile vertex shader");
-    glDeleteProgram(program);
-    return false;
-  }
-
-  // Create and compile fragment shader
-  if (!ndk_helper::shader::CompileShader(&fragShader, GL_FRAGMENT_SHADER,
-                                         strFsh, shaderParams)) {
-    PRINT("Failed to compile fragment shader");
-    glDeleteProgram(program);
-    return false;
-  }
-
-  // Attach vertex shader to program
-  glAttachShader(program, vertShader);
-
-  // Attach fragment shader to program
-  glAttachShader(program, fragShader);
-
-  // Link program
-  if (!ndk_helper::shader::LinkProgram(program)) {
-    PRINT("Failed to link program: %d", program);
-
-    if (vertShader) {
-      glDeleteShader(vertShader);
-      vertShader = 0;
-    }
-    if (fragShader) {
-      glDeleteShader(fragShader);
-      fragShader = 0;
-    }
-    if (program) {
-      glDeleteProgram(program);
-    }
-
-    return false;
-  }
-
-  // Get uniform locations
-  params->light0_ = glGetUniformLocation(program, "vLight0");
-  params->material_ambient_ = glGetUniformLocation(program, "vMaterialAmbient");
-  params->material_specular_ =
-      glGetUniformLocation(program, "vMaterialSpecular");
-
-  // Release vertex and fragment shaders
-  if (vertShader) glDeleteShader(vertShader);
-  if (fragShader) glDeleteShader(fragShader);
-
-  params->program_ = program;
-  return true;
-}
-#endif
 
 //--------------------------------------------------------------------------------
 // Helper functions

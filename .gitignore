@@ -1,0 +1,32 @@
+# Compiled source #
+*.o
+*.so
+*.jar
+*.log
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Android Apk #
+*.apk
+*.ap_
+
+# Java class #
+*.class
+
+# Building Generated files #
+android/build/
+android/app/build/
+android/nativeactivity/build
+android/.gradle/
+android/local.properties
+*.iml
+android/.idea/
+.idea/
+wasm/build/
