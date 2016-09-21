@@ -7,6 +7,10 @@ The project has two goals. The first one is to evaluate the engineering cost of 
 #### Android
 1. Download and install Android Studio 2.1 from the [link](https://developer.android.com/studio/index.html) or you may choose just to download the [command line tools](https://developer.android.com/studio/index.html#downloads). Both will work.
 2. Download and install the latest version of NDK from the [link](https://developer.android.com/ndk/downloads/index.html).
+3. Make sure the Android SDK Build-tools version 23.0.3 are installed. (This is referenced by android/nativeactivity/build.gradle .) Use the `tools/android` command to install it. (As of this writing, version 24 of these tools are installed by default.)
+4. Set the ANDROID_HOME and ANDROID_NDK_HOME environment variables. On macOS these are typically:
+* `export ANDROID_HOME=/Users/[username]/Library/Android/sdk`
+* `export ANDROID_NDK_HOME=/Users/[username]/Library/Android/sdk/ndk-bundle`
 
 #### Wasm
 1. Emscripten version [1.36.5](https://github.com/kripken/emscripten/tree/incoming)
