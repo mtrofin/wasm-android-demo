@@ -1,4 +1,4 @@
-CPPFLAGS = -I. -Iems_helper -I../common -Wall -fno-exceptions -fno-rtti -s BINARYEN=1
+CPPFLAGS = -I. -Iegl_helper -I../common -Wall -fno-exceptions -fno-rtti -s WASM=1
 LDFLAGS = --embed-file ../assets@/
 
 OUT_DIR = build
@@ -7,7 +7,7 @@ MKDIR_P = mkdir -p
 RMDIR = rm -rdf
 
 SOURCES = MoreTeapots-wasm.cpp \
-	ems_helper/esUtil.c \
+	egl_helper/esUtil.c \
 	../common/MoreTeapotsRenderer.cpp \
 	../common/shader.cpp \
 	../common/vecmath.cpp \
@@ -15,7 +15,7 @@ SOURCES = MoreTeapots-wasm.cpp \
 	file_utils.c
 
 OBJECTS = MoreTeapots-wasm.o \
-	ems_helper/esUtil.o \
+	egl_helper/esUtil.o \
 	../common/MoreTeapotsRenderer.o \
 	../common/shader.o \
 	../common/vecmath.o \
@@ -43,13 +43,13 @@ cleanobj:
 
 depend:
 	@$(CC) $(CPPFLAGS) -MM $(SOURCES)
-	
+
 # list targets that do not create files (but not all makes understand .PHONY)
 .PHONY:	all clean depend directories cleanobj
 
-MoreTeapots-wasm.o: MoreTeapots-wasm.cpp ems_helper/esUtil.h ../common/MoreTeapotsRenderer.h platform.h
+MoreTeapots-wasm.o: MoreTeapots-wasm.cpp egl_helper/esUtil.h ../common/MoreTeapotsRenderer.h platform.h
 
-ems_helper/esUtil.o: ems_helper/esUtil.c ems_helper/esUtil.h
+egl_helper/esUtil.o: egl_helper/esUtil.c egl_helper/esUtil.h
 
 ../common/MoreTeapotsRenderer.o: ../common/MoreTeapotsRenderer.cpp ../common/MoreTeapotsRenderer.h ../common/shader.h ../common/vecmath.h
 
