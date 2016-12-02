@@ -6,3 +6,5 @@ SOURCEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 make clean
 emmake make
 make cleanobj
+cp teapots.html build
+cp ../webGL/webgl-teapots.css build

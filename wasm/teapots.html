@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Emscripten-Generated Code</title>
+        <link rel="stylesheet" type="text/css" href="webgl-teapots.css">
+
+    </head>
+    <body>
+        <input type="button" value="Fullscreen" onclick="fullScreen()"/>
+        <canvas id="canvas" width="300" height="400" onwebkitfullscreenchange="resizeCanvas()">
+            Your browser doesn't appear to support the HTML5 <code>&lt;canvas &gt;</code>
+            element.
+    
+        
+        
+        </canvas>
+        <script type='text/javascript'>
+        function fullScreen() {
+            if (canvas.requestFullscreen) {
+                canvas.requestFullscreen();
+            } else if (canvas.webkitRequestFullscreen) {
+                canvas.webkitRequestFullscreen();
+            } else if (canvas.mozRequestFullscreen) {
+                canvas.mozRequestFullscreen();
+            }
+        }
+
+        function resizeCanvas() {
+            var isFullScreen = document.webkitIsFullScreen || document.mozFullScreen;
+            if (isFullScreen) {
+                canvas.style.width = screen.width;
+                canvas.style.height = screen.height;
+            } else {
+                canvas.style.width = 300;
+                canvas.style.height = 400;
+            }
+        }           
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: console.log,
+        printErr: console.error,
+        canvas: (function() {
+          var canvas = document.getElementById('canvas');
+          return canvas;
+        })(),
+        totalDependencies: 0,
+        monitorRunDependencies: function(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+        }
+      };
+      window.onerror = function(event) {
+        // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
+        Module.setStatus('Exception thrown, see JavaScript console');
+        spinnerElement.style.display = 'none';
+        Module.setStatus = function(text) {
+          if (text) Module.printErr('[post-exception status] ' + text);
+        };
+      };
+    
+        </script>
+        <script>
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'teapots.wasm', true);
+            xhr.responseType = 'arraybuffer';
+            xhr.onload = function() {
+                Module.wasmBinary = xhr.response;
+
+                var script = document.createElement('script');
+                script.src = "teapots.js";
+                document.body.appendChild(script);
+
+            }
+            ;
+            xhr.send(null);
+        </script>
+    </body>
+</html>
