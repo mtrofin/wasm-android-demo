@@ -7323,7 +7323,7 @@ function nullFunc_viiiiii(x) { Module["printErr"]("Invalid function pointer call
 
 function nullFunc_viiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
-Module['wasmTableSize'] = 273;
+Module['wasmTableSize'] = 336;
 
 function invoke_iiii(index,a1,a2,a3) {
   try {
