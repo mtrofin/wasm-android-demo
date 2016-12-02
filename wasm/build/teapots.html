@@ -18,13 +18,7 @@
         </canvas>
         <script type='text/javascript'>
         function fullScreen() {
-            if (canvas.requestFullscreen) {
-                canvas.requestFullscreen();
-            } else if (canvas.webkitRequestFullscreen) {
-                canvas.webkitRequestFullscreen();
-            } else if (canvas.mozRequestFullscreen) {
-                canvas.mozRequestFullscreen();
-            }
+          Module.requestFullscreen(true, true);
         }
 
         function resizeCanvas() {
