@@ -375,18 +375,6 @@ Module['FS_createDataFile']('/Shaders', 'VS_ShaderPlain.vsh', fileData2, true, t
 var fileData3 = [];
 fileData3.push.apply(fileData3, [47, 47, 10, 47, 47, 32, 67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 40, 67, 41, 32, 50, 48, 49, 53, 32, 84, 104, 101, 32, 65, 110, 100, 114, 111, 105, 100, 32, 79, 112, 101, 110, 32, 83, 111, 117, 114, 99, 101, 32, 80, 114, 111, 106, 101, 99, 116, 10, 47, 47, 10, 47, 47, 32, 76, 105, 99, 101, 110, 115, 101, 100, 32, 117, 110, 100, 101, 114, 32, 116, 104, 101, 32, 65, 112, 97, 99, 104, 101, 32, 76, 105, 99, 101, 110, 115, 101, 44, 32, 86, 101, 114, 115, 105, 111, 110, 32, 50, 46, 48, 32, 40, 116, 104, 101, 32, 34, 76, 105, 99, 101, 110, 115, 101, 34, 41, 59, 10, 47, 47, 32, 121, 111, 117, 32, 109, 97, 121, 32, 110, 111, 116, 32, 117, 115, 101, 32, 116, 104, 105, 115, 32, 102, 105, 108, 101, 32, 101, 120, 99, 101, 112, 116, 32, 105, 110, 32, 99, 111, 109, 112, 108, 105, 97, 110, 99, 101, 32, 119, 105, 116, 104, 32, 116, 104, 101, 32, 76, 105, 99, 101, 110, 115, 101, 46, 10, 47, 47, 32, 89, 111, 117, 32, 109, 97, 121, 32, 111, 98, 116, 97, 105, 110, 32, 97, 32, 99, 111, 112, 121, 32, 111, 102, 32, 116, 104, 101, 32, 76, 105, 99, 101, 110, 115, 101, 32, 97, 116, 10, 47, 47, 10, 47, 47, 32, 32, 32, 32, 32, 32, 104, 116, 116, 112, 58, 47, 47, 119, 119, 119, 46, 97, 112, 97, 99, 104, 101, 46, 111, 114, 103, 47, 108, 105, 99, 101, 110, 115, 101, 115, 47, 76, 73, 67, 69, 78, 83, 69, 45, 50, 46, 48, 10, 47, 47, 10, 47, 47, 32, 85, 110, 108, 101, 115, 115, 32, 114, 101, 113, 117, 105, 114, 101, 100, 32, 98, 121, 32, 97, 112, 112, 108, 105, 99, 97, 98, 108, 101, 32, 108, 97, 119, 32, 111, 114, 32, 97, 103, 114, 101, 101, 100, 32, 116, 111, 32, 105, 110, 32, 119, 114, 105, 116, 105, 110, 103, 44, 32, 115, 111, 102, 116, 119, 97, 114, 101, 10, 47, 47, 32, 100, 105, 115, 116, 114, 105, 98, 117, 116, 101, 100, 32, 117, 110, 100, 101, 114, 32, 116, 104, 101, 32, 76, 105, 99, 101, 110, 115, 101, 32, 105, 115, 32, 100, 105, 115, 116, 114, 105, 98, 117, 116, 101, 100, 32, 111, 110, 32, 97, 110, 32, 34, 65, 83, 32, 73, 83, 34, 32, 66, 65, 83, 73, 83, 44, 10, 47, 47, 32, 87, 73, 84, 72, 79, 85, 84, 32, 87, 65, 82, 82, 65, 78, 84, 73, 69, 83, 32, 79, 82, 32, 67, 79, 78, 68, 73, 84, 73, 79, 78, 83, 32, 79, 70, 32, 65, 78, 89, 32, 75, 73, 78, 68, 44, 32, 101, 105, 116, 104, 101, 114, 32, 101, 120, 112, 114, 101, 115, 115, 32, 111, 114, 32, 105, 109, 112, 108, 105, 101, 100, 46, 10, 47, 47, 32, 83, 101, 101, 32, 116, 104, 101, 32, 76, 105, 99, 101, 110, 115, 101, 32, 102, 111, 114, 32, 116, 104, 101, 32, 115, 112, 101, 99, 105, 102, 105, 99, 32, 108, 97, 110, 103, 117, 97, 103, 101, 32, 103, 111, 118, 101, 114, 110, 105, 110, 103, 32, 112, 101, 114, 109, 105, 115, 115, 105, 111, 110, 115, 32, 97, 110, 100, 10, 47, 47, 32, 108, 105, 109, 105, 116, 97, 116, 105, 111, 110, 115, 32, 117, 110, 100, 101, 114, 32, 116, 104, 101, 32, 76, 105, 99, 101, 110, 115, 101, 46, 10, 47, 47, 10, 47, 47, 32, 32, 83, 104, 97, 100, 101, 114, 80, 108, 97, 105, 110, 46, 118, 115, 104, 10, 47, 47, 10, 10, 97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 109, 121, 86, 101, 114, 116, 101, 120, 59, 10, 97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 109, 121, 78, 111, 114, 109, 97, 108, 59, 10, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 112, 111, 115, 105, 116, 105, 111, 110, 59, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 110, 111, 114, 109, 97, 108, 59, 10, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 109, 97, 116, 52, 32, 32, 32, 32, 32, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 59, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 109, 97, 116, 52, 32, 32, 32, 32, 32, 32, 117, 80, 77, 97, 116, 114, 105, 120, 59, 10, 10, 118, 111, 105, 100, 32, 109, 97, 105, 110, 40, 118, 111, 105, 100, 41, 10, 123, 10, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 52, 32, 112, 32, 61, 32, 118, 101, 99, 52, 40, 109, 121, 86, 101, 114, 116, 101, 120, 44, 49, 41, 59, 10, 32, 32, 32, 32, 103, 108, 95, 80, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 117, 80, 77, 97, 116, 114, 105, 120, 32, 42, 32, 112, 59, 10, 125, 10]);
 Module['FS_createDataFile']('/Shaders', 'VS_ShaderPlain_simple.vsh', fileData3, true, true, false);
-var fileData4 = [];
-fileData4.push.apply(fileData4, [117, 110, 105, 102, 111, 114, 109, 32, 108, 111, 119, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 65, 109, 98, 105, 101, 110, 116, 59, 10, 117, 110, 105, 102, 111, 114, 109, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 52, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 59, 10, 10, 118, 97, 114, 121, 105, 110, 103, 32, 108, 111, 119, 112, 32, 118, 101, 99, 52, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 59, 10, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 118, 76, 105, 103, 104, 116, 48, 59, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 112, 111, 115, 105, 116, 105, 111, 110, 59, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 110, 111, 114, 109, 97, 108, 59, 10, 10, 118, 111, 105, 100, 32, 109, 97, 105, 110, 40, 41, 10, 123, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 104, 97, 108, 102, 86, 101, 99, 116, 111, 114, 32, 61, 32, 110, 111, 114, 109, 97, 108, 105, 122, 101, 40, 45, 118, 76, 105, 103, 104, 116, 48, 32, 43, 32, 112, 111, 115, 105, 116, 105, 111, 110, 41, 59, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 102, 108, 111, 97, 116, 32, 78, 100, 111, 116, 72, 32, 61, 32, 109, 97, 120, 40, 100, 111, 116, 40, 110, 111, 114, 109, 97, 108, 105, 122, 101, 40, 110, 111, 114, 109, 97, 108, 41, 44, 32, 104, 97, 108, 102, 86, 101, 99, 116, 111, 114, 41, 44, 32, 48, 46, 48, 41, 59, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 102, 108, 111, 97, 116, 32, 102, 80, 111, 119, 101, 114, 32, 61, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 46, 119, 59, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 102, 108, 111, 97, 116, 32, 115, 112, 101, 99, 117, 108, 97, 114, 32, 61, 32, 112, 111, 119, 40, 78, 100, 111, 116, 72, 44, 32, 102, 80, 111, 119, 101, 114, 41, 59, 10, 10, 32, 32, 32, 32, 108, 111, 119, 112, 32, 118, 101, 99, 52, 32, 99, 111, 108, 111, 114, 83, 112, 101, 99, 117, 108, 97, 114, 32, 61, 32, 118, 101, 99, 52, 40, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 46, 120, 121, 122, 32, 42, 32, 115, 112, 101, 99, 117, 108, 97, 114, 44, 32, 49, 32, 41, 59, 10, 32, 32, 32, 32, 103, 108, 95, 70, 114, 97, 103, 67, 111, 108, 111, 114, 32, 61, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 32, 43, 32, 99, 111, 108, 111, 114, 83, 112, 101, 99, 117, 108, 97, 114, 59, 10, 125, 10]);
-Module['FS_createDataFile']('/Shaders', 'webgl-shader-fs.fsh', fileData4, true, true, false);
-var fileData5 = [];
-fileData5.push.apply(fileData5, [117, 110, 105, 102, 111, 114, 109, 32, 108, 111, 119, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 65, 109, 98, 105, 101, 110, 116, 59, 10, 117, 110, 105, 102, 111, 114, 109, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 52, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 59, 10, 10, 118, 97, 114, 121, 105, 110, 103, 32, 108, 111, 119, 112, 32, 118, 101, 99, 52, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 59, 10, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 118, 76, 105, 103, 104, 116, 48, 59, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 112, 111, 115, 105, 116, 105, 111, 110, 59, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 110, 111, 114, 109, 97, 108, 59, 10, 10, 118, 111, 105, 100, 32, 109, 97, 105, 110, 40, 41, 10, 123, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 104, 97, 108, 102, 86, 101, 99, 116, 111, 114, 32, 61, 32, 110, 111, 114, 109, 97, 108, 105, 122, 101, 40, 45, 118, 76, 105, 103, 104, 116, 48, 32, 43, 32, 112, 111, 115, 105, 116, 105, 111, 110, 41, 59, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 102, 108, 111, 97, 116, 32, 78, 100, 111, 116, 72, 32, 61, 32, 109, 97, 120, 40, 100, 111, 116, 40, 110, 111, 114, 109, 97, 108, 105, 122, 101, 40, 110, 111, 114, 109, 97, 108, 41, 44, 32, 104, 97, 108, 102, 86, 101, 99, 116, 111, 114, 41, 44, 32, 48, 46, 48, 41, 59, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 102, 108, 111, 97, 116, 32, 102, 80, 111, 119, 101, 114, 32, 61, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 46, 119, 59, 10, 32, 32, 32, 32, 109, 101, 100, 105, 117, 109, 112, 32, 102, 108, 111, 97, 116, 32, 115, 112, 101, 99, 117, 108, 97, 114, 32, 61, 32, 112, 111, 119, 40, 78, 100, 111, 116, 72, 44, 32, 102, 80, 111, 119, 101, 114, 41, 59, 10, 10, 32, 32, 32, 32, 108, 111, 119, 112, 32, 118, 101, 99, 52, 32, 99, 111, 108, 111, 114, 83, 112, 101, 99, 117, 108, 97, 114, 32, 61, 32, 118, 101, 99, 52, 40, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 46, 120, 121, 122, 32, 42, 32, 115, 112, 101, 99, 117, 108, 97, 114, 44, 32, 49, 32, 41, 59, 10, 32, 32, 32, 32, 103, 108, 95, 70, 114, 97, 103, 67, 111, 108, 111, 114, 32, 61, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 32, 43, 32, 99, 111, 108, 111, 114, 83, 112, 101, 99, 117, 108, 97, 114, 59, 10, 125, 10]);
-Module['FS_createDataFile']('/Shaders', 'webgl-shader-fs.vsh', fileData5, true, true, false);
-var fileData6 = [];
-fileData6.push.apply(fileData6, [97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 109, 121, 86, 101, 114, 116, 101, 120, 59, 10, 97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 109, 121, 78, 111, 114, 109, 97, 108, 59, 10, 10, 118, 97, 114, 121, 105, 110, 103, 32, 108, 111, 119, 112, 32, 32, 32, 32, 118, 101, 99, 52, 32, 32, 32, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 59, 10, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 112, 111, 115, 105, 116, 105, 111, 110, 59, 10, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 110, 111, 114, 109, 97, 108, 59, 10, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 109, 97, 116, 52, 32, 32, 32, 32, 32, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 59, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 109, 97, 116, 52, 32, 32, 32, 32, 32, 32, 117, 80, 77, 97, 116, 114, 105, 120, 59, 10, 10, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 32, 32, 118, 76, 105, 103, 104, 116, 48, 59, 10, 10, 117, 110, 105, 102, 111, 114, 109, 32, 108, 111, 119, 112, 32, 118, 101, 99, 52, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 68, 105, 102, 102, 117, 115, 101, 59, 10, 117, 110, 105, 102, 111, 114, 109, 32, 108, 111, 119, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 65, 109, 98, 105, 101, 110, 116, 59, 10, 117, 110, 105, 102, 111, 114, 109, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 52, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 59, 10, 10, 118, 111, 105, 100, 32, 109, 97, 105, 110, 40, 118, 111, 105, 100, 41, 10, 123, 10, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 52, 32, 112, 32, 61, 32, 118, 101, 99, 52, 40, 109, 121, 86, 101, 114, 116, 101, 120, 44, 49, 41, 59, 10, 32, 32, 32, 32, 103, 108, 95, 80, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 117, 80, 77, 97, 116, 114, 105, 120, 32, 42, 32, 112, 59, 10, 10, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 119, 111, 114, 108, 100, 78, 111, 114, 109, 97, 108, 32, 61, 32, 118, 101, 99, 51, 40, 109, 97, 116, 51, 40, 117, 77, 86, 77, 97, 116, 114, 105, 120, 91, 48, 93, 46, 120, 121, 122, 44, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 91, 49, 93, 46, 120, 121, 122, 44, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 91, 50, 93, 46, 120, 121, 122, 41, 32, 42, 32, 109, 121, 78, 111, 114, 109, 97, 108, 41, 59, 10, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 101, 99, 80, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 112, 46, 120, 121, 122, 59, 10, 10, 32, 32, 32, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 32, 61, 32, 100, 111, 116, 40, 32, 119, 111, 114, 108, 100, 78, 111, 114, 109, 97, 108, 44, 32, 110, 111, 114, 109, 97, 108, 105, 122, 101, 40, 45, 118, 76, 105, 103, 104, 116, 48, 43, 101, 99, 80, 111, 115, 105, 116, 105, 111, 110, 41, 32, 41, 32, 42, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 68, 105, 102, 102, 117, 115, 101, 32, 32, 43, 32, 118, 101, 99, 52, 40, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 65, 109, 98, 105, 101, 110, 116, 44, 32, 49, 32, 41, 59, 10, 10, 32, 32, 32, 32, 110, 111, 114, 109, 97, 108, 32, 61, 32, 119, 111, 114, 108, 100, 78, 111, 114, 109, 97, 108, 59, 10, 32, 32, 32, 32, 112, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 101, 99, 80, 111, 115, 105, 116, 105, 111, 110, 59, 10, 125]);
-Module['FS_createDataFile']('/Shaders', 'webgl-shader-vs.vsh', fileData6, true, true, false);
-var fileData7 = [];
-fileData7.push.apply(fileData7, [32, 32, 32, 32, 32, 32, 97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 109, 121, 86, 101, 114, 116, 101, 120, 59, 10, 32, 32, 32, 32, 32, 32, 97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 109, 121, 78, 111, 114, 109, 97, 108, 59, 10, 10, 32, 32, 32, 32, 32, 32, 118, 97, 114, 121, 105, 110, 103, 32, 108, 111, 119, 112, 32, 32, 32, 32, 118, 101, 99, 52, 32, 32, 32, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 59, 10, 10, 32, 32, 32, 32, 32, 32, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 112, 111, 115, 105, 116, 105, 111, 110, 59, 10, 32, 32, 32, 32, 32, 32, 118, 97, 114, 121, 105, 110, 103, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 51, 32, 110, 111, 114, 109, 97, 108, 59, 10, 10, 32, 32, 32, 32, 32, 32, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 109, 97, 116, 52, 32, 32, 32, 32, 32, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 59, 10, 32, 32, 32, 32, 32, 32, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 109, 97, 116, 52, 32, 32, 32, 32, 32, 32, 117, 80, 77, 97, 116, 114, 105, 120, 59, 10, 10, 32, 32, 32, 32, 32, 32, 117, 110, 105, 102, 111, 114, 109, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 32, 32, 118, 76, 105, 103, 104, 116, 48, 59, 10, 10, 32, 32, 32, 32, 32, 32, 117, 110, 105, 102, 111, 114, 109, 32, 108, 111, 119, 112, 32, 118, 101, 99, 52, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 68, 105, 102, 102, 117, 115, 101, 59, 10, 32, 32, 32, 32, 32, 32, 117, 110, 105, 102, 111, 114, 109, 32, 108, 111, 119, 112, 32, 118, 101, 99, 51, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 65, 109, 98, 105, 101, 110, 116, 59, 10, 32, 32, 32, 32, 32, 32, 117, 110, 105, 102, 111, 114, 109, 32, 109, 101, 100, 105, 117, 109, 112, 32, 118, 101, 99, 52, 32, 32, 32, 32, 32, 32, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 83, 112, 101, 99, 117, 108, 97, 114, 59, 10, 10, 32, 32, 32, 32, 32, 32, 118, 111, 105, 100, 32, 109, 97, 105, 110, 40, 118, 111, 105, 100, 41, 10, 32, 32, 32, 32, 32, 32, 123, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 52, 32, 112, 32, 61, 32, 118, 101, 99, 52, 40, 109, 121, 86, 101, 114, 116, 101, 120, 44, 49, 41, 59, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 103, 108, 95, 80, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 117, 80, 77, 97, 116, 114, 105, 120, 32, 42, 32, 112, 59, 10, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 119, 111, 114, 108, 100, 78, 111, 114, 109, 97, 108, 32, 61, 32, 118, 101, 99, 51, 40, 109, 97, 116, 51, 40, 117, 77, 86, 77, 97, 116, 114, 105, 120, 91, 48, 93, 46, 120, 121, 122, 44, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 91, 49, 93, 46, 120, 121, 122, 44, 32, 117, 77, 86, 77, 97, 116, 114, 105, 120, 91, 50, 93, 46, 120, 121, 122, 41, 32, 42, 32, 109, 121, 78, 111, 114, 109, 97, 108, 41, 59, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 104, 105, 103, 104, 112, 32, 118, 101, 99, 51, 32, 101, 99, 80, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 112, 46, 120, 121, 122, 59, 10, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 99, 111, 108, 111, 114, 68, 105, 102, 102, 117, 115, 101, 32, 61, 32, 100, 111, 116, 40, 32, 119, 111, 114, 108, 100, 78, 111, 114, 109, 97, 108, 44, 32, 110, 111, 114, 109, 97, 108, 105, 122, 101, 40, 45, 118, 76, 105, 103, 104, 116, 48, 43, 101, 99, 80, 111, 115, 105, 116, 105, 111, 110, 41, 32, 41, 32, 42, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 68, 105, 102, 102, 117, 115, 101, 32, 32, 43, 32, 118, 101, 99, 52, 40, 32, 118, 77, 97, 116, 101, 114, 105, 97, 108, 65, 109, 98, 105, 101, 110, 116, 44, 32, 49, 32, 41, 59, 10, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 110, 111, 114, 109, 97, 108, 32, 61, 32, 119, 111, 114, 108, 100, 78, 111, 114, 109, 97, 108, 59, 10, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 112, 111, 115, 105, 116, 105, 111, 110, 32, 61, 32, 101, 99, 80, 111, 115, 105, 116, 105, 111, 110, 59, 10, 32, 32, 32, 32, 32, 32, 125]);
-Module['FS_createDataFile']('/Shaders', 'webgl-shader-vs.vsh~', fileData7, true, true, false);
 
   }
   if (Module['calledRun']) {
@@ -717,8 +705,12 @@ var Runtime = {
   },
   dynCall: function (sig, ptr, args) {
     if (args && args.length) {
+      assert(args.length == sig.length-1);
+      assert(('dynCall_' + sig) in Module, 'bad function pointer type - no table for sig \'' + sig + '\'');
       return Module['dynCall_' + sig].apply(null, [ptr].concat(args));
     } else {
+      assert(sig.length == 1);
+      assert(('dynCall_' + sig) in Module, 'bad function pointer type - no table for sig \'' + sig + '\'');
       return Module['dynCall_' + sig].call(null, ptr);
     }
   },
@@ -771,9 +763,9 @@ var Runtime = {
   getCompilerSetting: function (name) {
     throw 'You must build with -s RETAIN_COMPILER_SETTINGS=1 for Runtime.getCompilerSetting or emscripten_get_compiler_setting to work';
   },
-  stackAlloc: function (size) { var ret = STACKTOP;STACKTOP = (STACKTOP + size)|0;STACKTOP = (((STACKTOP)+15)&-16); return ret; },
-  staticAlloc: function (size) { var ret = STATICTOP;STATICTOP = (STATICTOP + size)|0;STATICTOP = (((STATICTOP)+15)&-16); return ret; },
-  dynamicAlloc: function (size) { var ret = HEAP32[DYNAMICTOP_PTR>>2];var end = (((ret + size + 15)|0) & -16);HEAP32[DYNAMICTOP_PTR>>2] = end;if (end >= TOTAL_MEMORY) {var success = enlargeMemory();if (!success) {HEAP32[DYNAMICTOP_PTR>>2] = ret;return 0;}}return ret;},
+  stackAlloc: function (size) { var ret = STACKTOP;STACKTOP = (STACKTOP + size)|0;STACKTOP = (((STACKTOP)+15)&-16);(assert((((STACKTOP|0) < (STACK_MAX|0))|0))|0); return ret; },
+  staticAlloc: function (size) { var ret = STATICTOP;STATICTOP = (STATICTOP + (assert(!staticSealed),size))|0;STATICTOP = (((STATICTOP)+15)&-16); return ret; },
+  dynamicAlloc: function (size) { assert(DYNAMICTOP_PTR);var ret = HEAP32[DYNAMICTOP_PTR>>2];var end = (((ret + size + 15)|0) & -16);HEAP32[DYNAMICTOP_PTR>>2] = end;if (end >= TOTAL_MEMORY) {var success = enlargeMemory();if (!success) {HEAP32[DYNAMICTOP_PTR>>2] = ret;return 0;}}return ret;},
   alignMemory: function (size,quantum) { var ret = size = Math.ceil((size)/(quantum ? quantum : 16))*(quantum ? quantum : 16); return ret; },
   makeBigInt: function (low,high,unsigned) { var ret = (unsigned ? ((+((low>>>0)))+((+((high>>>0)))*4294967296.0)) : ((+((low>>>0)))+((+((high|0)))*4294967296.0))); return ret; },
   GLOBAL_BASE: 1024,
@@ -849,6 +841,7 @@ var cwrap, ccall;
     var func = getCFunc(ident);
     var cArgs = [];
     var stack = 0;
+    assert(returnType !== 'array', 'Return type should not be "array".');
     if (args) {
       for (var i = 0; i < args.length; i++) {
         var converter = toC[argTypes[i]];
@@ -861,6 +854,10 @@ var cwrap, ccall;
       }
     }
     var ret = func.apply(null, cArgs);
+    if ((!opts || !opts.async) && typeof EmterpreterAsync === 'object') {
+      assert(!EmterpreterAsync.state, 'cannot start async op with normal JS calling ccall');
+    }
+    if (opts && opts.async) assert(!returnType, 'async ccalls cannot return values');
     if (returnType === 'string') ret = Pointer_stringify(ret);
     if (stack !== 0) {
       if (opts && opts.async) {
@@ -934,6 +931,7 @@ var cwrap, ccall;
       var strgfy = parseJSFunc(function(){return Pointer_stringify}).returnValue;
       funcstr += 'ret = ' + strgfy + '(ret);';
     }
+    funcstr += "if (typeof EmterpreterAsync === 'object') { assert(!EmterpreterAsync.state, 'cannot start async op with normal JS calling cwrap') }";
     if (!numericArgs) {
       // If we had a stack, restore it
       ensureJSsource();
@@ -1059,6 +1057,7 @@ function allocate(slab, types, allocator, ptr) {
       i++;
       continue;
     }
+    assert(type, 'Must know what type to store in allocate!');
 
     if (type == 'i64') type = 'i32'; // special case: we have one i32 here, and one i32 later
 
@@ -1092,6 +1091,7 @@ function Pointer_stringify(ptr, /* optional */ length) {
   var t;
   var i = 0;
   while (1) {
+    assert(ptr + i < TOTAL_MEMORY);
     t = HEAPU8[(((ptr)+(i))>>0)];
     hasUtf |= t;
     if (t == 0 && !length) break;
@@ -1268,6 +1268,7 @@ Module["stringToUTF8Array"] = stringToUTF8Array;
 // Returns the number of bytes written, EXCLUDING the null terminator.
 
 function stringToUTF8(str, outPtr, maxBytesToWrite) {
+  assert(typeof maxBytesToWrite == 'number', 'stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
   return stringToUTF8Array(str, HEAPU8,outPtr, maxBytesToWrite);
 }
 Module["stringToUTF8"] = stringToUTF8;
@@ -1304,6 +1305,7 @@ Module["lengthBytesUTF8"] = lengthBytesUTF8;
 
 var UTF16Decoder = typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-16le') : undefined;
 function UTF16ToString(ptr) {
+  assert(ptr % 2 == 0, 'Pointer passed to UTF16ToString must be aligned to two bytes!');
   var endPtr = ptr;
   // TextDecoder needs to know the byte length in advance, it doesn't stop on null terminator by itself.
   // Also, use the length info to avoid running tiny strings through TextDecoder, since .subarray() allocates garbage.
@@ -1340,6 +1342,8 @@ function UTF16ToString(ptr) {
 // Returns the number of bytes written, EXCLUDING the null terminator.
 
 function stringToUTF16(str, outPtr, maxBytesToWrite) {
+  assert(outPtr % 2 == 0, 'Pointer passed to stringToUTF16 must be aligned to two bytes!');
+  assert(typeof maxBytesToWrite == 'number', 'stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
   // Backwards compatibility: if max bytes is not specified, assume unsafe unbounded write is allowed.
   if (maxBytesToWrite === undefined) {
     maxBytesToWrite = 0x7FFFFFFF;
@@ -1368,6 +1372,7 @@ function lengthBytesUTF16(str) {
 
 
 function UTF32ToString(ptr) {
+  assert(ptr % 4 == 0, 'Pointer passed to UTF32ToString must be aligned to four bytes!');
   var i = 0;
 
   var str = '';
@@ -1400,6 +1405,8 @@ function UTF32ToString(ptr) {
 // Returns the number of bytes written, EXCLUDING the null terminator.
 
 function stringToUTF32(str, outPtr, maxBytesToWrite) {
+  assert(outPtr % 4 == 0, 'Pointer passed to stringToUTF32 must be aligned to four bytes!');
+  assert(typeof maxBytesToWrite == 'number', 'stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
   // Backwards compatibility: if max bytes is not specified, assume unsafe unbounded write is allowed.
   if (maxBytesToWrite === undefined) {
     maxBytesToWrite = 0x7FFFFFFF;
@@ -1535,6 +1542,24 @@ var DYNAMIC_BASE, DYNAMICTOP_PTR; // dynamic area handled by sbrk
   staticSealed = false;
 
 
+// Initializes the stack cookie. Called at the startup of main and at the startup of each thread in pthreads mode.
+function writeStackCookie() {
+  assert((STACK_MAX & 3) == 0);
+  HEAPU32[(STACK_MAX >> 2)-1] = 0x02135467;
+  HEAPU32[(STACK_MAX >> 2)-2] = 0x89BACDFE;
+}
+
+function checkStackCookie() {
+  if (HEAPU32[(STACK_MAX >> 2)-1] != 0x02135467 || HEAPU32[(STACK_MAX >> 2)-2] != 0x89BACDFE) {
+    abort('Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x02135467, but received 0x' + HEAPU32[(STACK_MAX >> 2)-2].toString(16) + ' ' + HEAPU32[(STACK_MAX >> 2)-1].toString(16));
+  }
+  // Also test the global address 0 for integrity. This check is not compatible with SAFE_SPLIT_MEMORY though, since that mode already tests all address 0 accesses on its own.
+  if (HEAP32[0] !== 0x63736d65 /* 'emsc' */) throw 'Runtime error: The application has corrupted its heap memory area (address zero)!';
+}
+
+function abortStackOverflow(allocSize) {
+  abort('Stack overflow! Attempted to allocate ' + allocSize + ' bytes on the stack, but stack has only ' + (STACK_MAX - asm.stackSave() + allocSize) + ' bytes available!');
+}
 
 function abortOnCannotGrowMemory() {
   abort('Cannot enlarge memory arrays. Either (1) compile with  -s TOTAL_MEMORY=X  with X higher than the current value ' + TOTAL_MEMORY + ', (2) compile with  -s ALLOW_MEMORY_GROWTH=1  which adjusts the size at runtime but prevents some optimizations, (3) set Module.TOTAL_MEMORY to a higher value before the program runs, or if you want malloc to return NULL (0) instead of this abort, compile with  -s ABORTING_MALLOC=0 ');
@@ -1560,25 +1585,32 @@ while (totalMemory < TOTAL_MEMORY || totalMemory < 2*TOTAL_STACK) {
   }
 }
 if (totalMemory !== TOTAL_MEMORY) {
+  Module.printErr('increasing TOTAL_MEMORY to ' + totalMemory + ' to be compliant with the asm.js spec (and given that TOTAL_STACK=' + TOTAL_STACK + ')');
   TOTAL_MEMORY = totalMemory;
 }
 
 // Initialize the runtime's memory
+// check for full engine support (use string 'subarray' to avoid closure compiler confusion)
+assert(typeof Int32Array !== 'undefined' && typeof Float64Array !== 'undefined' && !!(new Int32Array(1)['subarray']) && !!(new Int32Array(1)['set']),
+       'JS engine does not provide full typed array support');
 
 
 
 // Use a provided buffer, if there is one, or else allocate a new one
 if (Module['buffer']) {
   buffer = Module['buffer'];
+  assert(buffer.byteLength === TOTAL_MEMORY, 'provided buffer should be ' + TOTAL_MEMORY + ' bytes, but it is ' + buffer.byteLength);
 } else {
   // Use a WebAssembly memory where available
   if (typeof WebAssembly === 'object' && typeof WebAssembly.Memory === 'function') {
+    assert(TOTAL_MEMORY % WASM_PAGE_SIZE === 0);
     Module['wasmMemory'] = new WebAssembly.Memory({ initial: TOTAL_MEMORY / WASM_PAGE_SIZE, maximum: TOTAL_MEMORY / WASM_PAGE_SIZE });
     buffer = Module['wasmMemory'].buffer;
   } else
   {
     buffer = new ArrayBuffer(TOTAL_MEMORY);
   }
+  assert(buffer.byteLength === TOTAL_MEMORY);
 }
 updateGlobalBufferViews();
 
@@ -1645,21 +1677,25 @@ function preRun() {
 }
 
 function ensureInitRuntime() {
+  checkStackCookie();
   if (runtimeInitialized) return;
   runtimeInitialized = true;
   callRuntimeCallbacks(__ATINIT__);
 }
 
 function preMain() {
+  checkStackCookie();
   callRuntimeCallbacks(__ATMAIN__);
 }
 
 function exitRuntime() {
+  checkStackCookie();
   callRuntimeCallbacks(__ATEXIT__);
   runtimeExited = true;
 }
 
 function postRun() {
+  checkStackCookie();
   // compatibility - merge in anything from Module['postRun'] at this time
   if (Module['postRun']) {
     if (typeof Module['postRun'] == 'function') Module['postRun'] = [Module['postRun']];
@@ -1712,6 +1748,7 @@ function intArrayToString(array) {
   for (var i = 0; i < array.length; i++) {
     var chr = array[i];
     if (chr > 0xFF) {
+      assert(false, 'Character code ' + chr + ' (' + String.fromCharCode(chr) + ')  at offset ' + i + ' not in 0x00-0xFF.');
       chr &= 0xFF;
     }
     ret.push(String.fromCharCode(chr));
@@ -1747,6 +1784,7 @@ Module["writeArrayToMemory"] = writeArrayToMemory;
 
 function writeAsciiToMemory(str, buffer, dontAddNull) {
   for (var i = 0; i < str.length; ++i) {
+    assert(str.charCodeAt(i) === str.charCodeAt(i)&0xff);
     HEAP8[((buffer++)>>0)]=str.charCodeAt(i);
   }
   // Null-terminate the pointer to the HEAP.
@@ -1837,8 +1875,14 @@ var Math_trunc = Math.trunc;
 var runDependencies = 0;
 var runDependencyWatcher = null;
 var dependenciesFulfilled = null; // overridden to take different actions when all run dependencies are fulfilled
+var runDependencyTracking = {};
 
 function getUniqueRunDependency(id) {
+  var orig = id;
+  while (1) {
+    if (!runDependencyTracking[id]) return id;
+    id = orig + Math.random();
+  }
   return id;
 }
 
@@ -1847,6 +1891,33 @@ function addRunDependency(id) {
   if (Module['monitorRunDependencies']) {
     Module['monitorRunDependencies'](runDependencies);
   }
+  if (id) {
+    assert(!runDependencyTracking[id]);
+    runDependencyTracking[id] = 1;
+    if (runDependencyWatcher === null && typeof setInterval !== 'undefined') {
+      // Check for missing dependencies every few seconds
+      runDependencyWatcher = setInterval(function() {
+        if (ABORT) {
+          clearInterval(runDependencyWatcher);
+          runDependencyWatcher = null;
+          return;
+        }
+        var shown = false;
+        for (var dep in runDependencyTracking) {
+          if (!shown) {
+            shown = true;
+            Module.printErr('still waiting on run dependencies:');
+          }
+          Module.printErr('dependency: ' + dep);
+        }
+        if (shown) {
+          Module.printErr('(end of list)');
+        }
+      }, 10000);
+    }
+  } else {
+    Module.printErr('warning: run dependency added without ID');
+  }
 }
 Module["addRunDependency"] = addRunDependency;
 
@@ -1854,6 +1925,12 @@ function removeRunDependency(id) {
   runDependencies--;
   if (Module['monitorRunDependencies']) {
     Module['monitorRunDependencies'](runDependencies);
+  }
+  if (id) {
+    assert(runDependencyTracking[id]);
+    delete runDependencyTracking[id];
+  } else {
+    Module.printErr('warning: run dependency removed without ID');
   }
   if (runDependencies == 0) {
     if (runDependencyWatcher !== null) {
@@ -1889,7 +1966,7 @@ var ASM_CONSTS = [];
 
 STATIC_BASE = 1024;
 
-STATICTOP = STATIC_BASE + 32112;
+STATICTOP = STATIC_BASE + 32480;
   /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_MoreTeapots_wasm_cpp() } });
   
 
@@ -1898,10 +1975,12 @@ memoryInitializer = Module["wasmJSMethod"].indexOf("asmjs") >= 0 || Module["wasm
 
 
 
-var STATIC_BUMP = 32112;
+var STATIC_BUMP = 32480;
 
 /* no memory initializer */
 var tempDoublePtr = STATICTOP; STATICTOP += 16;
+
+assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
 
@@ -2158,6 +2237,103 @@ function copyTempDouble(ptr) {
 
   function _XChangeWindowAttributes(){}
 
+  
+  function __ZSt18uncaught_exceptionv() { // std::uncaught_exception()
+      return !!__ZSt18uncaught_exceptionv.uncaught_exception;
+    }
+  
+  
+  
+  var EXCEPTIONS={last:0,caught:[],infos:{},deAdjust:function (adjusted) {
+        if (!adjusted || EXCEPTIONS.infos[adjusted]) return adjusted;
+        for (var ptr in EXCEPTIONS.infos) {
+          var info = EXCEPTIONS.infos[ptr];
+          if (info.adjusted === adjusted) {
+            return ptr;
+          }
+        }
+        return adjusted;
+      },addRef:function (ptr) {
+        if (!ptr) return;
+        var info = EXCEPTIONS.infos[ptr];
+        info.refcount++;
+      },decRef:function (ptr) {
+        if (!ptr) return;
+        var info = EXCEPTIONS.infos[ptr];
+        assert(info.refcount > 0);
+        info.refcount--;
+        // A rethrown exception can reach refcount 0; it must not be discarded
+        // Its next handler will clear the rethrown flag and addRef it, prior to
+        // final decRef and destruction here
+        if (info.refcount === 0 && !info.rethrown) {
+          if (info.destructor) {
+            Runtime.dynCall('vi', info.destructor, [ptr]);
+          }
+          delete EXCEPTIONS.infos[ptr];
+          ___cxa_free_exception(ptr);
+        }
+      },clearRef:function (ptr) {
+        if (!ptr) return;
+        var info = EXCEPTIONS.infos[ptr];
+        info.refcount = 0;
+      }};
+  function ___resumeException(ptr) {
+      if (!EXCEPTIONS.last) { EXCEPTIONS.last = ptr; }
+      throw ptr;
+    }function ___cxa_find_matching_catch() {
+      var thrown = EXCEPTIONS.last;
+      if (!thrown) {
+        // just pass through the null ptr
+        return ((asm["setTempRet0"](0),0)|0);
+      }
+      var info = EXCEPTIONS.infos[thrown];
+      var throwntype = info.type;
+      if (!throwntype) {
+        // just pass through the thrown ptr
+        return ((asm["setTempRet0"](0),thrown)|0);
+      }
+      var typeArray = Array.prototype.slice.call(arguments);
+  
+      var pointer = Module['___cxa_is_pointer_type'](throwntype);
+      // can_catch receives a **, add indirection
+      if (!___cxa_find_matching_catch.buffer) ___cxa_find_matching_catch.buffer = _malloc(4);
+      HEAP32[((___cxa_find_matching_catch.buffer)>>2)]=thrown;
+      thrown = ___cxa_find_matching_catch.buffer;
+      // The different catch blocks are denoted by different types.
+      // Due to inheritance, those types may not precisely match the
+      // type of the thrown object. Find one which matches, and
+      // return the type of the catch block which should be called.
+      for (var i = 0; i < typeArray.length; i++) {
+        if (typeArray[i] && Module['___cxa_can_catch'](typeArray[i], throwntype, thrown)) {
+          thrown = HEAP32[((thrown)>>2)]; // undo indirection
+          info.adjusted = thrown;
+          return ((asm["setTempRet0"](typeArray[i]),thrown)|0);
+        }
+      }
+      // Shouldn't happen unless we have bogus data in typeArray
+      // or encounter a type for which emscripten doesn't have suitable
+      // typeinfo defined. Best-efforts match just in case.
+      thrown = HEAP32[((thrown)>>2)]; // undo indirection
+      return ((asm["setTempRet0"](throwntype),thrown)|0);
+    }function ___cxa_throw(ptr, type, destructor) {
+      EXCEPTIONS.infos[ptr] = {
+        ptr: ptr,
+        adjusted: ptr,
+        type: type,
+        destructor: destructor,
+        refcount: 0,
+        caught: false,
+        rethrown: false
+      };
+      EXCEPTIONS.last = ptr;
+      if (!("uncaught_exception" in __ZSt18uncaught_exceptionv)) {
+        __ZSt18uncaught_exceptionv.uncaught_exception = 1;
+      } else {
+        __ZSt18uncaught_exceptionv.uncaught_exception++;
+      }
+      throw ptr;
+    }
+
   function _XMapWindow(){}
 
   function _glUseProgram(program) {
@@ -2212,6 +2388,7 @@ function copyTempDouble(ptr) {
       Browser.mainLoop.timingValue = value;
   
       if (!Browser.mainLoop.func) {
+        console.error('emscripten_set_main_loop_timing: Cannot set timing mode for main loop since a main loop does not exist! Call emscripten_set_main_loop first to set one up.');
         return 1; // Return non-zero on failure, can't set timing mode when there is no main loop.
       }
   
@@ -2328,6 +2505,7 @@ function copyTempDouble(ptr) {
   
         Browser.mainLoop.runIter(browserIterationFunc);
   
+        checkStackCookie();
   
         // catch pauses from the main loop itself
         if (thisMainLoopId < Browser.mainLoop.currentlyRunningMainloop) return;
@@ -2448,6 +2626,7 @@ function copyTempDouble(ptr) {
             b = bb.getBlob();
           }
           var url = Browser.URLObject.createObjectURL(b);
+          assert(typeof url == 'string', 'createObjectURL must return a url as a string');
           var img = new Image();
           img.onload = function img_onload() {
             assert(img.complete, 'Image ' + name + ' could not be decoded');
@@ -2493,6 +2672,7 @@ function copyTempDouble(ptr) {
               return fail();
             }
             var url = Browser.URLObject.createObjectURL(b); // XXX we never revoke this!
+            assert(typeof url == 'string', 'createObjectURL must return a url as a string');
             var audio = new Audio();
             audio.addEventListener('canplaythrough', function() { finish(audio) }, false); // use addEventListener due to chromium bug 124926
             audio.onerror = function audio_onerror(event) {
@@ -2828,6 +3008,9 @@ function copyTempDouble(ptr) {
           // (see: http://www.w3.org/TR/2013/WD-cssom-view-20131217/)
           var scrollX = ((typeof window.scrollX !== 'undefined') ? window.scrollX : window.pageXOffset);
           var scrollY = ((typeof window.scrollY !== 'undefined') ? window.scrollY : window.pageYOffset);
+          // If this assert lands, it's likely because the browser doesn't support scrollX or pageXOffset
+          // and we have no viable fallback.
+          assert((typeof scrollX !== 'undefined') && (typeof scrollY !== 'undefined'), 'Unable to retrieve scroll position, mouse positions likely broken.');
   
           if (event.type === 'touchstart' || event.type === 'touchend' || event.type === 'touchmove') {
             var touch = event.touch;
@@ -3314,6 +3497,7 @@ function copyTempDouble(ptr) {
   
   function ___setErrNo(value) {
       if (Module['___errno_location']) HEAP32[((Module['___errno_location']())>>2)]=value;
+      else Module.printErr('failed to set errno from JS');
       return value;
     }
   
@@ -3834,6 +4018,7 @@ function copyTempDouble(ptr) {
   
           if (buffer.subarray && (!node.contents || node.contents.subarray)) { // This write is from a typed array to a typed array?
             if (canOwn) { // Can we just reuse the buffer we are given?
+              assert(position === 0, 'canOwn must imply no weird position inside the file');
               node.contents = buffer.subarray(offset, offset + length);
               node.usedBytes = length;
               return length;
@@ -5725,6 +5910,7 @@ function copyTempDouble(ptr) {
           };
           this.setErrno(errno);
           this.message = ERRNO_MESSAGES[errno];
+          if (this.stack) this.stack = demangleAll(this.stack);
         };
         FS.ErrnoError.prototype = new Error();
         FS.ErrnoError.prototype.constructor = FS.ErrnoError;
@@ -6395,6 +6581,8 @@ function copyTempDouble(ptr) {
       GLctx.uniform4f(location, v0, v1, v2, v3);
     }
 
+  function _glDepthFunc(x0) { GLctx['depthFunc'](x0) }
+
   
   function _eglWaitClient() {
       EGL.setErrorCode(0x3000 /* EGL_SUCCESS */);
@@ -6484,6 +6672,10 @@ function copyTempDouble(ptr) {
       _pthread_cleanup_push.level = __ATEXIT__.length;
     }
 
+  function ___cxa_find_matching_catch_2() {
+          return ___cxa_find_matching_catch.apply(null, arguments);
+        }
+
   function _XSendEvent(){}
 
   
@@ -6496,7 +6688,8 @@ function copyTempDouble(ptr) {
    
   Module["_sbrk"] = _sbrk;
 
-  function _glDepthFunc(x0) { GLctx['depthFunc'](x0) }
+  function ___gxx_personality_v0() {
+    }
 
   
   function emscriptenWebGLGet(name_, p, type) {
@@ -6604,6 +6797,7 @@ function copyTempDouble(ptr) {
 
   function _XSetWMHints(){}
 
+
   function _glCreateShader(shaderType) {
       var id = GL.getNewId(GL.shaders);
       GL.shaders[id] = GLctx.createShader(shaderType);
@@ -6695,6 +6889,17 @@ function copyTempDouble(ptr) {
       Module['abort']();
     }
 
+  
+  function _free() {
+  }
+  Module["_free"] = _free;function ___cxa_free_exception(ptr) {
+      try {
+        return _free(ptr);
+      } catch(e) { // XXX FIXME
+        Module.printErr('exception during cxa_free_exception: ' + e);
+      }
+    }
+
   function _glGetUniformLocation(program, name) {
       name = Pointer_stringify(name);
   
@@ -6762,6 +6967,20 @@ function copyTempDouble(ptr) {
   function _glAttachShader(program, shader) {
       GLctx.attachShader(GL.programs[program],
                               GL.shaders[shader]);
+    }
+
+  
+  function _malloc(bytes) {
+      /* Over-allocate to make sure it is byte-aligned by 8.
+       * This will leak memory, but this is only the dummy
+       * implementation (replaced by dlmalloc normally) so
+       * not an issue.
+       */
+      var ptr = Runtime.dynamicAlloc(bytes + 8);
+      return (ptr+8) & 0xFFFFFFF8;
+    }
+  Module["_malloc"] = _malloc;function ___cxa_allocate_exception(size) {
+      return _malloc(size);
     }
 
   function _glDeleteShader(id) {
@@ -7082,31 +7301,33 @@ HEAP32[DYNAMICTOP_PTR>>2] = DYNAMIC_BASE;
 
 staticSealed = true; // seal the static portion of memory
 
+assert(DYNAMIC_BASE < TOTAL_MEMORY, "TOTAL_MEMORY not big enough for stack");
 
 
-Module['wasmTableSize'] = 22;
 
-function invoke_ii(index,a1) {
-  try {
-    return Module["dynCall_ii"](index,a1);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    asm["setThrew"](1, 0);
-  }
-}
+function nullFunc_iiii(x) { Module["printErr"]("Invalid function pointer called with signature 'iiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_vif(x) { Module["printErr"]("Invalid function pointer called with signature 'vif'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_viiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_vi(x) { Module["printErr"]("Invalid function pointer called with signature 'vi'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_vii(x) { Module["printErr"]("Invalid function pointer called with signature 'vii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_ii(x) { Module["printErr"]("Invalid function pointer called with signature 'ii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_v(x) { Module["printErr"]("Invalid function pointer called with signature 'v'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_viiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+function nullFunc_viiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+
+Module['wasmTableSize'] = 336;
 
 function invoke_iiii(index,a1,a2,a3) {
   try {
     return Module["dynCall_iiii"](index,a1,a2,a3);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    asm["setThrew"](1, 0);
-  }
-}
-
-function invoke_vi(index,a1) {
-  try {
-    Module["dynCall_vi"](index,a1);
   } catch(e) {
     if (typeof e !== 'number' && e !== 'longjmp') throw e;
     asm["setThrew"](1, 0);
@@ -7122,6 +7343,42 @@ function invoke_vif(index,a1,a2) {
   }
 }
 
+function invoke_viiiii(index,a1,a2,a3,a4,a5) {
+  try {
+    Module["dynCall_viiiii"](index,a1,a2,a3,a4,a5);
+  } catch(e) {
+    if (typeof e !== 'number' && e !== 'longjmp') throw e;
+    asm["setThrew"](1, 0);
+  }
+}
+
+function invoke_vi(index,a1) {
+  try {
+    Module["dynCall_vi"](index,a1);
+  } catch(e) {
+    if (typeof e !== 'number' && e !== 'longjmp') throw e;
+    asm["setThrew"](1, 0);
+  }
+}
+
+function invoke_vii(index,a1,a2) {
+  try {
+    Module["dynCall_vii"](index,a1,a2);
+  } catch(e) {
+    if (typeof e !== 'number' && e !== 'longjmp') throw e;
+    asm["setThrew"](1, 0);
+  }
+}
+
+function invoke_ii(index,a1) {
+  try {
+    return Module["dynCall_ii"](index,a1);
+  } catch(e) {
+    if (typeof e !== 'number' && e !== 'longjmp') throw e;
+    asm["setThrew"](1, 0);
+  }
+}
+
 function invoke_v(index) {
   try {
     Module["dynCall_v"](index);
@@ -7131,13 +7388,78 @@ function invoke_v(index) {
   }
 }
 
+function invoke_viiiiii(index,a1,a2,a3,a4,a5,a6) {
+  try {
+    Module["dynCall_viiiiii"](index,a1,a2,a3,a4,a5,a6);
+  } catch(e) {
+    if (typeof e !== 'number' && e !== 'longjmp') throw e;
+    asm["setThrew"](1, 0);
+  }
+}
+
+function invoke_viiii(index,a1,a2,a3,a4) {
+  try {
+    Module["dynCall_viiii"](index,a1,a2,a3,a4);
+  } catch(e) {
+    if (typeof e !== 'number' && e !== 'longjmp') throw e;
+    asm["setThrew"](1, 0);
+  }
+}
+
 Module.asmGlobalArg = { "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Uint32Array": Uint32Array, "Float32Array": Float32Array, "Float64Array": Float64Array, "NaN": NaN, "Infinity": Infinity };
 
-Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "invoke_ii": invoke_ii, "invoke_iiii": invoke_iiii, "invoke_vi": invoke_vi, "invoke_vif": invoke_vif, "invoke_v": invoke_v, "_glUseProgram": _glUseProgram, "_pthread_cleanup_pop": _pthread_cleanup_pop, "_glDeleteShader": _glDeleteShader, "_glVertexAttribPointer": _glVertexAttribPointer, "_eglGetDisplay": _eglGetDisplay, "_glGetProgramiv": _glGetProgramiv, "_abort": _abort, "_eglChooseConfig": _eglChooseConfig, "_glGetProgramInfoLog": _glGetProgramInfoLog, "_emscripten_set_main_loop_timing": _emscripten_set_main_loop_timing, "emscriptenWebGLGet": emscriptenWebGLGet, "___assert_fail": ___assert_fail, "_glDeleteProgram": _glDeleteProgram, "_XCreateWindow": _XCreateWindow, "_glBindBuffer": _glBindBuffer, "_glutInitDisplayMode": _glutInitDisplayMode, "___cxa_atexit": ___cxa_atexit, "_glDeleteBuffers": _glDeleteBuffers, "_glViewport": _glViewport, "_glGetUniformLocation": _glGetUniformLocation, "___setErrNo": ___setErrNo, "_glClearColor": _glClearColor, "_XInternAtom": _XInternAtom, "_glDepthFunc": _glDepthFunc, "_glClear": _glClear, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_glUniform3f": _glUniform3f, "_XOpenDisplay": _XOpenDisplay, "_glEnableVertexAttribArray": _glEnableVertexAttribArray, "_eglCreateContext": _eglCreateContext, "_glBindAttribLocation": _glBindAttribLocation, "_glCreateShader": _glCreateShader, "___syscall221": ___syscall221, "_glShaderSource": _glShaderSource, "_glUniform4f": _glUniform4f, "_eglInitialize": _eglInitialize, "_atexit": _atexit, "_XMapWindow": _XMapWindow, "_glutCreateWindow": _glutCreateWindow, "_XStoreName": _XStoreName, "_glDrawElements": _glDrawElements, "_glGetIntegerv": _glGetIntegerv, "_glEnable": _glEnable, "___syscall54": ___syscall54, "___unlock": ___unlock, "_glLinkProgram": _glLinkProgram, "_glCreateProgram": _glCreateProgram, "_emscripten_set_main_loop": _emscripten_set_main_loop, "_eglWaitClient": _eglWaitClient, "_emscripten_get_now": _emscripten_get_now, "_eglMakeCurrent": _eglMakeCurrent, "_glGenBuffers": _glGenBuffers, "_glAttachShader": _glAttachShader, "_eglGetConfigs": _eglGetConfigs, "_glFrontFace": _glFrontFace, "_glGetShaderInfoLog": _glGetShaderInfoLog, "_glCompileShader": _glCompileShader, "_glUniformMatrix4fv": _glUniformMatrix4fv, "_XSendEvent": _XSendEvent, "___lock": ___lock, "___syscall6": ___syscall6, "_pthread_cleanup_push": _pthread_cleanup_push, "___syscall5": ___syscall5, "_XChangeWindowAttributes": _XChangeWindowAttributes, "_XSetWMHints": _XSetWMHints, "_gettimeofday": _gettimeofday, "_glBufferData": _glBufferData, "_glGetShaderiv": _glGetShaderiv, "_eglSwapBuffers": _eglSwapBuffers, "___syscall140": ___syscall140, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "_eglCreateWindowSurface": _eglCreateWindowSurface, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "___dso_handle": ___dso_handle };
+Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "abortStackOverflow": abortStackOverflow, "nullFunc_iiii": nullFunc_iiii, "nullFunc_vif": nullFunc_vif, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_ii": nullFunc_ii, "nullFunc_v": nullFunc_v, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_viiii": nullFunc_viiii, "invoke_iiii": invoke_iiii, "invoke_vif": invoke_vif, "invoke_viiiii": invoke_viiiii, "invoke_vi": invoke_vi, "invoke_vii": invoke_vii, "invoke_ii": invoke_ii, "invoke_v": invoke_v, "invoke_viiiiii": invoke_viiiiii, "invoke_viiii": invoke_viiii, "_glUseProgram": _glUseProgram, "___syscall221": ___syscall221, "_glDeleteShader": _glDeleteShader, "_glVertexAttribPointer": _glVertexAttribPointer, "_eglGetDisplay": _eglGetDisplay, "_glGetProgramiv": _glGetProgramiv, "emscriptenWebGLGet": emscriptenWebGLGet, "___syscall54": ___syscall54, "_abort": _abort, "_eglChooseConfig": _eglChooseConfig, "_glGetProgramInfoLog": _glGetProgramInfoLog, "___setErrNo": ___setErrNo, "___gxx_personality_v0": ___gxx_personality_v0, "_glClearColor": _glClearColor, "___assert_fail": ___assert_fail, "_glDeleteProgram": _glDeleteProgram, "___cxa_allocate_exception": ___cxa_allocate_exception, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "_XCreateWindow": _XCreateWindow, "_glLinkProgram": _glLinkProgram, "_glGetShaderInfoLog": _glGetShaderInfoLog, "_glDeleteBuffers": _glDeleteBuffers, "_glViewport": _glViewport, "_XInternAtom": _XInternAtom, "_emscripten_set_main_loop_timing": _emscripten_set_main_loop_timing, "___cxa_free_exception": ___cxa_free_exception, "_glGetUniformLocation": _glGetUniformLocation, "_glDepthFunc": _glDepthFunc, "_glClear": _glClear, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_glUniform3f": _glUniform3f, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_XOpenDisplay": _XOpenDisplay, "___cxa_find_matching_catch_2": ___cxa_find_matching_catch_2, "_eglCreateContext": _eglCreateContext, "_glShaderSource": _glShaderSource, "_glBindAttribLocation": _glBindAttribLocation, "_glCreateShader": _glCreateShader, "_glCompileShader": _glCompileShader, "_glUniform4f": _glUniform4f, "_eglInitialize": _eglInitialize, "_atexit": _atexit, "_XMapWindow": _XMapWindow, "_XSendEvent": _XSendEvent, "_glutCreateWindow": _glutCreateWindow, "_XStoreName": _XStoreName, "_glDrawElements": _glDrawElements, "_glGetIntegerv": _glGetIntegerv, "_glEnable": _glEnable, "___resumeException": ___resumeException, "___unlock": ___unlock, "_glBindBuffer": _glBindBuffer, "_pthread_cleanup_pop": _pthread_cleanup_pop, "_glCreateProgram": _glCreateProgram, "_emscripten_set_main_loop": _emscripten_set_main_loop, "_eglWaitClient": _eglWaitClient, "_emscripten_get_now": _emscripten_get_now, "_glGenBuffers": _glGenBuffers, "_glAttachShader": _glAttachShader, "_eglGetConfigs": _eglGetConfigs, "_glFrontFace": _glFrontFace, "_eglMakeCurrent": _eglMakeCurrent, "___cxa_atexit": ___cxa_atexit, "_glUniformMatrix4fv": _glUniformMatrix4fv, "___cxa_throw": ___cxa_throw, "_glEnableVertexAttribArray": _glEnableVertexAttribArray, "___lock": ___lock, "___syscall6": ___syscall6, "_pthread_cleanup_push": _pthread_cleanup_push, "_glutInitDisplayMode": _glutInitDisplayMode, "___syscall5": ___syscall5, "_XChangeWindowAttributes": _XChangeWindowAttributes, "_XSetWMHints": _XSetWMHints, "_gettimeofday": _gettimeofday, "_glBufferData": _glBufferData, "_glGetShaderiv": _glGetShaderiv, "_eglSwapBuffers": _eglSwapBuffers, "___syscall140": ___syscall140, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "_eglCreateWindowSurface": _eglCreateWindowSurface, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "___dso_handle": ___dso_handle };
 // EMSCRIPTEN_START_ASM
 var asm =Module["asm"]// EMSCRIPTEN_END_ASM
 (Module.asmGlobalArg, Module.asmLibraryArg, buffer);
 
+var real__malloc = asm["_malloc"]; asm["_malloc"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__malloc.apply(null, arguments);
+};
+
+var real__free = asm["_free"]; asm["_free"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__free.apply(null, arguments);
+};
+
+var real__main = asm["_main"]; asm["_main"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__main.apply(null, arguments);
+};
+
+var real__pthread_self = asm["_pthread_self"]; asm["_pthread_self"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__pthread_self.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MoreTeapots_wasm_cpp = asm["__GLOBAL__sub_I_MoreTeapots_wasm_cpp"]; asm["__GLOBAL__sub_I_MoreTeapots_wasm_cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MoreTeapots_wasm_cpp.apply(null, arguments);
+};
+
+var real__sbrk = asm["_sbrk"]; asm["_sbrk"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__sbrk.apply(null, arguments);
+};
+
+var real__fflush = asm["_fflush"]; asm["_fflush"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__fflush.apply(null, arguments);
+};
+
+var real____errno_location = asm["___errno_location"]; asm["___errno_location"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____errno_location.apply(null, arguments);
+};
 var _malloc = Module["_malloc"] = asm["_malloc"];
 var _free = Module["_free"] = asm["_free"];
 var _main = Module["_main"] = asm["_main"];
@@ -7149,11 +7471,15 @@ var _memcpy = Module["_memcpy"] = asm["_memcpy"];
 var _fflush = Module["_fflush"] = asm["_fflush"];
 var ___errno_location = Module["___errno_location"] = asm["___errno_location"];
 var runPostSets = Module["runPostSets"] = asm["runPostSets"];
-var dynCall_ii = Module["dynCall_ii"] = asm["dynCall_ii"];
 var dynCall_iiii = Module["dynCall_iiii"] = asm["dynCall_iiii"];
-var dynCall_vi = Module["dynCall_vi"] = asm["dynCall_vi"];
 var dynCall_vif = Module["dynCall_vif"] = asm["dynCall_vif"];
+var dynCall_viiiii = Module["dynCall_viiiii"] = asm["dynCall_viiiii"];
+var dynCall_vi = Module["dynCall_vi"] = asm["dynCall_vi"];
+var dynCall_vii = Module["dynCall_vii"] = asm["dynCall_vii"];
+var dynCall_ii = Module["dynCall_ii"] = asm["dynCall_ii"];
 var dynCall_v = Module["dynCall_v"] = asm["dynCall_v"];
+var dynCall_viiiiii = Module["dynCall_viiiiii"] = asm["dynCall_viiiiii"];
+var dynCall_viiii = Module["dynCall_viiii"] = asm["dynCall_viiii"];
 ;
 
 Runtime.stackAlloc = asm['stackAlloc'];
@@ -7183,6 +7509,9 @@ if (memoryInitializer) {
     addRunDependency('memory initializer');
     var applyMemoryInitializer = function(data) {
       if (data.byteLength) data = new Uint8Array(data);
+      for (var i = 0; i < data.length; i++) {
+        assert(HEAPU8[Runtime.GLOBAL_BASE + i] === 0, "area for memory initializer should not have been touched before it's loaded");
+      }
       HEAPU8.set(data, Runtime.GLOBAL_BASE);
       // Delete the typed array that contains the large blob of the memory initializer request response so that
       // we won't keep unnecessary memory lying around. However, keep the XHR object itself alive so that e.g.
@@ -7241,6 +7570,8 @@ dependenciesFulfilled = function runCaller() {
 }
 
 Module['callMain'] = Module.callMain = function callMain(args) {
+  assert(runDependencies == 0, 'cannot call main when async dependencies remain! (listen on __ATMAIN__)');
+  assert(__ATPRERUN__.length == 0, 'cannot call main when preRun functions remain to be called');
 
   args = args || [];
 
@@ -7297,9 +7628,11 @@ function run(args) {
   if (preloadStartTime === null) preloadStartTime = Date.now();
 
   if (runDependencies > 0) {
+    Module.printErr('run() called, but dependencies remain, so not running');
     return;
   }
 
+  writeStackCookie();
 
   preRun();
 
@@ -7316,6 +7649,9 @@ function run(args) {
 
     preMain();
 
+    if (ENVIRONMENT_IS_WEB && preloadStartTime !== null) {
+      Module.printErr('pre-main prep time: ' + (Date.now() - preloadStartTime) + ' ms');
+    }
 
     if (Module['onRuntimeInitialized']) Module['onRuntimeInitialized']();
 
@@ -7335,15 +7671,18 @@ function run(args) {
   } else {
     doRun();
   }
+  checkStackCookie();
 }
 Module['run'] = Module.run = run;
 
 function exit(status, implicit) {
   if (implicit && Module['noExitRuntime']) {
+    Module.printErr('exit(' + status + ') implicitly called by end of main(), but noExitRuntime, so not exiting the runtime (you can use emscripten_force_exit, if you want to force a true shutdown)');
     return;
   }
 
   if (Module['noExitRuntime']) {
+    Module.printErr('exit(' + status + ') called, but noExitRuntime, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)');
   } else {
 
     ABORT = true;
@@ -7379,7 +7718,7 @@ function abort(what) {
   ABORT = true;
   EXITSTATUS = 1;
 
-  var extra = '\nIf this abort() is unexpected, build with -s ASSERTIONS=1 which can give more information.';
+  var extra = '';
 
   var output = 'abort(' + what + ') at ' + stackTrace() + extra;
   if (abortDecorators) {
