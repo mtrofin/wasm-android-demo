@@ -9,7 +9,7 @@
     </head>
     <body>
         <input type="button" value="Fullscreen" onclick="fullScreen()"/>
-        <canvas id="canvas" width="300" height="400" onwebkitfullscreenchange="resizeCanvas()">
+        <canvas id="canvas" width="360" height="640" onwebkitfullscreenchange="resizeCanvas()">
             Your browser doesn't appear to support the HTML5 <code>&lt;canvas &gt;</code>
             element.
     
@@ -22,14 +22,6 @@
         }
 
         function resizeCanvas() {
-            var isFullScreen = document.webkitIsFullScreen || document.mozFullScreen;
-            if (isFullScreen) {
-                canvas.style.width = screen.width;
-                canvas.style.height = screen.height;
-            } else {
-                canvas.style.width = 300;
-                canvas.style.height = 400;
-            }
         }           
       var Module = {
         preRun: [],

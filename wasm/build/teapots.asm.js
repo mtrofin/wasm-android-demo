@@ -249,7 +249,7 @@ function __ZN6Engine11InitDisplayEv($0) {
  _esInitContext($4);
  $5 = ((($2)) + 4|0);
  $6 = load4($5);
- (_esCreateWindow($6,27284,1080,1920,0)|0);
+ (_esCreateWindow($6,27284,360,640,0)|0);
  __ZN6Engine13LoadResourcesEv($2);
  $7 = ((($2)) + 8|0);
  store1($7,1);
