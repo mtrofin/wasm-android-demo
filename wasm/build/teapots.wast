@@ -20654,6 +20654,9 @@
     (set_local $$24
       (get_local $$11)
     )
+    (call $__ZN19MoreTeapotsRenderer14UpdateViewportEv
+      (get_local $$24)
+    )
     (set_local $$25
       (i32.add
         (get_local $$24)

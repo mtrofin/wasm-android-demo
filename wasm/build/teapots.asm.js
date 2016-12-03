@@ -4643,6 +4643,7 @@ function __ZN19MoreTeapotsRenderer6RenderEv($0) {
  $23 = sp;
  $11 = $0;
  $24 = $11;
+ __ZN19MoreTeapotsRenderer14UpdateViewportEv($24);
  $25 = ((($24)) + 16|0);
  $26 = load4($25);
  _glBindBuffer(34962,($26|0));
