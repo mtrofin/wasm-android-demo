@@ -475,8 +475,8 @@
       (call $_esCreateWindow
         (get_local $$6)
         (i32.const 27284)
-        (i32.const 360)
-        (i32.const 640)
+        (i32.const 1080)
+        (i32.const 1920)
         (i32.const 0)
       )
     )
