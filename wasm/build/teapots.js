@@ -1966,7 +1966,7 @@ var ASM_CONSTS = [];
 
 STATIC_BASE = 1024;
 
-STATICTOP = STATIC_BASE + 32416;
+STATICTOP = STATIC_BASE + 32480;
   /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_MoreTeapots_wasm_cpp() } });
   
 
@@ -1975,7 +1975,7 @@ memoryInitializer = Module["wasmJSMethod"].indexOf("asmjs") >= 0 || Module["wasm
 
 
 
-var STATIC_BUMP = 32416;
+var STATIC_BUMP = 32480;
 
 /* no memory initializer */
 var tempDoublePtr = STATICTOP; STATICTOP += 16;
@@ -3472,7 +3472,7 @@ function copyTempDouble(ptr) {
         return 0; /* EGL_NO_CONTEXT */
       }
   
-      _glutInitDisplayMode(0xB2 /* GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE | GLUT_STENCIL */);
+      _glutInitDisplayMode(0x32 /* GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE | GLUT_STENCIL */);
       EGL.windowID = _glutCreateWindow();
       if (EGL.windowID != 0) {
         EGL.setErrorCode(0x3000 /* EGL_SUCCESS */);
@@ -6587,7 +6587,26 @@ function copyTempDouble(ptr) {
   function _eglWaitClient() {
       EGL.setErrorCode(0x3000 /* EGL_SUCCESS */);
       return 1;
-    }function _eglCreateWindowSurface(display, config, win, attrib_list) { 
+    }function _eglSwapBuffers() {
+  
+      if (!EGL.defaultDisplayInitialized) {
+        EGL.setErrorCode(0x3001 /* EGL_NOT_INITIALIZED */);
+      } else if (!Module.ctx) {
+        EGL.setErrorCode(0x3002 /* EGL_BAD_ACCESS */);
+      } else if (Module.ctx.isContextLost()) {
+        EGL.setErrorCode(0x300E /* EGL_CONTEXT_LOST */);
+      } else {
+        // According to documentation this does an implicit flush.
+        // Due to discussion at https://github.com/kripken/emscripten/pull/1871
+        // the flush was removed since this _may_ result in slowing code down.
+        //_glFlush();
+        EGL.setErrorCode(0x3000 /* EGL_SUCCESS */);
+        return 1 /* EGL_TRUE */;
+      }
+      return 0 /* EGL_FALSE */;
+    }
+
+  function _eglCreateWindowSurface(display, config, win, attrib_list) { 
       if (display != 62000 /* Magic ID for Emscripten 'default display' */) {
         EGL.setErrorCode(0x3008 /* EGL_BAD_DISPLAY */);
         return 0;
@@ -7378,7 +7397,7 @@ function invoke_viiii(index,a1,a2,a3,a4) {
 
 Module.asmGlobalArg = { "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Uint32Array": Uint32Array, "Float32Array": Float32Array, "Float64Array": Float64Array, "NaN": NaN, "Infinity": Infinity };
 
-Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "abortStackOverflow": abortStackOverflow, "nullFunc_iiii": nullFunc_iiii, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_ii": nullFunc_ii, "nullFunc_v": nullFunc_v, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_viiii": nullFunc_viiii, "invoke_iiii": invoke_iiii, "invoke_viiiii": invoke_viiiii, "invoke_vi": invoke_vi, "invoke_vii": invoke_vii, "invoke_ii": invoke_ii, "invoke_v": invoke_v, "invoke_viiiiii": invoke_viiiiii, "invoke_viiii": invoke_viiii, "_glUseProgram": _glUseProgram, "___syscall221": ___syscall221, "_glDeleteShader": _glDeleteShader, "_glVertexAttribPointer": _glVertexAttribPointer, "_eglGetDisplay": _eglGetDisplay, "_glGetProgramiv": _glGetProgramiv, "emscriptenWebGLGet": emscriptenWebGLGet, "___syscall54": ___syscall54, "_abort": _abort, "_eglChooseConfig": _eglChooseConfig, "_glGetProgramInfoLog": _glGetProgramInfoLog, "___setErrNo": ___setErrNo, "___gxx_personality_v0": ___gxx_personality_v0, "_glClearColor": _glClearColor, "___assert_fail": ___assert_fail, "_glDeleteProgram": _glDeleteProgram, "___cxa_allocate_exception": ___cxa_allocate_exception, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "_XCreateWindow": _XCreateWindow, "_glLinkProgram": _glLinkProgram, "_glGetShaderInfoLog": _glGetShaderInfoLog, "_glDeleteBuffers": _glDeleteBuffers, "_glViewport": _glViewport, "_glGetUniformLocation": _glGetUniformLocation, "_emscripten_set_main_loop_timing": _emscripten_set_main_loop_timing, "___cxa_free_exception": ___cxa_free_exception, "_XInternAtom": _XInternAtom, "_glDepthFunc": _glDepthFunc, "_glClear": _glClear, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_glUniform3f": _glUniform3f, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_XOpenDisplay": _XOpenDisplay, "___cxa_find_matching_catch_2": ___cxa_find_matching_catch_2, "_eglCreateContext": _eglCreateContext, "_glShaderSource": _glShaderSource, "_glBindAttribLocation": _glBindAttribLocation, "_glCreateShader": _glCreateShader, "_glCompileShader": _glCompileShader, "_glUniform4f": _glUniform4f, "_eglInitialize": _eglInitialize, "_XMapWindow": _XMapWindow, "_XSendEvent": _XSendEvent, "_glutCreateWindow": _glutCreateWindow, "_XStoreName": _XStoreName, "_glDrawElements": _glDrawElements, "_glGetIntegerv": _glGetIntegerv, "_glEnable": _glEnable, "___resumeException": ___resumeException, "___unlock": ___unlock, "_glBindBuffer": _glBindBuffer, "_pthread_cleanup_pop": _pthread_cleanup_pop, "_glCreateProgram": _glCreateProgram, "_emscripten_set_main_loop": _emscripten_set_main_loop, "_eglWaitClient": _eglWaitClient, "_emscripten_get_now": _emscripten_get_now, "_glGenBuffers": _glGenBuffers, "_glAttachShader": _glAttachShader, "_eglGetConfigs": _eglGetConfigs, "_glFrontFace": _glFrontFace, "_eglMakeCurrent": _eglMakeCurrent, "___cxa_atexit": ___cxa_atexit, "_glUniformMatrix4fv": _glUniformMatrix4fv, "___cxa_throw": ___cxa_throw, "_glEnableVertexAttribArray": _glEnableVertexAttribArray, "___lock": ___lock, "___syscall6": ___syscall6, "_pthread_cleanup_push": _pthread_cleanup_push, "_glutInitDisplayMode": _glutInitDisplayMode, "___syscall5": ___syscall5, "_XChangeWindowAttributes": _XChangeWindowAttributes, "_XSetWMHints": _XSetWMHints, "_gettimeofday": _gettimeofday, "_glBufferData": _glBufferData, "_glGetShaderiv": _glGetShaderiv, "_atexit": _atexit, "___syscall140": ___syscall140, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "_eglCreateWindowSurface": _eglCreateWindowSurface, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "___dso_handle": ___dso_handle };
+Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "abortStackOverflow": abortStackOverflow, "nullFunc_iiii": nullFunc_iiii, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_ii": nullFunc_ii, "nullFunc_v": nullFunc_v, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_viiii": nullFunc_viiii, "invoke_iiii": invoke_iiii, "invoke_viiiii": invoke_viiiii, "invoke_vi": invoke_vi, "invoke_vii": invoke_vii, "invoke_ii": invoke_ii, "invoke_v": invoke_v, "invoke_viiiiii": invoke_viiiiii, "invoke_viiii": invoke_viiii, "_glUseProgram": _glUseProgram, "___syscall221": ___syscall221, "_glDeleteShader": _glDeleteShader, "_glVertexAttribPointer": _glVertexAttribPointer, "_eglGetDisplay": _eglGetDisplay, "_glGetProgramiv": _glGetProgramiv, "emscriptenWebGLGet": emscriptenWebGLGet, "___syscall54": ___syscall54, "_abort": _abort, "_eglChooseConfig": _eglChooseConfig, "_glGetProgramInfoLog": _glGetProgramInfoLog, "___setErrNo": ___setErrNo, "___gxx_personality_v0": ___gxx_personality_v0, "_glClearColor": _glClearColor, "___assert_fail": ___assert_fail, "_glDeleteProgram": _glDeleteProgram, "___cxa_allocate_exception": ___cxa_allocate_exception, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "_XCreateWindow": _XCreateWindow, "_glLinkProgram": _glLinkProgram, "_glGetShaderInfoLog": _glGetShaderInfoLog, "_glDeleteBuffers": _glDeleteBuffers, "_glViewport": _glViewport, "_XInternAtom": _XInternAtom, "_emscripten_set_main_loop_timing": _emscripten_set_main_loop_timing, "___cxa_free_exception": ___cxa_free_exception, "_glGetUniformLocation": _glGetUniformLocation, "_glDepthFunc": _glDepthFunc, "_glClear": _glClear, "_emscripten_memcpy_big": _emscripten_memcpy_big, "_glUniform3f": _glUniform3f, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_XOpenDisplay": _XOpenDisplay, "___cxa_find_matching_catch_2": ___cxa_find_matching_catch_2, "_eglCreateContext": _eglCreateContext, "_glShaderSource": _glShaderSource, "_glBindAttribLocation": _glBindAttribLocation, "_glCreateShader": _glCreateShader, "_glCompileShader": _glCompileShader, "_glUniform4f": _glUniform4f, "_eglInitialize": _eglInitialize, "_atexit": _atexit, "_XMapWindow": _XMapWindow, "_XSendEvent": _XSendEvent, "_glutCreateWindow": _glutCreateWindow, "_XStoreName": _XStoreName, "_glDrawElements": _glDrawElements, "_glGetIntegerv": _glGetIntegerv, "_glEnable": _glEnable, "___resumeException": ___resumeException, "___unlock": ___unlock, "_glBindBuffer": _glBindBuffer, "_pthread_cleanup_pop": _pthread_cleanup_pop, "_glCreateProgram": _glCreateProgram, "_emscripten_set_main_loop": _emscripten_set_main_loop, "_eglWaitClient": _eglWaitClient, "_emscripten_get_now": _emscripten_get_now, "_glGenBuffers": _glGenBuffers, "_glAttachShader": _glAttachShader, "_eglGetConfigs": _eglGetConfigs, "_glFrontFace": _glFrontFace, "_eglMakeCurrent": _eglMakeCurrent, "___cxa_atexit": ___cxa_atexit, "_glUniformMatrix4fv": _glUniformMatrix4fv, "___cxa_throw": ___cxa_throw, "_glEnableVertexAttribArray": _glEnableVertexAttribArray, "___lock": ___lock, "___syscall6": ___syscall6, "_pthread_cleanup_push": _pthread_cleanup_push, "_glutInitDisplayMode": _glutInitDisplayMode, "___syscall5": ___syscall5, "_XChangeWindowAttributes": _XChangeWindowAttributes, "_XSetWMHints": _XSetWMHints, "_gettimeofday": _gettimeofday, "_glBufferData": _glBufferData, "_glGetShaderiv": _glGetShaderiv, "_eglSwapBuffers": _eglSwapBuffers, "___syscall140": ___syscall140, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "_eglCreateWindowSurface": _eglCreateWindowSurface, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "___dso_handle": ___dso_handle };
 // EMSCRIPTEN_START_ASM
 var asm =Module["asm"]// EMSCRIPTEN_END_ASM
 (Module.asmGlobalArg, Module.asmLibraryArg, buffer);
